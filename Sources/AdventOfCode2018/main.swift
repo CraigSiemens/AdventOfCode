@@ -1,21 +1,23 @@
 import Foundation
+import Utilities
 import Day1
 import Day2
 import Day3
+import Day4
+// {IMPORTS}
 
 //print("What day do you want to run?")
 //guard let input = readLine() else {
 //    exit(1)
 //}
 
-print("Day 1")
-print("Part 1:", Day1().part1Solution())
-print("Part 2:", Day1().part2Solution())
+func printSolution(for day: Day & HasInput) {
+    print("\(type(of: day))")
+    print("Part 1:", day.part1Solution())
+    print("Part 2:", day.part2Solution())
+}
 
-print("Day 2")
-print("Part 1:", Day2().part1Solution())
-print("Part 2:", Day2().part2Solution())
-
-print("Day 3")
-print("Part 1:", Day3().part1Solution())
-print("Part 2:", Day3().part2Solution())
+printSolution(for: Day1())
+printSolution(for: Day2())
+printSolution(for: Day3())
+printSolution(for: Day4())

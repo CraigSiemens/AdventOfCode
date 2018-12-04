@@ -14,20 +14,20 @@ private func factorial(n: Int) -> Int {
     return n * factorial(n: n-1)
 }
 
-struct Combinations<C: Collection>: Sequence, IteratorProtocol where C.Index == Int {
+public struct Combinations<C: Collection>: Sequence, IteratorProtocol where C.Index == Int {
     let collection: C
     let collectionCount: Int
     var indexes = (0, 0)
 //    var sequenceIterator: S.Iterator
     
-    init(from collection: C) {
+    public init(from collection: C) {
         self.collection = collection
         self.collectionCount = collection.count
         
 //        self.sequenceIterator = sequence.makeIterator()
     }
     
-    mutating func next() -> (C.Element, C.Element)? {
+    mutating public func next() -> (C.Element, C.Element)? {
         indexes.1 += 1
         
         if indexes.1 >= collectionCount {

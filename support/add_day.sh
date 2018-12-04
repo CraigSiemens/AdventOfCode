@@ -1,6 +1,8 @@
 day_number=$1
 day_name="Day${day_number}"
-file_path="Sources/${day_name}/${day_name}.swift"
+
+sources_path="Sources/"
+day_folder_path="${sources_path}/${day_name}"
 test_file_path="Tests/AdventOfCode2018Tests/${day_name}Tests.swift"
 
 sed -i '' '/{DEPENDENCIES}/i\
@@ -10,20 +12,31 @@ sed -i '' '/{DEPENDENCIES}/i\
 sed -i '' '/{TARGET}/i\
 \        .target(\
 \            name: \"'${day_name}'\",\
-\            dependencies: []),\
+\            dependencies: ["Utilities"]),\
 ' Package.swift
 
-mkdir "Sources/${day_name}"
+sed -i '' '/{IMPORTS}/i\
+import '${day_name}'\
+' "Sources/AdventOfCode2018/main.swift"
 
+# Create folder for day
+mkdir "${days_folder_path}"
 
-cp "./support/DayTemplate.swift" "${file_path}"
-sed -i '' 's/{DAY_NAME}/'${day_name}'/g' "${file_path}"
+# Create day file
+day_file_path="${day_folder_path}/${day_name}.swift"
+cp "./support/DayTemplate.swift" "${day_file_path}"
+sed -i '' 's/{DAY_NAME}/'${day_name}'/g' "${day_file_path}"
 
-cp "./support/Input.swift" "Sources/${day_name}"
+# Create input file
+input_file_path="${day_folder_path}/${day_name}+Input.swift"
+cp "./support/DayInputTemplate.swift" "${input_file_path}"
+sed -i '' 's/{DAY_NAME}/'${day_name}'/g' "${input_file_path}"
 
+# Create tests file
 cp "./support/DayTestsTemplate.swift" "${test_file_path}"
 sed -i '' 's/{DAY_NAME}/'${day_name}'/g' "${test_file_path}"
 
+# Regerenate Xcode project
 rm -rf AdventOfCode2018.xcodeproj/
 swift package generate-xcodeproj
 open AdventOfCode2018.xcodeproj

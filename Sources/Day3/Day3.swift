@@ -1,16 +1,7 @@
 import Foundation
+import Utilities
 
-extension Scanner {
-    func nextInt() -> Int? {
-        scanUpToCharacters(from: .decimalDigits, into: nil)
-        
-        var int = 0
-        guard scanInt(&int) else { return nil }
-        return int
-    }
-}
-
-public struct Day3 {
+public struct Day3: Day {
     public init() {}
     
     struct Claim {

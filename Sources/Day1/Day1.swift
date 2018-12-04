@@ -1,6 +1,7 @@
 import Foundation
+import Utilities
 
-public struct Day1 {
+public struct Day1: Day {
     public init() {}
     
     func parse(input: String) -> [Int] {
