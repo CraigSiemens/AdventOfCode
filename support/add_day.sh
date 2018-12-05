@@ -1,7 +1,7 @@
 day_number=$1
 day_name="Day${day_number}"
 
-sources_path="Sources/"
+sources_path="Sources"
 day_folder_path="${sources_path}/${day_name}"
 test_file_path="Tests/AdventOfCode2018Tests/${day_name}Tests.swift"
 
@@ -19,8 +19,13 @@ sed -i '' '/{IMPORTS}/i\
 import '${day_name}'\
 ' "Sources/AdventOfCode2018/main.swift"
 
+sed -i '' '/{DAYS}/i\
+\    '${day_name}'(),
+' "Sources/AdventOfCode2018/main.swift"
+
+
 # Create folder for day
-mkdir "${days_folder_path}"
+mkdir "${day_folder_path}"
 
 # Create day file
 day_file_path="${day_folder_path}/${day_name}.swift"
