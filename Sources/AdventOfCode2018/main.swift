@@ -5,6 +5,7 @@ import Day2
 import Day3
 import Day4
 import Day5
+import Day6
 // {IMPORTS}
 
 //print("What day do you want to run?")
@@ -19,6 +20,7 @@ let days: [SolvableDay] = [
     Day3(),
     Day4(),
     Day5(),
+    Day6(),
     // {DAYS}
 ]
 
@@ -44,8 +46,13 @@ func printSolution(for day: SolvableDay) {
 
 print("What day do you want to run?")
 
-let number = readLine()
-    .flatMap { Int($0) }
+let number =
+    CommandLine
+        .arguments
+        .last
+        .flatMap { Int($0) }
+    ?? readLine()
+        .flatMap { Int($0) }
     ?? days.count
 
 let index = number - 1
