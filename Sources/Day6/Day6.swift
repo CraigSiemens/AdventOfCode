@@ -3,7 +3,7 @@ import Utilities
 
 public struct Day6: Day {
     public init() {}
-
+    
     class Source: Hashable {
         static func == (lhs: Day6.Source, rhs: Day6.Source) -> Bool {
             return lhs.coordinate == rhs.coordinate
@@ -56,10 +56,12 @@ public struct Day6: Day {
         
         var field = Array(repeating: Array(repeating: Location.empty,count: maxCoordinate.x + 1),
                           count: maxCoordinate.y + 1)
-        var actionStack: [(Coordinate, Source)] = sources.map { ($0.coordinate, $0) }
+        var actionQueue: [(Coordinate, Source)] = sources.map { ($0.coordinate, $0) }
         
-        while let (coordinate, source) = actionStack.first {
-            actionStack.removeFirst()
+        var index = 0
+        while index < actionQueue.count {
+            let (coordinate, source) = actionQueue[index]
+            index += 1
             
             guard (0...maxCoordinate.y).contains(coordinate.y),
                 (0...maxCoordinate.x).contains(coordinate.x) else {
@@ -71,7 +73,7 @@ public struct Day6: Day {
             case .empty:
                 field[coordinate.y][coordinate.x] = .closestTo(source)
                 source.incrementArea()
-                actionStack += coordinate.neighbours.map { ($0, source) }
+                actionQueue += coordinate.neighbours.map { ($0, source) }
             case .closestTo(let other):
                 if other != source,
                     coordinate.manhattanDistance(to: source.coordinate) == coordinate.manhattanDistance(to: other.coordinate) {
@@ -89,7 +91,7 @@ public struct Day6: Day {
             .flatMap { "\($0)" }
             ?? "UNKNOWN"
     }
-
+    
     public func part2Solution(for input: String = input) -> String {
         return "not solved"
     }
