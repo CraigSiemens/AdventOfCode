@@ -45,6 +45,37 @@ public struct Day6: Day {
             .map { Coordinate(x: $0[0], y: $0[1]) }
     }
     
+    func floodFill(sources: [Source], condition: (Coordinate, Source) -> Bool) {
+        
+        var field: [Coordinate: Location] = [:]
+        var actionQueue: [(Coordinate, Source)] = sources.map { ($0.coordinate, $0) }
+        
+        var index = 0
+        while index < actionQueue.count {
+            let (coordinate, source) = actionQueue[index]
+            index += 1
+            
+            guard condition(coordinate, source) else {
+                continue
+            }
+            
+            switch field[coordinate, default: .empty] {
+            case .empty:
+                field[coordinate] = .closestTo(source)
+                source.incrementArea()
+                actionQueue += coordinate.neighbours.map { ($0, source) }
+            case .closestTo(let other):
+                if other != source,
+                    coordinate.manhattanDistance(to: source.coordinate) == coordinate.manhattanDistance(to: other.coordinate) {
+                    field[coordinate] = .tied
+                    other.decrementArea()
+                }
+            case .tied: break
+            }
+        }
+        
+    }
+    
     public func part1Solution(for input: String = input) -> String {
         let coordinates = parse(input: input)
         let maxCoordinate = coordinates.reduce(into: Coordinate(x: 0, y: 0)) {
@@ -54,34 +85,14 @@ public struct Day6: Day {
         
         let sources = coordinates.map { Source(coordinate: $0) }
         
-        var field = Array(repeating: Array(repeating: Location.empty,count: maxCoordinate.x + 1),
-                          count: maxCoordinate.y + 1)
-        var actionQueue: [(Coordinate, Source)] = sources.map { ($0.coordinate, $0) }
-        
-        var index = 0
-        while index < actionQueue.count {
-            let (coordinate, source) = actionQueue[index]
-            index += 1
+        floodFill(sources: sources) { (coordinate, source) in
+            let shouldContinue = (0...maxCoordinate.y).contains(coordinate.y)
+                && (0...maxCoordinate.x).contains(coordinate.x)
             
-            guard (0...maxCoordinate.y).contains(coordinate.y),
-                (0...maxCoordinate.x).contains(coordinate.x) else {
-                    source.area = .max
-                    continue
+            if !shouldContinue {
+                source.area = .max
             }
-            
-            switch field[coordinate.y][coordinate.x] {
-            case .empty:
-                field[coordinate.y][coordinate.x] = .closestTo(source)
-                source.incrementArea()
-                actionQueue += coordinate.neighbours.map { ($0, source) }
-            case .closestTo(let other):
-                if other != source,
-                    coordinate.manhattanDistance(to: source.coordinate) == coordinate.manhattanDistance(to: other.coordinate) {
-                    field[coordinate.y][coordinate.x] = .tied
-                    other.decrementArea()
-                }
-            case .tied: break
-            }
+            return shouldContinue
         }
         
         return sources
@@ -92,7 +103,29 @@ public struct Day6: Day {
             ?? "UNKNOWN"
     }
     
+    func part2Solution(for input: String, minDistance: Int) -> String {
+        let coordinates = parse(input: input)
+        var averageCoordinate = coordinates.reduce(into: Coordinate(x: 0, y: 0)) {
+            $0.x += $1.x
+            $0.y += $1.y
+        }
+        averageCoordinate.x /= coordinates.count
+        averageCoordinate.y /= coordinates.count
+        
+        let averageSource = Source(coordinate: averageCoordinate)
+        
+        floodFill(sources: [averageSource]) { (coordinate, _) in
+            return coordinates
+                .map(coordinate.manhattanDistance(to: ))
+                .reduce(0, +)
+                < minDistance
+        }
+        
+        return "\(averageSource.area)"
+    }
+
+    
     public func part2Solution(for input: String = input) -> String {
-        return "not solved"
+        return part2Solution(for: input, minDistance: 10000)
     }
 }

@@ -18,7 +18,6 @@ final class Day6Tests: XCTestCase {
     }
     
     func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
-        XCTAssert(false)
+        XCTAssertEqual(day.part2Solution(for: input, minDistance: 32), "16")
     }
 }
