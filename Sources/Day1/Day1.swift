@@ -13,7 +13,7 @@ public struct Day1: Day {
     
     public func part1Solution(for input: String = input) -> String {
         let value = parse(input: input)
-            .reduce(0, +)
+            .sum()
         
         return "\(value)"
     }

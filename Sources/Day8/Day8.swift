@@ -9,8 +9,8 @@ public struct Day8: Day {
         let metadata: [Int]
         
         var metadataSum: Int {
-            return metadata.reduce(0, +)
-                + children.map { $0.metadataSum }.reduce(0, +)
+            return metadata.sum()
+                + children.map { $0.metadataSum }.sum()
         }
         
         var value: Int {
@@ -21,7 +21,7 @@ public struct Day8: Day {
                     .map { $0 - 1 }
                     .filter { $0 < children.count }
                     .map { children[$0].value }
-                    .reduce(0, +)
+                    .sum()
             }
         }
         

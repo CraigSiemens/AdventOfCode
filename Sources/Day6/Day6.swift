@@ -117,7 +117,7 @@ public struct Day6: Day {
         floodFill(sources: [averageSource]) { (coordinate, _) in
             return coordinates
                 .map(coordinate.manhattanDistance(to: ))
-                .reduce(0, +)
+                .sum()
                 < minDistance
         }
         
