@@ -10,11 +10,9 @@ final class {DAY_NAME}Tests: XCTestCase {
     
     func testPart1() {
 //        XCTAssertEqual(day.part1Solution(for: input), "<#output#>")
-        XCTAssert(false)
     }
     
     func testPart2() {
 //        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
-        XCTAssert(false)
     }
 }
