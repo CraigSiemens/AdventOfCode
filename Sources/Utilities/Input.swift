@@ -60,3 +60,9 @@ extension Collection where Element: StringInput {
         return compactMap { $0.integer }
     }
 }
+
+extension Collection where Element: StringProtocol {
+    public var integers: [Int] {
+        return compactMap { Int($0) }
+    }
+}

@@ -9,7 +9,7 @@ public struct Day6: Day {
             return lhs.coordinate == rhs.coordinate
         }
         
-        let coordinate: Coordinate
+        let coordinate: Point
         var area: Int = 0
         
         func incrementArea() {
@@ -22,7 +22,7 @@ public struct Day6: Day {
             area -= 1
         }
         
-        init(coordinate: Coordinate) {
+        init(coordinate: Point) {
             self.coordinate = coordinate
         }
         
@@ -37,18 +37,18 @@ public struct Day6: Day {
         case tied
     }
     
-    func parse(input: String) -> [Coordinate] {
+    func parse(input: String) -> [Point] {
         return input
             .replacingOccurrences(of: " ", with: "")
             .components(separatedBy: .newlines)
             .map { $0.components(separatedBy: ",").compactMap({ s in Int(s) }) }
-            .map { Coordinate(x: $0[0], y: $0[1]) }
+            .map { Point(x: $0[0], y: $0[1]) }
     }
     
-    func floodFill(sources: [Source], condition: (Coordinate, Source) -> Bool) {
+    func floodFill(sources: [Source], condition: (Point, Source) -> Bool) {
         
-        var field: [Coordinate: Location] = [:]
-        var actionQueue: [(Coordinate, Source)] = sources.map { ($0.coordinate, $0) }
+        var field: [Point: Location] = [:]
+        var actionQueue: [(Point, Source)] = sources.map { ($0.coordinate, $0) }
         
         var index = 0
         while index < actionQueue.count {
@@ -78,7 +78,7 @@ public struct Day6: Day {
     
     public func part1Solution(for input: String = input) -> String {
         let coordinates = parse(input: input)
-        let maxCoordinate = coordinates.reduce(into: Coordinate(x: 0, y: 0)) {
+        let maxCoordinate = coordinates.reduce(into: Point(x: 0, y: 0)) {
             $0.x = max($0.x, $1.x)
             $0.y = max($0.y, $1.y)
         }
@@ -105,7 +105,7 @@ public struct Day6: Day {
     
     func part2Solution(for input: String, minDistance: Int) -> String {
         let coordinates = parse(input: input)
-        var averageCoordinate = coordinates.reduce(into: Coordinate(x: 0, y: 0)) {
+        var averageCoordinate = coordinates.reduce(into: Point(x: 0, y: 0)) {
             $0.x += $1.x
             $0.y += $1.y
         }
