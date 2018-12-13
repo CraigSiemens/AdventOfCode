@@ -31,6 +31,12 @@ public struct Point: Hashable {
 }
 
 extension Point {
+    public static func all(in xRange: ClosedRange<Int>, _ yRange: ClosedRange<Int>) -> [Point] {
+        return yRange.flatMap { y -> [Point] in
+            return xRange.map { Point(x: $0, y: y) }
+        }
+    }
+    
     public static func + (lhs: Point, rhs: Point) -> Point {
         return Point(x: lhs.x + rhs.x,
                      y: lhs.y + rhs.y)
