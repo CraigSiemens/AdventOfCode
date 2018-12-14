@@ -117,8 +117,6 @@ public struct Day7: Day {
                 
                 workingStep[worker]?.remainingTime -= 1
             }
-            
-//            print(workingStep.map { $0?.name ?? "." }.joined())
         }
         
         return "\(time)"

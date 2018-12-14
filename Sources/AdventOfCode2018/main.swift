@@ -12,6 +12,7 @@ import Day9
 import Day10
 import Day11
 import Day12
+import Day13
 // {IMPORTS}
 
 //print("What day do you want to run?")
@@ -33,6 +34,7 @@ let days: [SolvableDay] = [
     Day10(),
     Day11(),
     Day12(),
+    Day13(),
     // {DAYS}
 ]
 

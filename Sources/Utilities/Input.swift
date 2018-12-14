@@ -39,7 +39,7 @@ public struct Input: StringInput {
     public let raw: String
     
     public init(_ raw: String) {
-        self.raw = raw.trimmingCharacters(in: .whitespaces)
+        self.raw = raw//.trimmingCharacters(in: .whitespaces)
     }
 }
 

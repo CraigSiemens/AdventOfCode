@@ -32,12 +32,12 @@ public struct Day12: Day {
             
             var nextPlantLine = PlantLine(number: number + 1)
             for p in Point.all(in: min.x...max.x, 0...0) {
-                let neighbours = [
-                    p.moved(.left).moved(.left),
-                    p.moved(.left),
+                let neighbours: [Point] = [
+                    p.moved(.west).moved(.west),
+                    p.moved(.west),
                     p,
-                    p.moved(.right),
-                    p.moved(.right).moved(.right)
+                    p.moved(.east),
+                    p.moved(.east).moved(.east)
                 ]
                 
                 let state = neighbours.map { plants[$0, default: false] }

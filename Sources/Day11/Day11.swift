@@ -41,7 +41,6 @@ public struct Day11: Day {
             }
         }
         
-        print(maxValue)
         return "\(maxX),\(maxY)"
     }
 

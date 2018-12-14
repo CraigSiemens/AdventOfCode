@@ -8,17 +8,17 @@ public struct Point: Hashable {
         self.y = y
     }
     
-    public func moved(_ direction: Direction) -> Point {
-        switch direction {
-        case .up: return Point(x: x, y: y-1)
-        case .down: return Point(x: x, y: y+1)
-        case .left: return Point(x: x-1, y: y)
-        case .right: return Point(x: x+1, y: y)
+    public func moved(_ heading: Heading) -> Point {
+        switch heading {
+        case .north: return Point(x: x, y: y-1)
+        case .south: return Point(x: x, y: y+1)
+        case .west: return Point(x: x-1, y: y)
+        case .east: return Point(x: x+1, y: y)
         }
     }
     
     public var neighbours: [Point] {
-        return Direction.allCases.map(moved(_: ))
+        return Heading.allCases.map(moved(_: ))
     }
     
     public func manhattanDistance(to other: Point) -> Int {
@@ -48,8 +48,10 @@ extension Point {
     }
 }
 
-public enum Direction: CaseIterable {
-    case up, down, left, right
+extension Point: Comparable {
+    public static func < (lhs: Point, rhs: Point) -> Bool {
+        return lhs.y < rhs.y || (lhs.y == rhs.y &&  lhs.x < rhs.x)
+    }
 }
 
 extension Collection where Element == Point {
