@@ -14,6 +14,7 @@ public protocol StringInput {
     var integer: Int? { get }
     var lines: [Line] { get }
     var words: [Word] { get }
+    var characters: [Character] { get }
 }
 
 extension StringInput {
@@ -32,6 +33,10 @@ extension StringInput {
             .components(separatedBy: .whitespaces)
             .filter { $0.isEmpty == false }
             .map { Word($0) }
+    }
+    
+    public var characters: [Character] {
+        return Array(raw)
     }
 }
 
@@ -64,5 +69,11 @@ extension Collection where Element: StringInput {
 extension Collection where Element: StringProtocol {
     public var integers: [Int] {
         return compactMap { Int($0) }
+    }
+}
+
+extension Collection where Element == Character {
+    public var integers: [Int] {
+        return compactMap { Int("\($0)") }
     }
 }
