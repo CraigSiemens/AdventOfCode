@@ -8,7 +8,8 @@
 import Foundation
 
 public enum Heading: CaseIterable {
-    case north, east, south, west
+    // Reading Order
+    case north, west, east, south
     
     public var opposite: Heading {
         switch self {

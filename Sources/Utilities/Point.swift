@@ -31,6 +31,18 @@ public struct Point: Hashable {
 }
 
 extension Point {
+    public var int2: simd.int2 {
+        return simd.int2(Int32(x), Int32(y))
+    }
+}
+
+extension simd.int2 {
+    public var point: Point {
+        return Point(x: Int(x), y: Int(y))
+    }
+}
+
+extension Point {
     public static func all(in xRange: ClosedRange<Int>, _ yRange: ClosedRange<Int>) -> [Point] {
         return yRange.flatMap { y -> [Point] in
             return xRange.map { Point(x: $0, y: y) }
@@ -46,11 +58,21 @@ extension Point {
         lhs.x += rhs.x
         lhs.y += rhs.y
     }
+    
+    public static func - (lhs: Point, rhs: Point) -> Point {
+        return Point(x: lhs.x - rhs.x,
+                     y: lhs.y - rhs.y)
+    }
+    
+    public static func -= (lhs: inout Point, rhs: Point) {
+        lhs.x -= rhs.x
+        lhs.y -= rhs.y
+    }
 }
 
 extension Point: Comparable {
     public static func < (lhs: Point, rhs: Point) -> Bool {
-        return lhs.y < rhs.y || (lhs.y == rhs.y &&  lhs.x < rhs.x)
+        return lhs.y < rhs.y || (lhs.y == rhs.y && lhs.x < rhs.x)
     }
 }
 
