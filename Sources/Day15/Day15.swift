@@ -10,15 +10,16 @@ public struct Day15: Day {
         case goblin = "G"
     }
     
-    class Combatant: CustomStringConvertible, Hashable {
+    struct Combatant: CustomStringConvertible, Hashable {
         static func == (lhs: Day15.Combatant, rhs: Day15.Combatant) -> Bool {
-            return lhs === rhs
+            return lhs.id == rhs.id
         }
         
         var hashValue: Int {
-            return ObjectIdentifier(self).hashValue
+            return id.hashValue
         }
         
+        let id = UUID()
         var health = 200
         var position: Point
         let race: Race
@@ -88,7 +89,7 @@ public struct Day15: Day {
             combatants.remove(combatant)
         }
         
-        mutating func move(combatant: Combatant, to point: Point) {
+        mutating func move(combatant: inout Combatant, to point: Point) {
             guard combatant.position != point else { fatalError() }
             
             let node = Node(gridPosition: combatant.position.int2)
@@ -96,13 +97,33 @@ public struct Day15: Day {
             graph.add([node])
             
             combatant.position = point
+            combatants.remove(combatant)
+            combatants.insert(combatant)
             graph.remove([graph.node(atGridPosition: point.int2)!])
+        }
+        
+        mutating func attack(target: Combatant, power: Int) {
+            var target = target
+            target.health -= power
+            
+            if target.health <= 0 {
+                remove(combatant: target)
+            } else {
+                combatants.remove(target)
+                combatants.insert(target)
+            }
         }
     }
     
     struct CombatRunner: Sequence, IteratorProtocol {
         var first = true
         var state: CombatState
+        let elfPower: Int
+        
+        init(state: CombatState, elfPower: Int = 3) {
+            self.state = state
+            self.elfPower = elfPower
+        }
         
         mutating func next() -> CombatState? {
             guard !first else {
@@ -117,11 +138,12 @@ public struct Day15: Day {
             var nextState = state
             defer { state = nextState }
             
-            for var current in state.combatants.sorted(by: { $0.position < $1.position }) {
-                guard nextState.combatants.contains(current) else {
+            for c in state.combatants.sorted(by: { $0.position < $1.position }) {
+                guard let index = nextState.combatants.firstIndex(of: c) else {
                     continue
                 }
                 
+                var current = nextState.combatants[index]
                 let targets = nextState.combatants
                     .filter { $0.race != current.race }
                 
@@ -160,7 +182,8 @@ public struct Day15: Day {
                         .start
                     
                     if let destination = optionalDestination  {
-                        nextState.move(combatant: current, to: destination.gridPosition.point)
+                        nextState.move(combatant: &current,
+                                       to: destination.gridPosition.point)
                     }
                 }
                 
@@ -173,11 +196,8 @@ public struct Day15: Day {
                             return false
                     }
 
-                    target.health -= 3
-                    if target.health <= 0 {
-                        nextState.remove(combatant: target)
-                    }
-                    
+                    nextState.attack(target: target,
+                                     power: current.race == .elf ? elfPower : 3)
                     return true
                 }
                 
@@ -190,6 +210,30 @@ public struct Day15: Day {
             
             nextState.number += 1
             return nextState
+        }
+    }
+    
+    struct CombatStatePrinter {
+        let emptyMap: [[String]]
+        
+        init(input: Input) {
+            self.emptyMap = input.lines.map { l -> [String] in
+                l.characters
+                    .map { $0 == "E" || $0 == "G" ? "." : String($0) }
+            }
+        }
+        
+        func print(state: CombatState) {
+            var map = emptyMap
+            state.combatants
+                .sorted(by: { $0.position < $1.position })
+                .forEach({ (combatant) in
+                    let point = combatant.position
+                    map[point.y][point.x] = combatant.race.rawValue
+                    map[point.y].append(" \(combatant.description)")
+                })
+            Swift.print("Round", state.number)
+            Swift.print(map.map({ $0.joined() }).joined(separator: "\n"))
         }
     }
     
@@ -221,32 +265,57 @@ public struct Day15: Day {
     
     public func part1Solution(for input: String = input) -> String {
         let input = Input(input)
-        let emptyMap = input.lines.map { l in
-            l.characters
-                .map { $0 == "E" || $0 == "G" ? "." : $0 }
-                .map { String($0) }
-        }
+        let printer = CombatStatePrinter(input: input)
+        
         let startState = combatState(from: input)
-        let runner = CombatRunner(first: true, state: startState)
-            .map { state -> CombatState in
-                var map = emptyMap
-                state.combatants
-                    .sorted(by: { $0.position < $1.position })
-                    .forEach({ (combatant) in
-                        let point = combatant.position
-                        map[point.y][point.x] = combatant.race.rawValue
-                        map[point.y].append(" \(combatant.description)")
-                    })
-                print("Round", state.number)
-                print(map.map({ $0.joined() }).joined(separator: "\n"))
-                return state
-            }
+        let runner = CombatRunner(state: startState)
+//            .map { state -> CombatState in
+//                printer.print(state: state)
+//                return state
+//            }
         let finalState = Array(runner).last
         
         return "\(finalState?.outcome ?? -1)"
     }
 
     public func part2Solution(for input: String = input) -> String {
-        return "not solved"
+        let input = Input(input)
+        let printer = CombatStatePrinter(input: input)
+        let elfCount = combatState(from: input).combatants
+            .filter { $0.race == .elf }.count
+        
+        var iterator = ExponentialSearchIterator(value: 4)
+        
+        var result: (strength: UInt, outcome: Int) = (.max, 0)
+        var success = false
+        while let i = iterator.next() {
+            let startState = combatState(from: input)
+            let runner = CombatRunner(state: startState, elfPower: Int(i))
+//                .map { state -> CombatState in
+//                    printer.print(state: state)
+//                    return state
+//                }
+            guard let finalState = Array(runner).last else { break }
+            
+            let allSurvived = finalState.combatants.first?.race == .elf
+                && finalState.combatants.count == elfCount
+            
+            print("Strength:", i)
+            print("All Survived:", allSurvived)
+            
+            if allSurvived {
+                result = (min(i, result.strength), finalState.outcome)
+            }
+            
+            if !success, allSurvived {
+                success.toggle()
+                iterator.toggleDirection()
+            } else if success, !allSurvived {
+                success.toggle()
+                iterator.toggleDirection()
+            }
+        }
+        
+        return "\(result.outcome)"
     }
 }

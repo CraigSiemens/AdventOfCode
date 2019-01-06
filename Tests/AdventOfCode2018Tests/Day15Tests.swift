@@ -243,7 +243,70 @@ final class Day15Tests: XCTestCase {
         XCTAssertEqual(day.part1Solution(for: input), "14740")
     }
     
-    func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
+    func testPart2Example1() {
+        let input = """
+        #######
+        #.G...#
+        #...EG#
+        #.#.#G#
+        #..G#E#
+        #.....#
+        #######
+        """
+        XCTAssertEqual(day.part2Solution(for: input), "4988")
+    }
+    
+    func testPart2Example2() {
+        let input = """
+        #######
+        #E..EG#
+        #.#G.E#
+        #E.##E#
+        #G..#.#
+        #..E#.#
+        #######
+        """
+        XCTAssertEqual(day.part2Solution(for: input), "31284")
+    }
+    
+    func testPart2Example3() {
+        let input = """
+        #######
+        #E.G#.#
+        #.#G..#
+        #G.#.G#
+        #G..#.#
+        #...E.#
+        #######
+        """
+        XCTAssertEqual(day.part2Solution(for: input), "3478")
+    }
+    
+    func testPart2Example4() {
+        let input = """
+        #######
+        #.E...#
+        #.#..G#
+        #.###.#
+        #E#G#G#
+        #...#G#
+        #######
+        """
+        XCTAssertEqual(day.part2Solution(for: input), "6474")
+    }
+    
+    func testPart2Example5() {
+        let input = """
+        #########
+        #G......#
+        #.E.#...#
+        #..##..G#
+        #...##..#
+        #...#...#
+        #.G...G.#
+        #.....G.#
+        #########
+        """
+        XCTAssertEqual(day.part2Solution(for: input), "1140")
     }
 }
