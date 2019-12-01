@@ -11,7 +11,7 @@ let package = Package(
         .executable(name: "advent", targets: ["advent"]),
         .library(name: "AdventOfCode2018", targets: ["AdventOfCode2018"]),
         .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
-        .library(name: "Utilities", targets: ["Utilities"])
+        .library(name: "Utilities", targets: ["Utilities"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -35,5 +35,9 @@ let package = Package(
         .testTarget(
             name: "AdventOfCode2018Tests",
             dependencies: ["AdventOfCode2018"]),
+        
+        .testTarget(
+        name: "AdventOfCode2019Tests",
+        dependencies: ["AdventOfCode2019"]),
     ]
 )

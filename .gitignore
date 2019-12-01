@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/SwiftPackageManager
 # Edit at https://www.gitignore.io/?templates=SwiftPackageManager
 
@@ -8,5 +7,6 @@ Packages
 xcuserdata
 DerivedData/
 *.xcodeproj
+.swiftpm
 
 # End of https://www.gitignore.io/api/SwiftPackageManager
