@@ -1,5 +1,5 @@
 import XCTest
-@testable import Day15
+@testable import AdventOfCode2018
 
 @available(OSX 10.11, *)
 final class Day15Tests: XCTestCase {

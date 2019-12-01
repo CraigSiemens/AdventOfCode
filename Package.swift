@@ -1,15 +1,17 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "AdventOfCode2018",
+    name: "Advent of Code",
+    platforms: [.macOS(.v10_14)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        .executable(
-            name: "AdventOfCode2018",
-            targets: ["AdventOfCode2018"]),
+        .executable(name: "advent", targets: ["advent"]),
+        .library(name: "AdventOfCode2018", targets: ["AdventOfCode2018"]),
+        .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
+        .library(name: "Utilities", targets: ["Utilities"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -18,79 +20,20 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(
-            name: "AdventOfCode2018",
-            dependencies: [
-                "Day1",
-                "Day2",
-                "Day3",
-                "Day4",
-                "Day5",
-                "Day6",
-                "Day7",
-                "Day8",
-                "Day9",
-                "Day10",
-                "Day11",
-                "Day12",
-                "Day13",
-                "Day14",
-                "Day15",
-                // {DEPENDENCIES}
-            ]),
-        .testTarget(
-            name: "AdventOfCode2018Tests",
-            dependencies: ["AdventOfCode2018"]),
+        .target(name: "advent", dependencies: ["AdventOfCode"]),
+        
+        .target(name: "AdventOfCode",
+                dependencies: ["AdventOfCode2018", "AdventOfCode2019"]),
+        
+        .target(name: "AdventOfCode2018", dependencies: ["Utilities"]),
+        .target(name: "AdventOfCode2019", dependencies: ["Utilities"]),
         
         .target(
             name: "Utilities",
             dependencies: []),
-                
-        .target(
-            name: "Day1",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day2",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day3",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day4",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day5",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day6",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day7",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day8",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day9",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day10",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day11",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day12",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day13",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day14",
-            dependencies: ["Utilities"]),
-        .target(
-            name: "Day15",
-            dependencies: ["Utilities"]),
-        // {TARGET}
+        
+        .testTarget(
+            name: "AdventOfCode2018Tests",
+            dependencies: ["AdventOfCode2018"]),
     ]
 )

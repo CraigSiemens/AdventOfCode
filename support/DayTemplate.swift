@@ -1,5 +1,4 @@
 import Foundation
-import Utilities
 
 public struct {DAY_NAME}: Day {
     public init() {}

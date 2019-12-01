@@ -31,12 +31,12 @@ public struct Point: Hashable {
 }
 
 extension Point {
-    public var int2: simd.int2 {
-        return simd.int2(Int32(x), Int32(y))
+    public var int2: SIMD2<Int32> {
+        return SIMD2<Int32>(Int32(x), Int32(y))
     }
 }
 
-extension simd.int2 {
+extension SIMD2 where Scalar: BinaryInteger {
     public var point: Point {
         return Point(x: Int(x), y: Int(y))
     }

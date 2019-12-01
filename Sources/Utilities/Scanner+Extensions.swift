@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Scanner {
+extension Scanner {
     public func nextInt() -> Int? {
         scanUpToCharacters(from: .decimalDigits, into: nil)
         

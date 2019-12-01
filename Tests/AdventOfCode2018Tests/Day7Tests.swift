@@ -1,5 +1,5 @@
 import XCTest
-@testable import Day7
+@testable import AdventOfCode2018
 
 final class Day7Tests: XCTestCase {
     let day = Day7()
