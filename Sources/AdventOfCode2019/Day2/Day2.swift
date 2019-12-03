@@ -1,7 +1,7 @@
 import Foundation
 
-public struct {DAY_NAME}: Day {
-    public init() {}
+public struct Day2: Day {
+    public let number: Int = 2
 
     public func part1Solution(for input: String = input) -> String {
         return "not solved"
