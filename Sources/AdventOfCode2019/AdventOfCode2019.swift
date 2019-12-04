@@ -5,6 +5,7 @@ public struct AdventOfCode2019: Year {
     public let days: [SolvableDay] = [
         Day1(),
         Day2(),
+        Day3(),
         // {DAYS}
     ]
     

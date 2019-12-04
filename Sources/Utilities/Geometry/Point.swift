@@ -8,17 +8,17 @@ public struct Point: Hashable {
         self.y = y
     }
     
-    public func moved(_ heading: Heading) -> Point {
+    public func moved(_ heading: Heading, amount: Int = 1) -> Point {
         switch heading {
-        case .north: return Point(x: x, y: y-1)
-        case .south: return Point(x: x, y: y+1)
-        case .west: return Point(x: x-1, y: y)
-        case .east: return Point(x: x+1, y: y)
+        case .north: return Point(x: x, y: y-amount)
+        case .south: return Point(x: x, y: y+amount)
+        case .west: return Point(x: x-amount, y: y)
+        case .east: return Point(x: x+amount, y: y)
         }
     }
     
     public var neighbours: [Point] {
-        return Heading.allCases.map(moved(_: ))
+        return Heading.allCases.map { moved($0) }
     }
     
     public func manhattanDistance(to other: Point) -> Int {
@@ -30,6 +30,12 @@ public struct Point: Hashable {
     }
 }
 
+// MARK: - Constants
+extension Point {
+    public static let zero = Point(x: 0, y: 0)
+}
+
+// MARK: - SIMD2
 extension Point {
     public var int2: SIMD2<Int32> {
         return SIMD2<Int32>(Int32(x), Int32(y))
@@ -42,6 +48,7 @@ extension SIMD2 where Scalar: BinaryInteger {
     }
 }
 
+// MARK: Arithmetic
 extension Point {
     public static func all(in xRange: ClosedRange<Int>, _ yRange: ClosedRange<Int>) -> [Point] {
         return yRange.flatMap { y -> [Point] in
@@ -70,12 +77,14 @@ extension Point {
     }
 }
 
+// MARK: Comparable
 extension Point: Comparable {
     public static func < (lhs: Point, rhs: Point) -> Bool {
         return lhs.y < rhs.y || (lhs.y == rhs.y && lhs.x < rhs.x)
     }
 }
 
+// MARK: Collection Extremes
 extension Collection where Element == Point {
     public func extremes() -> (min: Point, max: Point) {
         var min = Point(x: .max, y: .max)
