@@ -58,6 +58,8 @@ func dayFromInput(for year: Year) -> SolvableDay {
     return year.days.last!
 }
 
+CommandLine.arguments.removeFirst()
+
 let year = yearFromInput()
 let day = dayFromInput(for: year)
 printSolution(for: day)
