@@ -118,18 +118,18 @@ struct Day13: Day {
     public func part1Solution(for input: String = input) -> String {
         var track = parseTrack(input)
         
-//        let map = input
-//            .replacingOccurrences(of: ">", with: "-")
-//            .replacingOccurrences(of: "<", with: "-")
-//            .replacingOccurrences(of: "^", with: "|")
-//            .replacingOccurrences(of: "v", with: "|")
-//            .components(separatedBy: "\n")
-//            .map { l in Array(l.map { String($0) }) }
+        let map = input
+            .replacingOccurrences(of: ">", with: "-")
+            .replacingOccurrences(of: "<", with: "-")
+            .replacingOccurrences(of: "^", with: "|")
+            .replacingOccurrences(of: "v", with: "|")
+            .components(separatedBy: "\n")
+            .map { l in Array(l.map { String($0) }) }
         
         while true {
             do {
                 try updateTrack(track: &track)
-//                track.print(on: map)
+                track.print(on: map)
             } catch Track.Error.crash(let p) {
                 return "\(p.x),\(p.y)"
             } catch {
