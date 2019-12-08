@@ -9,7 +9,6 @@ final class Day5Tests: XCTestCase {
     }
     
     func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
-//        XCTAssertEqual(day.part1Solution(for: "<#input#>"), "<#output#>")
+        XCTAssertEqual(day.part2Solution(), "16694270")
     }
 }
