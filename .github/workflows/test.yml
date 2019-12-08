@@ -21,11 +21,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Get Build Cache
-        uses: actions/cache@v1
-        id: build-cache
-        with:
-          path: .build
-          key: build-cache
       - name: Run Tests
         run: swift test --parallel
