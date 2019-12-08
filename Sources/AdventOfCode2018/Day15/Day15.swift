@@ -299,8 +299,8 @@ struct Day15: Day {
             let allSurvived = finalState.combatants.first?.race == .elf
                 && finalState.combatants.count == elfCount
             
-            print("Strength:", i)
-            print("All Survived:", allSurvived)
+//            print("Strength:", i)
+//            print("All Survived:", allSurvived)
             
             if allSurvived {
                 result = (min(i, result.strength), finalState.outcome)
