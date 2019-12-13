@@ -9,7 +9,8 @@ public struct Day2: Day {
         program[2] = 2
         
         let computer = IntcodeComputer()
-        computer.execute(program)
+        computer.load(program)
+        computer.run()
         
         return "\(computer.memory[0])"
     }
@@ -23,8 +24,9 @@ public struct Day2: Day {
                 program[2] = j
                 
                 let computer = IntcodeComputer()
-                computer.execute(program)
-
+                computer.load(program)
+                computer.run()
+                
                 if computer.memory[0] == 19690720 {
                     return "\(i * 100 + j)"
                 }

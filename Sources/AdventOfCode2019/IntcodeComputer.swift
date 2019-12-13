@@ -1,7 +1,41 @@
 import Foundation
 
 class IntcodeComputer {
-    var memory: [Int] = []
+    private(set) var state: State = .finished
+    private(set) var memory: [Int] = []
+    /// The program counter
+    private var pc = 0
+    
+    var input: Int? {
+        didSet {
+            guard state == .waitingForInput else { return }
+            state = .running
+            run()
+        }
+    }
+    
+    private var _output: Int?
+    var output: Int? {
+        defer { _output = nil }
+        return _output
+    }
+        
+    func load(_ program: IntcodeProgram) {
+        state = .loaded
+        memory = program.memory
+        pc = 0
+        input = nil
+        _output = nil
+    }
+    
+    func run() {
+        if state == .loaded { state = .running }
+        
+        while state == .running {
+            state = .running
+            step()
+        }
+    }
     
     private func value(param: Int, mode: Int) -> Int {
         switch mode {
@@ -14,93 +48,106 @@ class IntcodeComputer {
         }
     }
     
-    @discardableResult
-    func execute(_ program: IntcodeProgram, input: [Int] = []) -> [Int] {
-        memory = program.memory
+    private func step() {
+        let opcode = memory[pc] % 100
+        var modes = DigitsSequence(number: memory[pc], isInfinite: true)
+            .dropFirst(2)
+            .makeIterator()
         
-        var inputIterator = input.makeIterator()
-        var output: [Int] = []
-        
-        var instructionPointer = 0
-        
-        runLoop: while instructionPointer <= memory.count {
-            let instructionSize: Int
-            
-            let opcode = memory[instructionPointer] % 100
-            var parameterModes = DigitsSequence(number: memory[instructionPointer], isInfinite: true)
-                .dropFirst(2).makeIterator()
-            
-            switch opcode {
-            case 1: // Addition
-                instructionSize = 4
-                memory[memory[instructionPointer+3]]
-                    = value(param: instructionPointer+1,
-                            mode: parameterModes.next()!)
-                    + value(param: instructionPointer+2,
-                        mode: parameterModes.next()!)
-            case 2: // Multiply
-                instructionSize = 4
-                memory[memory[instructionPointer+3]]
-                    = value(param: instructionPointer+1,
-                            mode: parameterModes.next()!)
-                    * value(param: instructionPointer+2,
-                        mode: parameterModes.next()!)
-            case 3: // Read
-                guard let input = inputIterator.next() else {
-                    fatalError("Missing Input")
-                }
-                
-                instructionSize = 2
-                memory[memory[instructionPointer+1]] = input
-            case 4: // Write
-                instructionSize = 2
-                output.append(value(param: instructionPointer+1,
-                                    mode: parameterModes.next()!))
-            case 5: // jump if true
-                if value(param: instructionPointer+1,
-                         mode: parameterModes.next()!) != 0 {
-                    instructionSize = 0
-                    instructionPointer = value(param: instructionPointer+2,
-                                               mode: parameterModes.next()!)
-                } else {
-                    instructionSize = 3
-                }
-            case 6: // jump if false
-                if value(param: instructionPointer+1,
-                         mode: parameterModes.next()!) == 0 {
-                    instructionSize = 0
-                    instructionPointer = value(param: instructionPointer+2,
-                                               mode: parameterModes.next()!)
-                } else {
-                    instructionSize = 3
-                }
-            case 7: // less than
-                instructionSize = 4
-                
-                let v1 = value(param: instructionPointer+1,
-                               mode: parameterModes.next()!)
-                let v2 = value(param: instructionPointer+2,
-                               mode: parameterModes.next()!)
-                
-                memory[memory[instructionPointer+3]] = v1 < v2 ? 1 : 0
-            case 8: // equals
-                instructionSize = 4
-                
-                let v1 = value(param: instructionPointer+1,
-                               mode: parameterModes.next()!)
-                let v2 = value(param: instructionPointer+2,
-                               mode: parameterModes.next()!)
-                
-                memory[memory[instructionPointer+3]] = v1 == v2 ? 1 : 0
-            case 99: // Finished
-                break runLoop
-            default:
-                fatalError("Unknown Intcode")
+        switch opcode {
+        case .addition:
+            memory[memory[pc+3]]
+                = value(param: pc+1,
+                        mode: modes.next()!)
+                + value(param: pc+2,
+                        mode: modes.next()!)
+            pc += 4
+        case .multiply:
+            memory[memory[pc+3]]
+                = value(param: pc+1,
+                        mode: modes.next()!)
+                * value(param: pc+2,
+                        mode: modes.next()!)
+            pc += 4
+        case .read:
+            guard let input = input else {
+                state = .waitingForInput
+                break
             }
             
-            instructionPointer += instructionSize
+            memory[memory[pc+1]] = input
+            self.input = nil
+            pc += 2
+        case .write:
+            _output = value(param: pc+1,
+                            mode: modes.next()!)
+            pc += 2
+        case .jumpIfTrue:
+            if value(param: pc+1,
+                     mode: modes.next()!) != 0 {
+                pc = value(param: pc+2,
+                           mode: modes.next()!)
+            } else {
+                pc += 3
+            }
+        case .jumpIfFalse:
+            if value(param: pc+1,
+                     mode: modes.next()!) == 0 {
+                pc = value(param: pc+2,
+                           mode: modes.next()!)
+            } else {
+                pc += 3
+            }
+        case .lessThan:
+            let v1 = value(param: pc+1,
+                           mode: modes.next()!)
+            let v2 = value(param: pc+2,
+                           mode: modes.next()!)
+            
+            memory[memory[pc+3]] = v1 < v2 ? 1 : 0
+            pc += 4
+        case .equals:
+            let v1 = value(param: pc+1,
+                           mode: modes.next()!)
+            let v2 = value(param: pc+2,
+                           mode: modes.next()!)
+            
+            memory[memory[pc+3]] = v1 == v2 ? 1 : 0
+            pc += 4
+        case .finished:
+            state = .finished
+        default:
+            fatalError("Unknown Intcode")
         }
-        
-        return output
     }
+}
+
+extension IntcodeComputer {
+    enum State {
+        case loaded
+        case running
+        case waitingForInput
+        case finished
+    }
+}
+
+extension IntcodeComputer {
+    private struct Parameter {
+        let mode: Int
+        let value: Int
+    }
+}
+
+
+private extension Int {
+    static let addition = 1
+    static let multiply = 2
+    static let read = 3
+    static let write = 4
+    static let jumpIfTrue = 5
+    static let jumpIfFalse = 6
+    static let lessThan = 7
+    static let equals = 8
+    
+    static let finished = 99
 }

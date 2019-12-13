@@ -6,41 +6,63 @@ final class IntcodeComputerTests: XCTestCase {
     
     // MARK: 1 - Addition
     func testAddition() {
-        computer.execute(.init([1,0,0,0,99]))
+        computer.load(.init([1,0,0,0,99]))
+        computer.run()
         XCTAssertEqual(computer.memory, [2,0,0,0,99])
     }
     
     func testAdditionWithImmediateParameterMode() {
-        computer.execute(.init([1101,100,-1,4,0]))
+        computer.load(.init([1101,100,-1,4,0]))
+        computer.run()
         XCTAssertEqual(computer.memory, [1101,100,-1,4,99])
     }
     
     // MARK: 2 - Multiplication
     func testMultiplication() {
-        computer.execute(.init([2,3,0,3,99]))
+        computer.load(.init([2,3,0,3,99]))
+        computer.run()
         XCTAssertEqual(computer.memory, [2,3,0,6,99])
         
-        computer.execute(.init([2,4,4,5,99,0]))
+        computer.load(.init([2,4,4,5,99,0]))
+        computer.run()
         XCTAssertEqual(computer.memory, [2,4,4,5,99,9801])
     }
     
     func testMultiplicationWithImmediateParameterMode() {
-        computer.execute(.init([1102,3,7,0,99]))
+        computer.load(.init([1102,3,7,0,99]))
+        computer.run()
         XCTAssertEqual(computer.memory, ([21,3,7,0,99]))
         
-        computer.execute(.init([1102,4,4,5,99,0]))
+        computer.load(.init([1102,4,4,5,99,0]))
+        computer.run()
         XCTAssertEqual(computer.memory, [1102,4,4,5,99,16])
     }
     
     // MARK: 3 - Read
     func testRead() {
-        computer.execute(.init([3,0,99]), input: [1001])
+        computer.load(.init([3,0,99]))
+        computer.input = 1001
+        computer.run()
         XCTAssertEqual(computer.memory, [1001,0,99])
+        
+        computer.load(.init([3,0,99]))
+        computer.run()
+        computer.input = 1001
+        XCTAssertEqual(computer.memory, [1001,0,99])
+        
+        computer.load(.init([3,0,3,1,99]))
+        computer.run()
+        computer.input = 1001
+        computer.input = 1002
+        XCTAssertEqual(computer.memory, [1001,1002,3,1,99])
     }
     
     // MARK: 4 - Write
     func testWrite() {
-        XCTAssertEqual(computer.execute(.init([4,3,99,382])), [382])
+        computer.load(.init([4,3,99,382]))
+        computer.run()
+        XCTAssertEqual(computer.output, 382)
+        XCTAssertEqual(computer.output, nil)
     }
     
     // MARK: 5 - Jump If True
@@ -54,10 +76,14 @@ final class IntcodeComputerTests: XCTestCase {
             6,
             1
         ]
-        XCTAssertEqual(computer.execute(.init(program)), [1])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
         
         program[program.count - 1] = 0
-        XCTAssertEqual(computer.execute(.init(program)), [0])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
     }
     
     func testJumpIfTrueWithImmediateParameterMode() {
@@ -68,10 +94,14 @@ final class IntcodeComputerTests: XCTestCase {
             104,1,
             99
         ]
-        XCTAssertEqual(computer.execute(.init(program)), [1])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
         
         program[1] = 0
-        XCTAssertEqual(computer.execute(.init(program)), [0])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
     }
     
     // MARK: 6 - Jump If False
@@ -85,10 +115,14 @@ final class IntcodeComputerTests: XCTestCase {
             6,
             0
         ]
-        XCTAssertEqual(computer.execute(.init(program)), [1])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
         
         program[program.count - 1] = 1
-        XCTAssertEqual(computer.execute(.init(program)), [0])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
     }
     
     func testJumpIfFalseWithImmediateParameterMode() {
@@ -99,22 +133,40 @@ final class IntcodeComputerTests: XCTestCase {
             104,1,
             99
         ]
-        XCTAssertEqual(computer.execute(.init(program)), [1])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
         
         program[1] = 1
-        XCTAssertEqual(computer.execute(.init(program)), [0])
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
     }
     
     func testJumpProvidedExamples() {
         let isNotZeroPositional = IntcodeProgram([3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9])
         
-        XCTAssertEqual(computer.execute(isNotZeroPositional, input: [0]), [0])
-        XCTAssertEqual(computer.execute(isNotZeroPositional, input: [7]), [1])
+        computer.load(isNotZeroPositional)
+        computer.input = 0
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
+        
+        computer.load(isNotZeroPositional)
+        computer.input = 7
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
         
         let isNotZeroImmediate = IntcodeProgram([3,3,1105,-1,9,1101,0,0,12,4,12,99,1])
         
-        XCTAssertEqual(computer.execute(isNotZeroImmediate, input: [0]), [0])
-        XCTAssertEqual(computer.execute(isNotZeroImmediate, input: [7]), [1])
+        computer.load(isNotZeroImmediate)
+        computer.input = 0
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
+        
+        computer.load(isNotZeroImmediate)
+        computer.input = 7
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
     }
 
     // MARK: 7 - Less Than
@@ -126,12 +178,14 @@ final class IntcodeComputerTests: XCTestCase {
             3,
             111
         ]
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 1)
         
         program[1] = 6
         program[2] = 5
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 0)
     }
     
@@ -141,23 +195,41 @@ final class IntcodeComputerTests: XCTestCase {
             99,
             111
         ]
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 1)
         
         program[1] = 3
         program[2] = 2
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 0)
     }
     
     func testLessThanProvidedExamples() {
         let lessThan8Positional = IntcodeProgram([3,9,7,9,10,9,4,9,99,-1,8])
-        XCTAssertEqual(computer.execute(lessThan8Positional, input: [1]), [1])
-        XCTAssertEqual(computer.execute(lessThan8Positional, input: [8]), [0])
         
+        computer.load(lessThan8Positional)
+        computer.input = 1
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
+
+        computer.load(lessThan8Positional)
+        computer.input = 8
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
+
         let lessThan8Immediate = IntcodeProgram([3,3,1107,-1,8,3,4,3,99])
-        XCTAssertEqual(computer.execute(lessThan8Immediate, input: [1]), [1])
-        XCTAssertEqual(computer.execute(lessThan8Immediate, input: [8]), [0])
+        
+        computer.load(lessThan8Immediate)
+        computer.input = 1
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
+
+        computer.load(lessThan8Immediate)
+        computer.input = 8
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
     }
     
     // MARK: 8 - Equal
@@ -169,11 +241,13 @@ final class IntcodeComputerTests: XCTestCase {
             2,
             111
         ]
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 1)
         
         program[6] = 3
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 0)
     }
     
@@ -183,22 +257,40 @@ final class IntcodeComputerTests: XCTestCase {
             99,
             111
         ]
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 1)
         
         program[2] = 3
-        computer.execute(.init(program))
+        computer.load(.init(program))
+        computer.run()
         XCTAssertEqual(computer.memory.last, 0)
     }
     
     func testEqualProvidedExamples() {
         let equal8Positional = IntcodeProgram([3,9,8,9,10,9,4,9,99,-1,8])
-        XCTAssertEqual(computer.execute(equal8Positional, input: [1]), [0])
-        XCTAssertEqual(computer.execute(equal8Positional, input: [8]), [1])
         
+        computer.load(equal8Positional)
+        computer.input = 1
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
+
+        computer.load(equal8Positional)
+        computer.input = 8
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
+                
         let equal8Immediate = IntcodeProgram([3,3,1108,-1,8,3,4,3,99])
-        XCTAssertEqual(computer.execute(equal8Immediate, input: [1]), [0])
-        XCTAssertEqual(computer.execute(equal8Immediate, input: [8]), [1])
+        
+        computer.load(equal8Immediate)
+        computer.input = 1
+        computer.run()
+        XCTAssertEqual(computer.output, 0)
+
+        computer.load(equal8Immediate)
+        computer.input = 8
+        computer.run()
+        XCTAssertEqual(computer.output, 1)
     }
     
     func testDay5Part2ProvidedExample() {
@@ -206,8 +298,19 @@ final class IntcodeComputerTests: XCTestCase {
         1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
         999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99])
         
-        XCTAssertEqual(computer.execute(program, input: [7]), [999])
-        XCTAssertEqual(computer.execute(program, input: [8]), [1000])
-        XCTAssertEqual(computer.execute(program, input: [9]), [1001])
+        computer.load(program)
+        computer.input = 7
+        computer.run()
+        XCTAssertEqual(computer.output, 999)
+
+        computer.load(program)
+        computer.input = 8
+        computer.run()
+        XCTAssertEqual(computer.output, 1000)
+
+        computer.load(program)
+        computer.input = 9
+        computer.run()
+        XCTAssertEqual(computer.output, 1001)
     }
 }

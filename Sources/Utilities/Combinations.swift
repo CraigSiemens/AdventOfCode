@@ -7,7 +7,7 @@
 
 import Foundation
 
-private func factorial(n: Int) -> Int {
+func factorial(n: Int) -> Int {
     guard n > 1 else {
         return 1
     }

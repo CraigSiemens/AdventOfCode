@@ -5,19 +5,23 @@ public struct Day5: Day {
 
     public func part1Solution(for input: String = input) -> String {
         let program = IntcodeProgram(input)
-        let computer = IntcodeComputer()
-        let output = computer.execute(program,
-                                      input: [1])
         
-        return "\(output.last!)"
+        let computer = IntcodeComputer()
+        computer.load(program)
+        computer.input = 1
+        computer.run()
+        
+        return "\(computer.output!)"
     }
 
     public func part2Solution(for input: String = input) -> String {
         let program = IntcodeProgram(input)
-        let computer = IntcodeComputer()
-        let output = computer.execute(program,
-                                      input: [5])
         
-        return "\(output.last!)"
+        let computer = IntcodeComputer()
+        computer.load(program)
+        computer.input = 5
+        computer.run()
+
+        return "\(computer.output!)"
     }
 }
