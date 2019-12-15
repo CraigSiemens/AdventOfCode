@@ -30,6 +30,26 @@ public struct Point: Hashable {
     }
 }
 
+// MARK: - Angle
+extension Point {
+    public var normalized: Point {
+        let divisor = abs(x.gcd(with: y))
+        guard divisor != 0 else { return .zero }
+        return Point(x: x / divisor, y: y / divisor)
+    }
+    
+    public func angle(to other: Point) -> Point {
+        (other - self).normalized
+    }
+    
+    /// The angle from the x-axis
+    /// A rotation towards the + y-axis is positive
+    /// A rotation towards the - y-axis is negative
+    public var angle: Double {
+        atan2(Double(y), Double(x))
+    }
+}
+
 // MARK: - Constants
 extension Point {
     public static let zero = Point(x: 0, y: 0)

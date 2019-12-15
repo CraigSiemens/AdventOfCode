@@ -33,4 +33,24 @@ final class PointTests: XCTestCase {
             .area(with: Point(x: -3, y: 7))
         XCTAssertEqual(area, 40)
     }
+    
+    func testNormalized() {
+        XCTAssertEqual(Point(x: 4, y: 2).normalized, Point(x: 2, y: 1))
+        XCTAssertEqual(Point(x: 9, y: 0).normalized, Point(x: 1, y: 0))
+    }
+    
+    func testAngleTo() {
+        XCTAssertEqual(Point(x: 1, y: 2).angle(to: Point(x: 7, y: 6)),
+                       Point(x: 3, y: 2))
+
+        XCTAssertEqual(Point(x: 7, y: 6).angle(to: Point(x: 1, y: 2)),
+                       Point(x: -3, y: -2))
+    }
+    
+    func testAngle() {
+        XCTAssertEqual(Point(x: 0, y: -1).angle, Double.pi / -2)
+        XCTAssertEqual(Point(x: 1, y: 0).angle, 0)
+        XCTAssertEqual(Point(x: 0, y: 1).angle, Double.pi / 2)
+        XCTAssertEqual(Point(x: -1, y: 0).angle, Double.pi)
+    }
 }

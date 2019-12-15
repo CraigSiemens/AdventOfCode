@@ -64,6 +64,9 @@ extension Collection where Element: StringInput {
     public var integers: [Int] {
         return compactMap { $0.integer }
     }
+    public var characters: [[Character]] {
+        return map { $0.characters }
+    }
 }
 
 extension Collection where Element: StringProtocol {
