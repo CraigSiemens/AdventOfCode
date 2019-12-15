@@ -1,13 +1,11 @@
 import Foundation
 
-public struct Day5: Day {
-    public let number: Int = 5
+public struct Day9: Day {
+    public let number: Int = 9
 
     public func part1Solution(for input: String = input) -> String {
-        let program = IntcodeProgram(input)
-        
         let computer = IntcodeComputer()
-        computer.load(program)
+        computer.load(.init(input))
         computer.input = 1
         computer.run()
         
@@ -15,13 +13,11 @@ public struct Day5: Day {
     }
 
     public func part2Solution(for input: String = input) -> String {
-        let program = IntcodeProgram(input)
-        
         let computer = IntcodeComputer()
-        computer.load(program)
-        computer.input = 5
+        computer.load(.init(input))
+        computer.input = 2
         computer.run()
-
+        
         return "\(computer.allOutput.last!)"
     }
 }

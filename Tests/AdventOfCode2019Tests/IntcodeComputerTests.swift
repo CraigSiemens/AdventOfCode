@@ -313,4 +313,21 @@ final class IntcodeComputerTests: XCTestCase {
         computer.run()
         XCTAssertEqual(computer.output, 1001)
     }
+    
+    // MARK: 9 - Adjust Relative Base
+    
+    func testDay9ProvidedExamples() {
+       let program = [109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99]
+        computer.load(.init(program))
+        computer.run()
+        XCTAssertEqual(computer.allOutput, program)
+        
+        computer.load(.init("1102,34915192,34915192,7,4,7,99,0"))
+        computer.run()
+        XCTAssertEqual("\(computer.output!)".count, 16)
+        
+        computer.load(.init("104,1125899906842624,99"))
+        computer.run()
+        XCTAssertEqual(computer.output, 1125899906842624)
+    }
 }

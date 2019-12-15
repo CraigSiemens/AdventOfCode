@@ -2,9 +2,20 @@ import Foundation
 
 class IntcodeComputer {
     private(set) var state: State = .finished
-    private(set) var memory: [Int] = []
+    
+    private var mem: [Int: Int] = [:]
+    var memory: [Int] {
+        let maxIndex = mem.keys.max() ?? 0
+        var memory = Array(repeating: 0, count: maxIndex + 1)
+        for i in 0...maxIndex {
+            memory[i] = mem[i, default: 0]
+        }
+        return memory
+    }
+    
     /// The program counter
     private var pc = 0
+    private var relativeBase = 0
     
     var input: Int? {
         didSet {
@@ -14,18 +25,23 @@ class IntcodeComputer {
         }
     }
     
-    private var _output: Int?
+    private(set) var allOutput: [Int] = []
     var output: Int? {
-        defer { _output = nil }
-        return _output
+        guard !allOutput.isEmpty else { return nil }
+        return allOutput.removeFirst()
     }
         
     func load(_ program: IntcodeProgram) {
+        mem.removeAll()
+        for (key, value) in program.memory.enumerated() {
+            mem[key] = value
+        }
+        
         state = .loaded
-        memory = program.memory
         pc = 0
+        relativeBase = 0
         input = nil
-        _output = nil
+        allOutput = []
     }
     
     func run() {
@@ -37,37 +53,51 @@ class IntcodeComputer {
         }
     }
     
-    private func value(param: Int, mode: Int) -> Int {
-        switch mode {
-        case 0: // Position
-            return memory[memory[param]]
-        case 1: // Immediate
-            return memory[param]
-        default:
-            fatalError("Unknown Parameter Mode")
+    private func mode(_ index: Int) -> Int {
+        // Offset index by one becuase opcodes are two digits
+        let mask = pow(10.0, Double(index + 1))
+        return (mem[pc, default: 0] / Int(mask)) % 10
+    }
+
+    private subscript(index: Int) -> Int {
+        get {
+            let value = mem[pc + index, default: 0]
+            switch mode(index) {
+            case 0: // Position
+                return mem[value, default: 0]
+            case 1: // Immediate
+                return value
+            case 2: // Relative Base
+                return mem[relativeBase + value, default: 0]
+            default:
+                fatalError()
+            }
+        }
+        
+        set {
+            let value = mem[pc + index, default: 0]
+            switch mode(index) {
+            case 0: // Position
+                mem[value] = newValue
+            case 1: // Immediate
+                fatalError("Can not set in immediate mode")
+            case 2: // Relative Base
+                mem[relativeBase + value] = newValue
+            default:
+                fatalError()
+            }
         }
     }
     
     private func step() {
-        let opcode = memory[pc] % 100
-        var modes = DigitsSequence(number: memory[pc], isInfinite: true)
-            .dropFirst(2)
-            .makeIterator()
+        let opcode = mem[pc, default: 0] % 100
         
         switch opcode {
         case .addition:
-            memory[memory[pc+3]]
-                = value(param: pc+1,
-                        mode: modes.next()!)
-                + value(param: pc+2,
-                        mode: modes.next()!)
+            self[3] = self[1] + self[2]
             pc += 4
         case .multiply:
-            memory[memory[pc+3]]
-                = value(param: pc+1,
-                        mode: modes.next()!)
-                * value(param: pc+2,
-                        mode: modes.next()!)
+            self[3] = self[1] * self[2]
             pc += 4
         case .read:
             guard let input = input else {
@@ -75,45 +105,39 @@ class IntcodeComputer {
                 break
             }
             
-            memory[memory[pc+1]] = input
+            self[1] = input
             self.input = nil
             pc += 2
         case .write:
-            _output = value(param: pc+1,
-                            mode: modes.next()!)
+            allOutput.append(self[1])
             pc += 2
         case .jumpIfTrue:
-            if value(param: pc+1,
-                     mode: modes.next()!) != 0 {
-                pc = value(param: pc+2,
-                           mode: modes.next()!)
+            if self[1] != 0 {
+                pc = self[2]
             } else {
                 pc += 3
             }
         case .jumpIfFalse:
-            if value(param: pc+1,
-                     mode: modes.next()!) == 0 {
-                pc = value(param: pc+2,
-                           mode: modes.next()!)
+            if self[1] == 0 {
+                pc = self[2]
             } else {
                 pc += 3
             }
         case .lessThan:
-            let v1 = value(param: pc+1,
-                           mode: modes.next()!)
-            let v2 = value(param: pc+2,
-                           mode: modes.next()!)
+            let v1 = self[1]
+            let v2 = self[2]
             
-            memory[memory[pc+3]] = v1 < v2 ? 1 : 0
+            self[3] = v1 < v2 ? 1 : 0
             pc += 4
         case .equals:
-            let v1 = value(param: pc+1,
-                           mode: modes.next()!)
-            let v2 = value(param: pc+2,
-                           mode: modes.next()!)
+            let v1 = self[1]
+            let v2 = self[2]
             
-            memory[memory[pc+3]] = v1 == v2 ? 1 : 0
+            self[3] = v1 == v2 ? 1 : 0
             pc += 4
+        case .adjustRelativeBase:
+            relativeBase += self[1]
+            pc += 2
         case .finished:
             state = .finished
         default:
@@ -148,6 +172,7 @@ private extension Int {
     static let jumpIfFalse = 6
     static let lessThan = 7
     static let equals = 8
-    
+    static let adjustRelativeBase = 9
+
     static let finished = 99
 }
