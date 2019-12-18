@@ -6,12 +6,10 @@ extension BinaryInteger {
         return (other % self).gcd(with: self)
     }
     
-//    def gcd(a,b):
-//        if a == 0:
-//            return b
-//        return gcd(b % a, a)
-//
-//    # Function to return LCM of two numbers
-//    def lcm(a,b):
-//        return (a*b) / gcd(a,b)
+    public func lcm(with other: Self) -> Self {
+        let gcd = self.gcd(with: other)
+        guard gcd != 0 else { return 0 }
+        
+        return (self * other) / gcd
+    }
 }

@@ -12,7 +12,11 @@ public struct Pair<T> {
 }
 
 extension Pair {
-    init(tuple: (T, T)) {
+    public init(_ first: T, _ second: T) {
+        self.init(first: first, second: second)
+    }
+    
+    public init(tuple: (T, T)) {
         self.init(first: tuple.0, second: tuple.1)
     }
 }
