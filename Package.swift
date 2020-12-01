@@ -11,6 +11,7 @@ let package = Package(
         .executable(name: "advent", targets: ["advent"]),
         .library(name: "AdventOfCode2018", targets: ["AdventOfCode2018"]),
         .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
+        .library(name: "AdventOfCode2020", targets: ["AdventOfCode2020"]),
         .library(name: "Utilities", targets: ["Utilities"]),
     ],
     dependencies: [
@@ -23,10 +24,16 @@ let package = Package(
         .target(name: "advent", dependencies: ["AdventOfCode"]),
         
         .target(name: "AdventOfCode",
-                dependencies: ["AdventOfCode2018", "AdventOfCode2019"]),
+                dependencies: [
+                    "AdventOfCode2018",
+                    "AdventOfCode2019",
+                    "AdventOfCode2020"
+                ]
+        ),
         
         .target(name: "AdventOfCode2018", dependencies: ["Utilities"]),
         .target(name: "AdventOfCode2019", dependencies: ["Utilities"]),
+        .target(name: "AdventOfCode2020", dependencies: ["Utilities"]),
         
         .target(
             name: "Utilities",
@@ -39,6 +46,10 @@ let package = Package(
         .testTarget(
             name: "AdventOfCode2019Tests",
             dependencies: ["AdventOfCode2019"]),
+        
+        .testTarget(
+            name: "AdventOfCode2020Tests",
+            dependencies: ["AdventOfCode2020"]),
         
         .testTarget(
             name: "UtilitiesTests",

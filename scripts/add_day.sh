@@ -1,7 +1,7 @@
 day_number=$1
 day_name="Day${day_number}"
 
-year_number="2019"
+year_number="2020"
 
 day_folder_path="Sources/AdventOfCode${year_number}/${day_name}"
 test_file_path="Tests/AdventOfCode${year_number}Tests/${day_name}Tests.swift"
