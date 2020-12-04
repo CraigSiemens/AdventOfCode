@@ -80,3 +80,9 @@ extension Collection where Element == Character {
         return compactMap { Int("\($0)") }
     }
 }
+
+extension String {
+    public var int: Int? {
+        return Int(self)
+    }
+}
