@@ -4,13 +4,6 @@ import XCTest
 final class Day5Tests: XCTestCase {
     let day = Day5()
     
-    let input = """
-    FBFBBFFRLR
-    BFFFBBFRRR
-    FFFBBBFRRR
-    BBFFBBFRLL
-    """
-    
     func testSeatID() {
         XCTAssertEqual(day.seatID(for: "FBFBBFFRLR"), 357)
         XCTAssertEqual(day.seatID(for: "BFFFBBFRRR"), 567)
@@ -19,11 +12,24 @@ final class Day5Tests: XCTestCase {
     }
     
     func testPart1() {
+        let input = """
+        FBFBBFFRLR
+        BFFFBBFRRR
+        FFFBBBFRRR
+        BBFFBBFRLL
+        """
+        
         XCTAssertEqual(day.part1Solution(for: input), "820")
     }
     
     func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
-//        XCTAssertEqual(day.part1Solution(for: "<#input#>"), "<#output#>")
+        let input = """
+        FFFFFFFLLL
+        FFFFFFFLLR
+        FFFFFFFLRL
+        FFFFFFFRLL
+        """
+        
+        XCTAssertEqual(day.part2Solution(for: input), "3")
     }
 }
