@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -21,19 +21,35 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(name: "advent", dependencies: ["AdventOfCode"]),
-        
-        .target(name: "AdventOfCode",
-                dependencies: [
-                    "AdventOfCode2018",
-                    "AdventOfCode2019",
-                    "AdventOfCode2020"
-                ]
+        .executableTarget(
+            name: "advent",
+            dependencies: ["AdventOfCode"]
         ),
         
-        .target(name: "AdventOfCode2018", dependencies: ["Utilities"]),
-        .target(name: "AdventOfCode2019", dependencies: ["Utilities"]),
-        .target(name: "AdventOfCode2020", dependencies: ["Utilities", "Algorithms"]),
+        .target(
+            name: "AdventOfCode",
+            dependencies: [
+                "AdventOfCode2018",
+                "AdventOfCode2019",
+                "AdventOfCode2020"
+            ]
+        ),
+    
+        .target(
+            name: "AdventOfCode2018",
+            dependencies: ["Utilities"]
+        ),
+        .target(
+            name: "AdventOfCode2019",
+            dependencies: ["Utilities"]
+        ),
+        .target(
+            name: "AdventOfCode2020",
+            dependencies: [
+                "Utilities",
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ]
+        ),
         
         .target(
             name: "Utilities",
