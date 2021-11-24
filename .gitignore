@@ -1,5 +1,9 @@
-# Created by https://www.gitignore.io/api/SwiftPackageManager
-# Edit at https://www.gitignore.io/?templates=SwiftPackageManager
+# Created by https://www.toptal.com/developers/gitignore/api/SwiftPackageManager,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=SwiftPackageManager,macos
+
+### macOS ###
+# General
+.DS_Store
 
 ### SwiftPackageManager ###
 Packages
@@ -9,4 +13,4 @@ DerivedData/
 *.xcodeproj
 .swiftpm
 
-# End of https://www.gitignore.io/api/SwiftPackageManager
+# End of https://www.toptal.com/developers/gitignore/api/SwiftPackageManager,macos

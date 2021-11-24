@@ -63,8 +63,8 @@ public struct Day7: Day {
     public func part2Solution(for input: String = input) -> String {
         let rules = parseRules(input: input)
         
-        var seenBags = Set<String>()
-        var bagQueue = ["shiny gold"]
+//        var seenBags = Set<String>()
+//        var bagQueue = ["shiny gold"]
         
         func recursivelyCount(bag: String) -> Int {
             rules[bag]!
