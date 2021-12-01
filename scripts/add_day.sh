@@ -8,8 +8,8 @@ year_number="2021"
 day_folder_path="Sources/AdventOfCode${year_number}/${day_name}"
 test_file_path="Tests/AdventOfCode${year_number}Tests/${day_name}Tests.swift"
 
-sed -i "" "/{DAYS}/i\
-\        ${day_name}(),
+sed -i "" "/{DAYS}/i\\
+        ${day_name}(),\\
 " "Sources/AdventOfCode${year_number}/AdventOfCode${year_number}.swift"
 
 # Create folder for day

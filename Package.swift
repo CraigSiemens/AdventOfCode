@@ -12,6 +12,7 @@ let package = Package(
         .library(name: "AdventOfCode2018", targets: ["AdventOfCode2018"]),
         .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
         .library(name: "AdventOfCode2020", targets: ["AdventOfCode2020"]),
+        .library(name: "AdventOfCode2021", targets: ["AdventOfCode2021"]),
         .library(name: "Utilities", targets: ["Utilities"]),
     ],
     dependencies: [
@@ -31,7 +32,8 @@ let package = Package(
             dependencies: [
                 "AdventOfCode2018",
                 "AdventOfCode2019",
-                "AdventOfCode2020"
+                "AdventOfCode2020",
+                "AdventOfCode2021"
             ]
         ),
     
@@ -45,6 +47,13 @@ let package = Package(
         ),
         .target(
             name: "AdventOfCode2020",
+            dependencies: [
+                "Utilities",
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ]
+        ),
+        .target(
+            name: "AdventOfCode2021",
             dependencies: [
                 "Utilities",
                 .product(name: "Algorithms", package: "swift-algorithms")
@@ -66,6 +75,10 @@ let package = Package(
         .testTarget(
             name: "AdventOfCode2020Tests",
             dependencies: ["AdventOfCode2020"]),
+        
+        .testTarget(
+            name: "AdventOfCode2021Tests",
+            dependencies: ["AdventOfCode2021"]),
         
         .testTarget(
             name: "UtilitiesTests",
