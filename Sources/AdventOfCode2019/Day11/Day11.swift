@@ -1,8 +1,6 @@
 import Foundation
 
 public struct Day11: Day {
-    public let number: Int = 11
-    
     private func runProgram(_ input: String, map: inout [Point: Color]) {
         let computer = IntcodeComputer()
         computer.load(IntcodeProgram(input))

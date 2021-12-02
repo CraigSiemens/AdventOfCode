@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day1: Day {
-    public let number: Int = 1
-    
     public func part1Solution(for input: String = input) -> String {
         let weight = Input(input).lines
             .compactMap { $0.integer }

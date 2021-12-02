@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day11: Day {
-    public let number: Int = 11
 
     func value(for serialNumber: Int, x: Int, y: Int) -> Int {
         let rackId = (x + 10)

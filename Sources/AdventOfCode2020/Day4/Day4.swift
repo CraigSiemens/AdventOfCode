@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day4: Day {
-    public let number: Int = 4
 
     private static let requiredKeys = [
         "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"

@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day12: Day {
-    public let number: Int = 12
 
     struct Planet: Equatable {
         var position: SIMD3<Int>

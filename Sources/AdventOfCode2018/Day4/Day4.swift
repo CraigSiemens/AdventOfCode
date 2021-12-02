@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day4: Day {
-    public let number: Int = 4
 
     enum GuardAction {
         case begin(id: Int)

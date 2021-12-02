@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day8: Day {
-    public let number: Int = 8
-    
     struct Node {
         let children: [Node]
         let metadata: [Int]

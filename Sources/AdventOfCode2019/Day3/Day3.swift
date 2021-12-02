@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day3: Day {
-    public let number: Int = 3
 
     let headings: [String: Heading] = [
         "D": .north,

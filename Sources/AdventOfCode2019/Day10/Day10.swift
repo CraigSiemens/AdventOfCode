@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day10: Day {
-    public let number: Int = 10
 
     private func part1Solution(input: String) -> (asteroids: [Point], best: Point, visible: Int) {
         let asteroids = Input(input)

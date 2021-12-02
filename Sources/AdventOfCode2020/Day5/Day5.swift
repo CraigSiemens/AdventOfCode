@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day5: Day {
-    public let number: Int = 5
 
     func seatID(for input: String) -> Int {
         let binary = input

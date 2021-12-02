@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day9: Day {
-    public let number: Int = 9
 
     func winnersScore(playerCount: Int, lastMarble: Int) -> Int {
         var scores = Array(repeating: 0, count: playerCount)

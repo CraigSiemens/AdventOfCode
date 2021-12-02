@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day6: Day {
-    public let number: Int = 6
-    
     class Source: Hashable {
         static func == (lhs: Day6.Source, rhs: Day6.Source) -> Bool {
             return lhs.coordinate == rhs.coordinate

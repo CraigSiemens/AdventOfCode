@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day10: Day {
-    public let number: Int = 10
 
     func solution(for input: String) -> (message: String, seconds: Int) {
         let integers = Input(input).lines

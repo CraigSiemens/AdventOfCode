@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day12: Day {
-    public let number: Int = 12
 
     struct PlantLine {
         let number: Int

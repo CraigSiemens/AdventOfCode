@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day5: Day {
-    public let number: Int = 5
-    
     func indexToRemove(in input: String, matching inverted: String, offset: Int) -> String.Index? {
         return zip(input.indices.dropFirst(offset), inverted.dropFirst(offset + 1))
             .first(where: { input[$0] == $1})?

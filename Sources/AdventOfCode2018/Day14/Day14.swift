@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day14: Day {
-    public let number: Int = 14
 
     typealias Recipes = [Int]
     

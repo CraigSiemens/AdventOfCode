@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day6: Day {
-    public let number: Int = 6
 
     func nodes(for input: String) -> [String: Tree.Node<String>] {
         let relationships = Input(input)

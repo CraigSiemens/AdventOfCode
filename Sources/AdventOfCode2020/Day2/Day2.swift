@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day2: Day {
-    public let number: Int = 2
 
     struct ParsedLine {
         let numbers: [Int]

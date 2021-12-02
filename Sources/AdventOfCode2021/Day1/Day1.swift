@@ -2,7 +2,6 @@ import Algorithms
 import Foundation
 
 public struct Day1: Day {
-    public let number: Int = 1
 
     public func part1Solution(for input: String = input) -> String {
         let increasingCount = Input(input).lines

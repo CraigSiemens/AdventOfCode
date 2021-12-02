@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day6: Day {
-    public let number: Int = 6
 
     public func part1Solution(for input: String = input) -> String {
         let result = input

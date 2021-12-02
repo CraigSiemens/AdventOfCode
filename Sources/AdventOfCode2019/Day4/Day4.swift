@@ -1,8 +1,6 @@
 import Foundation
 
 public struct Day4: Day {
-    public let number: Int = 4
-    
     func isValidPassword(_ password: Int, strict: Bool) -> Bool {
         let string = String(password)
         let pairs = String(password).pairs

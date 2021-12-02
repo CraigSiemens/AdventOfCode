@@ -2,7 +2,6 @@ import Foundation
 import Utilities
 
 public struct Day3: Day {
-    public let number: Int = 3
 
     private func treeCount(grid: [[Character]], move: Point) -> Int {
         var point = Point.zero

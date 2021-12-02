@@ -2,7 +2,6 @@ import Foundation
 
 @available(OSX 10.11, *)
 struct Day15: Day {
-    public let number: Int = 15
 
     enum Race: String {
         case elf = "E"

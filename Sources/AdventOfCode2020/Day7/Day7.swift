@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day7: Day {
-    public let number: Int = 7
 
     private typealias BagLimit = (count: Int, color: String)
     

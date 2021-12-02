@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day3: Day {
-    public let number: Int = 3
-    
     struct Claim {
         let id: Int
         let x, y, width, height: Int

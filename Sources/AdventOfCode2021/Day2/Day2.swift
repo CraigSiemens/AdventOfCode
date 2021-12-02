@@ -2,8 +2,6 @@ import Foundation
 import Utilities
 
 public struct Day2: Day {
-    public let number: Int = 2
-
     enum Command: Decodable {
         case forward(Int)
         case down(Int)

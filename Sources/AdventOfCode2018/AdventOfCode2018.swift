@@ -1,7 +1,6 @@
 @_exported import Utilities
 
 public struct AdventOfCode2018: Year {
-    public let number = 2018
     public let days: [SolvableDay] = [
         Day1(),
         Day2(),

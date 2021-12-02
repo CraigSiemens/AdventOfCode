@@ -1,5 +1,6 @@
 import Foundation
 
+/// A sequence over the digits of a number from lowest to highest.
 public struct DigitsSequence: Sequence, IteratorProtocol {
     public typealias Element = Int
     

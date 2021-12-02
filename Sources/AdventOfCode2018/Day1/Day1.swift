@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day1: Day {
-    public let number: Int = 1
-    
     func parse(input: String) -> [Int] {
         return input
             .components(separatedBy: CharacterSet(charactersIn: ",\n"))

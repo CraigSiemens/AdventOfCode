@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day2: Day {
-    public let number: Int = 2
 
     func parse(input: String) -> [String] {
         return input.components(separatedBy: .newlines)

@@ -1,7 +1,6 @@
 import Foundation
 
 struct Day13: Day {
-    public let number: Int = 13
 
     struct Cart: Hashable {
         var position: Point

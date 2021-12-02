@@ -1,8 +1,6 @@
 import Foundation
 
 struct Day7: Day {
-    public let number: Int = 7
-    
     struct Requirement {
         let first, second: String
     }
