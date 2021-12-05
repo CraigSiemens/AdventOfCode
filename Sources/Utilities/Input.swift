@@ -18,6 +18,10 @@ public protocol StringInput: Comparable {
 }
 
 extension StringInput {
+    init<S: StringProtocol>(_ raw: S) {
+        self.init(.init(raw))
+    }
+    
     public var integer: Int? {
         return Int(raw)
     }
