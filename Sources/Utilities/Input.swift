@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol StringInput {
+public protocol StringInput: Comparable {
     init(_ raw: String)
     var raw: String { get }
     
@@ -37,6 +37,13 @@ extension StringInput {
     
     public var characters: [Character] {
         return Array(raw)
+    }
+}
+
+// Comparable
+extension StringInput {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.raw < rhs.raw
     }
 }
 
@@ -78,6 +85,10 @@ extension Collection where Element: StringProtocol {
 extension Collection where Element == Character {
     public var integers: [Int] {
         return compactMap { Int("\($0)") }
+    }
+    
+    public var bits: [Bool] {
+        return map { $0 == "1" }
     }
 }
 
