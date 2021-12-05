@@ -9,6 +9,7 @@ let package = Package(
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .executable(name: "advent", targets: ["advent"]),
+        .library(name: "AdventOfCode2017", targets: ["AdventOfCode2017"]),
         .library(name: "AdventOfCode2018", targets: ["AdventOfCode2018"]),
         .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
         .library(name: "AdventOfCode2020", targets: ["AdventOfCode2020"]),
@@ -30,6 +31,7 @@ let package = Package(
         .target(
             name: "AdventOfCode",
             dependencies: [
+                "AdventOfCode2017",
                 "AdventOfCode2018",
                 "AdventOfCode2019",
                 "AdventOfCode2020",
@@ -37,6 +39,10 @@ let package = Package(
             ]
         ),
     
+        .target(
+            name: "AdventOfCode2017",
+            dependencies: ["Utilities"]
+        ),
         .target(
             name: "AdventOfCode2018",
             dependencies: ["Utilities"]
@@ -63,6 +69,10 @@ let package = Package(
         .target(
             name: "Utilities",
             dependencies: []),
+
+        .testTarget(
+            name: "AdventOfCode2017Tests",
+            dependencies: ["AdventOfCode2017"]),
         
         .testTarget(
             name: "AdventOfCode2018Tests",
