@@ -10,6 +10,22 @@ final class GridLineTests: XCTestCase {
         XCTAssertFalse(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isVertical)
     }
     
+    func testIsHorizontal() {
+        XCTAssertTrue(GridLine(point: Point(x: 3, y: 7), heading: .west, amount: 2).isHorizontal)
+        XCTAssertTrue(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isHorizontal)
+        
+        XCTAssertFalse(GridLine(point: Point(x: 3, y: 7), heading: .north, amount: 2).isHorizontal)
+        XCTAssertFalse(GridLine(point: Point(x: 2, y: 1), heading: .south, amount: 2).isHorizontal)
+    }
+    
+    func testIsDiagonal() {
+        XCTAssertTrue(GridLine(start: Point(x: 3, y: 7), end: Point(x: 7, y: 3)).isDiagonal)
+        XCTAssertTrue(GridLine(start: Point(x: 1, y: 1), end: Point(x: 3, y: 3)).isDiagonal)
+        
+        XCTAssertFalse(GridLine(start: Point(x: 0, y: 0), end: Point(x: 0, y: 1)).isDiagonal)
+        XCTAssertFalse(GridLine(start: Point(x: 1, y: 2), end: Point(x: 0, y: 10)).isDiagonal)
+    }
+    
     func testLength() {
         let length = 15
         let line = GridLine(point: Point(x: 3, y: 7), heading: .north, amount: length)
@@ -33,5 +49,17 @@ final class GridLineTests: XCTestCase {
     private func assert(gridLine: GridLine, intersects other: GridLine, at point: Point, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(gridLine.intersection(other), point, file: file, line: line)
         XCTAssertEqual(other.intersection(gridLine), point, file: file, line: line)
+    }
+    
+    func testPoints() {
+        let line = GridLine(start: .init(x: 6, y: 0),
+                            end: .init(x: 2, y: 4))
+        XCTAssertEqual(line.points, [
+            .init(x: 6, y: 0),
+            .init(x: 5, y: 1),
+            .init(x: 4, y: 2),
+            .init(x: 3, y: 3),
+            .init(x: 2, y: 4)
+        ])
     }
 }
