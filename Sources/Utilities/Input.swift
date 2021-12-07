@@ -14,6 +14,7 @@ public protocol StringInput: Comparable {
     var integer: Int? { get }
     var lines: [Line] { get }
     var words: [Word] { get }
+    var commaSeparatedWords: [Word] { get }
     var characters: [Character] { get }
 }
 
@@ -35,6 +36,13 @@ extension StringInput {
     public var words: [Word] {
         return raw
             .components(separatedBy: .whitespaces)
+            .filter { $0.isEmpty == false }
+            .map { Word($0) }
+    }
+    
+    public var commaSeparatedWords: [Word] {
+        return raw
+            .components(separatedBy: ",")
             .filter { $0.isEmpty == false }
             .map { Word($0) }
     }
