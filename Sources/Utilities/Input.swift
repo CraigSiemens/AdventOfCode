@@ -34,15 +34,16 @@ extension StringInput {
     }
     
     public var words: [Word] {
-        return raw
-            .components(separatedBy: .whitespaces)
-            .filter { $0.isEmpty == false }
-            .map { Word($0) }
+        return words(by: .whitespaces)
     }
     
     public var commaSeparatedWords: [Word] {
+        return words(by: .init(charactersIn: ","))
+    }
+    
+    public func words(by split: CharacterSet) -> [Word] {
         return raw
-            .components(separatedBy: ",")
+            .components(separatedBy: split)
             .filter { $0.isEmpty == false }
             .map { Word($0) }
     }
