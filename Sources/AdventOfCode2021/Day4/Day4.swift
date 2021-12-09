@@ -45,8 +45,8 @@ public struct Day4: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let parts = input
+    public func part1Solution(for input: Input) -> String {
+        let parts = input.raw
             .components(separatedBy: "\n\n")
         
         let drawnNumbers = parts[0]
@@ -66,8 +66,8 @@ public struct Day4: Day {
         return "not solved"
     }
     
-    public func part2Solution(for input: String = input) -> String {
-        let parts = input
+    public func part2Solution(for input: Input) -> String {
+        let parts = input.raw
             .components(separatedBy: "\n\n")
         
         let drawnNumbers = parts[0]

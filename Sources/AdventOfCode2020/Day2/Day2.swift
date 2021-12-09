@@ -8,8 +8,8 @@ public struct Day2: Day {
         let string: String
     }
     
-    private func parseInput(for input: String) -> [ParsedLine] {
-        return Input(input)
+    private func parseInput(for input: Input) -> [ParsedLine] {
+        return input
             .lines
             .map { (line) -> ParsedLine in
                 let parts = line.raw
@@ -21,7 +21,7 @@ public struct Day2: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let valid = parseInput(for: input)
             .filter { (line) -> Bool in
                 let range = line.numbers[0]...line.numbers[1]
@@ -33,7 +33,7 @@ public struct Day2: Day {
         return "\(valid.count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let valid = parseInput(for: input)
             .filter { (line) -> Bool in
                 line.numbers

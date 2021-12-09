@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day3: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let input = Int(input)!
+    public func part1Solution(for input: Input) -> String {
+        let input = input.integer!
         guard input > 1 else { return "0" }
         
         var size = 0
@@ -21,8 +21,8 @@ public struct Day3: Day {
         return "0"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let input = Int(input)!
+    public func part2Solution(for input: Input) -> String {
+        let input = input.integer!
         
         enum Direction {
             case right, up, left, down

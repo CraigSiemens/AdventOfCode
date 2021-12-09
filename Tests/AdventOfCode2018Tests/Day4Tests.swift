@@ -4,7 +4,7 @@ import XCTest
 final class Day4Tests: XCTestCase {
     let day = Day4()
     
-    let input = """
+    let input: Input = """
 [1518-11-01 00:00] Guard #10 begins shift
 [1518-11-01 00:05] falls asleep
 [1518-11-01 00:25] wakes up

@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Day11: Day {
-    private func runProgram(_ input: String, map: inout [Point: Color]) {
+    private func runProgram(_ input: Input, map: inout [Point: Color]) {
         let computer = IntcodeComputer()
         computer.load(IntcodeProgram(input))
         computer.run()
@@ -20,13 +20,13 @@ public struct Day11: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var map: [Point: Color] = [:]
         runProgram(input, map: &map)
         return "\(map.count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var map: [Point: Color] = [.zero: .white]
         runProgram(input, map: &map)
         

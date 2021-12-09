@@ -12,7 +12,7 @@ final class Day5Tests: XCTestCase {
     }
     
     func testPart1() {
-        let input = """
+        let input: Input = """
         FBFBBFFRLR
         BFFFBBFRRR
         FFFBBBFRRR
@@ -23,7 +23,7 @@ final class Day5Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
         FFFFFFFLLL
         FFFFFFFLLR
         FFFFFFFLRL

@@ -9,8 +9,8 @@ public struct Day3: Day {
         "L": .west
     ]
     
-    func parseWires(for input: String) -> [[GridLine]] {
-        Input(input).lines
+    func parseWires(for input: Input) -> [[GridLine]] {
+        input.lines
             .map { (line) -> [GridLine] in
                 line.raw
                     .components(separatedBy: ",")
@@ -28,7 +28,7 @@ public struct Day3: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let wires = parseWires(for: input)
         
         var intersections: [Point] = []
@@ -49,7 +49,7 @@ public struct Day3: Day {
         return "\(minDistance)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let wires = parseWires(for: input)
         
         var intersectionDistances: [Int] = []

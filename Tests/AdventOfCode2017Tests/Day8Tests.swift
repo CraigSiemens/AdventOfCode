@@ -4,7 +4,7 @@ import XCTest
 final class Day8Tests: XCTestCase {
     let day = Day8()
     
-    let input = """
+    let input: Input = """
         b inc 5 if a > 1
         a inc 1 if b < 5
         c dec -10 if a >= 1

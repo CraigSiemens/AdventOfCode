@@ -4,7 +4,7 @@ import XCTest
 final class Day14Tests: XCTestCase {
     let day = Day14()
     
-//    let input = """
+//    let input: Input = """
 //    <#input#>
 //    """
     

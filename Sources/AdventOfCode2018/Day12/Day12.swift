@@ -64,8 +64,8 @@ struct Day12: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let lines = Input(input).lines.filter { !$0.raw.isEmpty }
+    public func part1Solution(for input: Input) -> String {
+        let lines = input.lines.filter { !$0.raw.isEmpty }
 
         var plantLine = PlantLine(state: lines[0].words[2].raw)
         let rules = Rules(lines: Array(lines.dropFirst()))
@@ -77,8 +77,8 @@ struct Day12: Day {
         return "\(plantLine.plantNumberSum)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let lines = Input(input).lines.filter { !$0.raw.isEmpty }
+    public func part2Solution(for input: Input) -> String {
+        let lines = input.lines.filter { !$0.raw.isEmpty }
         
         var plantLine = PlantLine(state: lines[0].words[2].raw)
         let rules = Rules(lines: Array(lines.dropFirst()))

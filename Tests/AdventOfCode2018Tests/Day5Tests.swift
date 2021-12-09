@@ -4,7 +4,7 @@ import XCTest
 final class Day5Tests: XCTestCase {
     let day = Day5()
     
-    let input = "dabAcCaCBAcCcaDA"
+    let input: Input = "dabAcCaCBAcCcaDA"
     
     func testPart1() {
         XCTAssertEqual(day.part1Solution(for: input), "10")

@@ -2,8 +2,8 @@ import Foundation
 
 public struct Day10: Day {
 
-    private func part1Solution(input: String) -> (asteroids: [Point], best: Point, visible: Int) {
-        let asteroids = Input(input)
+    private func part1Solution(input: Input) -> (asteroids: [Point], best: Point, visible: Int) {
+        let asteroids = input
             .lines
             .characters
             .enumerated()
@@ -32,11 +32,11 @@ public struct Day10: Day {
         return (asteroids, bestStation, maxCount)
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         return "\(part1Solution(input: input).visible)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var (asteroids, best, _) = part1Solution(input: input)
         asteroids.remove(at: asteroids.firstIndex(of: best)!)
         print(best)

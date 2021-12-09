@@ -1,11 +1,11 @@
 import Foundation
 
 public struct Day4: Day {    
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         input
-            .split(separator: "\n")
+            .lines
             .filter { line in
-                let words = line.split(separator: " ")
+                let words = line.words
                 let set = Set(words)
                 
                 return words.count == set.count
@@ -14,11 +14,11 @@ public struct Day4: Day {
             .description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         input
-            .split(separator: "\n")
+            .lines
             .filter { line in
-                let words = line.split(separator: " ").map { String($0.sorted()) }
+                let words = line.words.map { String($0.raw.sorted()) }
                 let set = Set(words)
                 
                 return words.count == set.count

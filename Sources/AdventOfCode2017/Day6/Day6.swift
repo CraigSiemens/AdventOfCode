@@ -1,9 +1,8 @@
 import Foundation
 
 public struct Day6: Day {
-    public func part1Solution(for input: String = input) -> String {
-        var memory = input.split(whereSeparator: CharacterSet.whitespaces.contains).compactMap { Int($0) }
-        
+    public func part1Solution(for input: Input) -> String {
+        var memory = input.words.integers
         var seenStates: Set<String> = []
         while !seenStates.contains(memory.description) {
             seenStates.insert(memory.description)
@@ -34,8 +33,8 @@ public struct Day6: Day {
         }
     }
     
-    public func part2Solution(for input: String = input) -> String {
-        var memory = input.split(whereSeparator: CharacterSet.whitespaces.contains).compactMap { Int($0) }
+    public func part2Solution(for input: Input) -> String {
+        var memory = input.words.integers
         
         var seenStates: Set<State> = []
         while !seenStates.contains(State(memory: memory.description, index: seenStates.count)) {

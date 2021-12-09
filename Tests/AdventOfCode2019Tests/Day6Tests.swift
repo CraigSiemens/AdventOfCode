@@ -4,12 +4,12 @@ import XCTest
 final class Day6Tests: XCTestCase {
     let day = Day6()
     
-//    let input = """
+//    let input: Input = """
 //    <#input#>
 //    """
     
     func testPart1() {
-        let input = """
+        let input: Input = """
             COM)B
             B)C
             C)D
@@ -26,7 +26,7 @@ final class Day6Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
             COM)B
             B)C
             C)D

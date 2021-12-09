@@ -32,7 +32,7 @@ public struct Day19: Day {
         }
     }
     
-    func followPath(input: String) -> (String, Int) {
+    func followPath(input: Input) -> (String, Int) {
         let maze = parseMaze(input: input)
         
         var (x, y) = (maze[0].firstIndex(of: "|")!, 0)
@@ -73,8 +73,8 @@ public struct Day19: Day {
         return (seenLetters.map { String($0) }.joined(), steps)
     }
     
-    func parseMaze(input: String) -> [[Character]] {
-        let maze = input
+    func parseMaze(input: Input) -> [[Character]] {
+        let maze = input.raw
             .components(separatedBy: "\n")
         
         let lineLength = maze.map { $0.count }.max() ?? 0
@@ -84,12 +84,12 @@ public struct Day19: Day {
             .map { line in line.map { $0 } }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         
         return followPath(input: input).0.description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return followPath(input: input).1.description
     }
 }

@@ -22,8 +22,8 @@ struct Day11: Day {
         return grid
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let num = Input(input).integer ?? 0
+    public func part1Solution(for input: Input) -> String {
+        let num = input.integer ?? 0
         
         let grid = self.summedAreaGrid(for: num)
         var (maxValue, maxX, maxY) = (0, 0, 0)
@@ -42,8 +42,8 @@ struct Day11: Day {
         return "\(maxX),\(maxY)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let num = Input(input).integer ?? 0
+    public func part2Solution(for input: Input) -> String {
+        let num = input.integer ?? 0
         
         let grid = self.summedAreaGrid(for: num)
         var (maxValue, maxX, maxY, maxSize) = (0, 0, 0, 0)

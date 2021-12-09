@@ -55,13 +55,13 @@ public struct Day16: Day {
         }
     }
     
-    func parseSteps(input: String) -> [DanceStep] {
+    func parseSteps(input: Input) -> [DanceStep] {
         return input
-            .components(separatedBy: ",")
-            .map { DanceStep(string: $0) }
+            .commaSeparatedWords
+            .map { DanceStep(string: $0.raw) }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         func runDance(steps: [DanceStep], programs: [String]) -> [String] {
             var programs = programs
             
@@ -91,8 +91,8 @@ public struct Day16: Day {
         return dance.programs.joined()
     }
     
-    public func part2Solution(for input: String = input) -> String {
-        func cycle(input: String, size: Int) -> [String] {
+    public func part2Solution(for input: Input) -> String {
+        func cycle(input: Input, size: Int) -> [String] {
             let dance = Dance(size: size)
             let steps = parseSteps(input: input)
             

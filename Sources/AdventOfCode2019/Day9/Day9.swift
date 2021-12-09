@@ -2,7 +2,7 @@ import Foundation
 
 public struct Day9: Day {
 
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let computer = IntcodeComputer()
         computer.load(.init(input))
         computer.input = 1
@@ -11,7 +11,7 @@ public struct Day9: Day {
         return "\(computer.allOutput.last!)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let computer = IntcodeComputer()
         computer.load(.init(input))
         computer.input = 2

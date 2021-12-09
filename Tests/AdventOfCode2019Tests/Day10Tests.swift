@@ -5,7 +5,7 @@ final class Day10Tests: XCTestCase {
     let day = Day10()
     
     func testPart1() {
-        let input1 = """
+        let input1: Input = """
         .#..#
         .....
         #####
@@ -14,7 +14,7 @@ final class Day10Tests: XCTestCase {
         """
         XCTAssertEqual(day.part1Solution(for: input1), "8")
         
-        let input2 = """
+        let input2: Input = """
         ......#.#.
         #..#.#....
         ..#######.
@@ -28,7 +28,7 @@ final class Day10Tests: XCTestCase {
         """
         XCTAssertEqual(day.part1Solution(for: input2), "33")
         
-        let input3 = """
+        let input3: Input = """
         #.#...#.#.
         .###....#.
         .#....#...
@@ -42,7 +42,7 @@ final class Day10Tests: XCTestCase {
         """
         XCTAssertEqual(day.part1Solution(for: input3), "35")
         
-        let input4 = """
+        let input4: Input = """
         .#..#..###
         ####.###.#
         ....###.#.
@@ -56,7 +56,7 @@ final class Day10Tests: XCTestCase {
         """
         XCTAssertEqual(day.part1Solution(for: input4), "41")
         
-        let input5 = """
+        let input5: Input = """
         .#..##.###...#######
         ##.############..##.
         .#.######.########.#
@@ -84,7 +84,7 @@ final class Day10Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
         .#..##.###...#######
         ##.############..##.
         .#.######.########.#

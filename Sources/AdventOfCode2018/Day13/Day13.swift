@@ -57,10 +57,10 @@ struct Day13: Day {
         }
     }
     
-    func parseTrack(_ input: String) -> Track {
+    func parseTrack(_ input: Input) -> Track {
         var track = Track()
         
-        Input(input).lines.enumerated().forEach { (y, line) in
+        input.lines.enumerated().forEach { (y, line) in
             var prev: Character?
             line.raw.enumerated().forEach { (x, char) in
                 let p = Point(x: x, y: y)
@@ -114,7 +114,7 @@ struct Day13: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var track = parseTrack(input)
         
 //        let map = input
@@ -137,7 +137,7 @@ struct Day13: Day {
         }
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var track = parseTrack(input)
         
 //        let map = input

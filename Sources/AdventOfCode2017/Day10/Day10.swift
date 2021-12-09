@@ -1,14 +1,14 @@
 import Foundation
 
 public struct Day10: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let lengths = input.components(separatedBy: ",").compactMap { Int($0) }
+    public func part1Solution(for input: Input) -> String {
+        let lengths = input.commaSeparatedWords.integers
         let hashed = knotHash(numbers: Array(0..<256), lengths: lengths)
         
         return hashed.prefix(2).reduce(1, *).description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return knotHash(input: input)
             .map { String(format: "%02x", $0) }
             .joined()
@@ -33,8 +33,8 @@ func knotHash(numbers: [Int], lengths: [Int], index: Int = 0, skipSize: Int = 0)
                     skipSize: skipSize + 1)
 }
 
-func knotHash(input: String) -> [Int] {
-    var lengths = input
+func knotHash(input: Input) -> [Int] {
+    var lengths = input.raw
         .compactMap { $0.unicodeScalars.first?.value }
         .map { Int($0) }
     lengths.append(contentsOf: [17, 31, 73, 47, 23])

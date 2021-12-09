@@ -33,15 +33,15 @@ struct Day8: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        var iterator = Input(input).words.integers.makeIterator()
+    public func part1Solution(for input: Input) -> String {
+        var iterator = input.words.integers.makeIterator()
         let root = Node(input: &iterator)
         
         return "\(root!.metadataSum)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        var iterator = Input(input).words.integers.makeIterator()
+    public func part2Solution(for input: Input) -> String {
+        var iterator = input.words.integers.makeIterator()
         let root = Node(input: &iterator)
         
         return "\(root!.value)"

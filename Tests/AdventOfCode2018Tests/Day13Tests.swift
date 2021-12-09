@@ -6,7 +6,7 @@ final class Day13Tests: XCTestCase {
     
     
     func testPart1() {
-        let input = """
+        let input: Input = """
         /->-\\
         |   |  /----\\
         | /-+--+-\\  |
@@ -21,7 +21,7 @@ final class Day13Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
         />-<\\
         |   |
         | /<+-\\

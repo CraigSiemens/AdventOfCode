@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day1: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let numbers = input.compactMap { Int("\($0)") }
+    public func part1Solution(for input: Input) -> String {
+        let numbers = input.characters.integers
         guard numbers.count == input.count else { return "" }
         
         var matches: [Int] = []
@@ -19,8 +19,8 @@ public struct Day1: Day {
 
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let numbers = input.compactMap { Int("\($0)") }
+    public func part2Solution(for input: Input) -> String {
+        let numbers = input.characters.integers
         guard numbers.count == input.count else { return "" }
         
         var matches: [Int] = []

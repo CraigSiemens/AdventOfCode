@@ -6,7 +6,7 @@ final class Day15Tests: XCTestCase {
     let day = Day15()
     
     func testPart1Example0() {
-        let input = """
+        let input: Input = """
         #######
         #.G...#
         #...EG#
@@ -19,7 +19,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Example1() {
-        let input = """
+        let input: Input = """
         #######
         #G..#E#
         #E#E.E#
@@ -32,7 +32,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Example2() {
-        let input = """
+        let input: Input = """
         #######
         #E..EG#
         #.#G.E#
@@ -45,7 +45,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Example3() {
-        let input = """
+        let input: Input = """
         #######
         #E.G#.#
         #.#G..#
@@ -58,7 +58,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Example4() {
-        let input = """
+        let input: Input = """
         #######
         #.E...#
         #.#..G#
@@ -71,7 +71,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Example5() {
-        let input = """
+        let input: Input = """
         #########
         #G......#
         #.E.#...#
@@ -86,7 +86,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1MoveRight() {
-        let input = """
+        let input: Input = """
         #######
         #.E..G#
         #.#####
@@ -97,7 +97,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1MoveLeft() {
-        let input = """
+        let input: Input = """
         #####
         ###G#
         ###.#
@@ -109,7 +109,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Movement() {
-        let input = """
+        let input: Input = """
         #########
         #G..G..G#
         #.......#
@@ -124,7 +124,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit1() {
-        let input = """
+        let input: Input = """
         ####
         ##E#
         #GG#
@@ -134,7 +134,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit2() {
-        let input = """
+        let input: Input = """
         #####
         #GG##
         #.###
@@ -147,7 +147,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit3() {
-        let input = """
+        let input: Input = """
         ##########
         #.E....G.#
         #......###
@@ -158,7 +158,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit4() {
-        let input = """
+        let input: Input = """
         ##########
         #........#
         #......#.#
@@ -171,7 +171,7 @@ final class Day15Tests: XCTestCase {
     }
 
     func testPart1Reddit5() {
-        let input = """
+        let input: Input = """
         #######
         #..E#G#
         #.....#
@@ -182,7 +182,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit6() {
-        let input = """
+        let input: Input = """
         #########
         #......G#
         #G.G...E#
@@ -192,7 +192,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit7() {
-        let input = """
+        let input: Input = """
         ######
         #.G..#
         #...E#
@@ -203,7 +203,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit8() {
-        let input = """
+        let input: Input = """
         ######
         #.G..#
         ##..##
@@ -215,7 +215,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit9() {
-        let input = """
+        let input: Input = """
         ########
         #.E....#
         #......#
@@ -228,7 +228,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart1Reddit10() {
-        let input = """
+        let input: Input = """
         #################
         ##..............#
         ##........G.....#
@@ -244,7 +244,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart2Example1() {
-        let input = """
+        let input: Input = """
         #######
         #.G...#
         #...EG#
@@ -257,7 +257,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart2Example2() {
-        let input = """
+        let input: Input = """
         #######
         #E..EG#
         #.#G.E#
@@ -270,7 +270,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart2Example3() {
-        let input = """
+        let input: Input = """
         #######
         #E.G#.#
         #.#G..#
@@ -283,7 +283,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart2Example4() {
-        let input = """
+        let input: Input = """
         #######
         #.E...#
         #.#..G#
@@ -296,7 +296,7 @@ final class Day15Tests: XCTestCase {
     }
     
     func testPart2Example5() {
-        let input = """
+        let input: Input = """
         #########
         #G......#
         #.E.#...#

@@ -4,7 +4,7 @@ import XCTest
 final class Day25Tests: XCTestCase {
     let day = Day25()
     
-    let input = """
+    let input: Input = """
         Begin in state A.
         Perform a diagnostic checksum after 6 steps.
 

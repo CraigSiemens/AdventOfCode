@@ -5,9 +5,9 @@ public struct Day21: Day {
     
     private typealias EnhancementRule = (input: Set<PixelGrid>, output: PixelGrid)
 
-    private func parseRules(string: String) -> [EnhancementRule] {
-        return string
-            .components(separatedBy: "\n")
+    private func parseRules(input: Input) -> [EnhancementRule] {
+        return input
+            .lines.raw
             .map { $0.components(separatedBy: " => ") }
             .map { (PixelGrid(string: $0[0]).variants(), PixelGrid(string: $0[1])) }
     }
@@ -37,18 +37,18 @@ public struct Day21: Day {
         return grid
     }
     
-    func activePixels(iterations: Int, input: String) -> Int {
-        let rules = parseRules(string: input)
+    func activePixels(iterations: Int, input: Input) -> Int {
+        let rules = parseRules(input: input)
         let grid = update(grid: .start, rules: rules, iterations: iterations)
         
         return grid.activePixels
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         return activePixels(iterations: iterations ?? 5, input: input).description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return activePixels(iterations: 18, input: input).description
     }
 }

@@ -53,11 +53,11 @@ public struct Day20: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var particles = input
-            .components(separatedBy: "\n")
+            .lines
             .enumerated()
-            .map { Particle(id: $0.0, string: $0.1) }
+            .map { Particle(id: $0.0, string: $0.1.raw) }
         
         for _ in 0...10000 {
             for i in particles.indices {
@@ -72,11 +72,11 @@ public struct Day20: Day {
             .description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var particles = input
-            .components(separatedBy: "\n")
+            .lines
             .enumerated()
-            .map { Particle(id: $0.0, string: $0.1) }
+            .map { Particle(id: $0.0, string: $0.1.raw) }
         
         for _ in 0...10000 {
             var positions: [Vector: Int] = [:]

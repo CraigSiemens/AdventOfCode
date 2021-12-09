@@ -1,9 +1,9 @@
 import Foundation
 
 public struct Day14: Day {
-    private func createMemory(input: String) -> [[Bool]] {
+    private func createMemory(input: Input) -> [[Bool]] {
         return (0..<128)
-            .map { "\(input)-\($0)" }
+            .map { Input("\(input.raw)-\($0)") }
             .map { input in
                 knotHash(input: input)
                     .map {
@@ -15,7 +15,7 @@ public struct Day14: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let memory = createMemory(input: input).joined()
         
         return memory
@@ -24,7 +24,7 @@ public struct Day14: Day {
             .description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         func clearRegion(memory: inout [[Bool]], index: (Int, Int)) {
             guard 0..<128 ~= index.0,
                   0..<128 ~= index.1,

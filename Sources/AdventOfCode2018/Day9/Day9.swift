@@ -23,15 +23,15 @@ struct Day9: Day {
         return scores.max() ?? 0
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let integers = Input(input).words.integers
+    public func part1Solution(for input: Input) -> String {
+        let integers = input.words.integers
         let score = winnersScore(playerCount: integers[0],
                                  lastMarble: integers[1])
         return "\(score)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let integers = Input(input).words.integers
+    public func part2Solution(for input: Input) -> String {
+        let integers = input.words.integers
         let score = winnersScore(playerCount: integers[0],
                                  lastMarble: integers[1] * 100)
         return "\(score)"

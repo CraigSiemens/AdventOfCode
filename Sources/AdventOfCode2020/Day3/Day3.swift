@@ -19,16 +19,16 @@ public struct Day3: Day {
         return treeCount
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let grid = Input(input)
+    public func part1Solution(for input: Input) -> String {
+        let grid = input
             .lines
             .map { $0.characters }
         
         return "\(treeCount(grid: grid, move: Point(x: 3, y: 1)))"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let grid = Input(input)
+    public func part2Solution(for input: Input) -> String {
+        let grid = input
             .lines
             .map { $0.characters }
         

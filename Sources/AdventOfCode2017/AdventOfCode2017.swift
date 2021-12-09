@@ -2,7 +2,7 @@
 
 public struct AdventOfCode2017: Year {
     public let number = 2017
-    public let days: [SolvableDay] = [
+    public let days: [Day] = [
         Day1(),
         Day2(),
         Day3(),

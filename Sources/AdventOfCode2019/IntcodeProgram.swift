@@ -10,10 +10,8 @@ import Foundation
 public struct IntcodeProgram {
     var memory: [Int]
     
-    public init(_ string: String) {
-        self.init(string
-            .components(separatedBy: ",")
-            .integers)
+    public init(_ input: Input) {
+        self.init(input.commaSeparatedWords.integers)
     }
     
     public init(_ memory: [Int]) {

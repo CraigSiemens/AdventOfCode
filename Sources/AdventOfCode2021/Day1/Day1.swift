@@ -3,8 +3,8 @@ import Foundation
 
 public struct Day1: Day {
 
-    public func part1Solution(for input: String = input) -> String {
-        let increasingCount = Input(input).lines
+    public func part1Solution(for input: Input) -> String {
+        let increasingCount = input.lines
             .integers
             .adjacentPairs()
             .filter { $0.0 < $0.1 }
@@ -13,8 +13,8 @@ public struct Day1: Day {
         return "\(increasingCount)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let increasingCount = Input(input).lines
+    public func part2Solution(for input: Input) -> String {
+        let increasingCount = input.lines
             .integers
             .windows(ofCount: 3)
             .map { $0.sum() }

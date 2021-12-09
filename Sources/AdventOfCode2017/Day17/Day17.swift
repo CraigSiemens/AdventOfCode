@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day17: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let stepSize = input.int!
+    public func part1Solution(for input: Input) -> String {
+        let stepSize = input.integer!
         var buffer = [0]
         var index = 0
         
@@ -14,8 +14,8 @@ public struct Day17: Day {
         return buffer[(index + 1) % buffer.count].description
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let stepSize = input.int!
+    public func part2Solution(for input: Input) -> String {
+        let stepSize = input.integer!
         var value = 0
         var index = 0
         

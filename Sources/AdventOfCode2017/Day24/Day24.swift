@@ -10,14 +10,15 @@ public struct Day24: Day {
         }
     }
     
-    func parseInput(input: String) -> [BridgePiece] {
+    func parseInput(input: Input) -> [BridgePiece] {
         return input
-            .components(separatedBy: "\n")
+            .lines
+            .raw
             .map { $0.components(separatedBy: "/").compactMap { i in Int(i) } }
             .map { BridgePiece(inputPin: $0[0], outputPin: $0[1]) }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         func strongestBridge(current: [BridgePiece], remaining: [BridgePiece]) -> Int {
             let lastPin = current.last?.outputPin ?? 0
             
@@ -47,7 +48,7 @@ public struct Day24: Day {
         return strongestBridge(current: [], remaining: pieces).description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         typealias Result = (length: Int, strength: Int)
         
         func longestStrongestBridge(current: [BridgePiece], remaining: [BridgePiece]) -> Result {

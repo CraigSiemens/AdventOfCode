@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
 
 let package = Package(
     name: "Advent of Code",
@@ -41,29 +42,34 @@ let package = Package(
     
         .target(
             name: "AdventOfCode2017",
-            dependencies: ["Utilities"]
+            dependencies: ["Utilities"],
+            exclude: inputFiles(for: 2017)
         ),
         .target(
             name: "AdventOfCode2018",
-            dependencies: ["Utilities"]
+            dependencies: ["Utilities"],
+            exclude: inputFiles(for: 2018)
         ),
         .target(
             name: "AdventOfCode2019",
-            dependencies: ["Utilities"]
+            dependencies: ["Utilities"],
+            exclude: inputFiles(for: 2019)
         ),
         .target(
             name: "AdventOfCode2020",
             dependencies: [
                 "Utilities",
                 .product(name: "Algorithms", package: "swift-algorithms")
-            ]
+            ],
+            exclude: inputFiles(for: 2020)
         ),
         .target(
             name: "AdventOfCode2021",
             dependencies: [
                 "Utilities",
                 .product(name: "Algorithms", package: "swift-algorithms")
-            ]
+            ],
+            exclude: inputFiles(for: 2021)
         ),
         
         .target(
@@ -95,3 +101,21 @@ let package = Package(
             dependencies: ["Utilities"]),
     ]
 )
+
+func inputFiles(for year: Int) -> [String] {
+    let sourceDirectory = URL(fileURLWithPath: #file)
+        .deletingLastPathComponent()
+        .appendingPathComponent("Sources")
+        .appendingPathComponent("AdventOfCode\(year)")
+    
+    return FileManager.default
+        .enumerator(
+            at: sourceDirectory,
+            includingPropertiesForKeys: nil,
+            options: .producesRelativePathURLs
+        )?
+        .compactMap { $0 as? URL }
+        .filter { $0.lastPathComponent == "input.txt" }
+        .map { $0.relativePath }
+        ?? []
+}

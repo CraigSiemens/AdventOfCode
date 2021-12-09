@@ -1,8 +1,8 @@
 import Foundation
 
 struct Day1: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let weight = Input(input).lines
+    public func part1Solution(for input: Input) -> String {
+        let weight = input.lines
             .compactMap { $0.integer }
             .map { $0 / 3 - 2 }
             .sum()
@@ -10,8 +10,8 @@ struct Day1: Day {
         return "\(weight)"
     }
     
-    public func part2Solution(for input: String = input) -> String {
-        let weight = Input(input).lines
+    public func part2Solution(for input: Input) -> String {
+        let weight = input.lines
             .compactMap { $0.integer }
             .map { (weight) -> Int in
                 var totalWeight = 0

@@ -31,21 +31,21 @@ public struct Day11: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let start: Position = (0, 0)
         let end: Position = input
-            .components(separatedBy: ",")
-            .compactMap { Direction(rawValue: $0) }
+            .commaSeparatedWords
+            .compactMap { Direction(rawValue: $0.raw) }
             .reduce(start) { $1.nextPosition(from: $0) }
         
         return "\(distance(from: start, to: end))"
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let start: Position = (0, 0)
         let (_, dist) = input
-            .components(separatedBy: ",")
-            .compactMap { Direction(rawValue: $0) }
+            .commaSeparatedWords
+            .compactMap { Direction(rawValue: $0.raw) }
             .reduce((start, 0)) {
                 let next = $1.nextPosition(from: $0.0)
                 return (next, max(distance(from: start, to: next), $0.1))

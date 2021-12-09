@@ -4,7 +4,7 @@ import XCTest
 final class Day7Tests: XCTestCase {
     let day = Day7()
     
-    let input = """
+    let input: Input = """
     light red bags contain 1 bright white bag, 2 muted yellow bags.
     dark orange bags contain 3 bright white bags, 4 muted yellow bags.
     bright white bags contain 1 shiny gold bag.
@@ -23,7 +23,7 @@ final class Day7Tests: XCTestCase {
     func testPart2() {
         XCTAssertEqual(day.part2Solution(for: input), "32")
         
-        let input2  = """
+        let input2: Input = """
         shiny gold bags contain 2 dark red bags.
         dark red bags contain 2 dark orange bags.
         dark orange bags contain 2 dark yellow bags.

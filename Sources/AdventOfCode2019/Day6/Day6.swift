@@ -2,8 +2,8 @@ import Foundation
 
 public struct Day6: Day {
 
-    func nodes(for input: String) -> [String: Tree.Node<String>] {
-        let relationships = Input(input)
+    func nodes(for input: Input) -> [String: Tree.Node<String>] {
+        let relationships = input
             .lines
             .map { $0.raw.components(separatedBy: ")") }
         
@@ -25,7 +25,7 @@ public struct Day6: Day {
         return nodes
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let total = nodes(for: input)
             .values
             .reduce(into: 0) { (total, node) in
@@ -35,7 +35,7 @@ public struct Day6: Day {
         return "\(total)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let nodes = self.nodes(for: input)
         
         let startParents = nodes["YOU"]!.allParents.reversed()

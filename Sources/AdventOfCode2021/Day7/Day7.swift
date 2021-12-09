@@ -1,10 +1,10 @@
 import Foundation
 
 public struct Day7: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var shipsAtPosition: [Int: Int] = [:]
         
-        Input(input).commaSeparatedWords.integers
+        input.commaSeparatedWords.integers
             .forEach { shipsAtPosition[$0, default: 0] += 1 }
         
         var minPosition = shipsAtPosition.keys.min()!
@@ -33,7 +33,7 @@ public struct Day7: Day {
         return fuelCost.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         struct Ships {
             var totalFuelCost = 0
             var previousFuelCost = 0
@@ -44,7 +44,7 @@ public struct Day7: Day {
         
         var shipsAtPosition: [Int: Ships] = [:]
         
-        Input(input).commaSeparatedWords.integers
+        input.commaSeparatedWords.integers
             .forEach { shipsAtPosition[$0, default: .init()].count += 1 }
         
         var minPosition = shipsAtPosition.keys.min()!

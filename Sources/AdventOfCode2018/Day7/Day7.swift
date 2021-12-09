@@ -37,7 +37,7 @@ struct Day7: Day {
         }
     }
     
-    func parse(input: String) -> [Step] {
+    func parse(input: Input) -> [Step] {
         var stepsByName: [String: Step] = [:]
         func step(named name: String) -> Step {
             let step = stepsByName[name, default: Step(name: name)]
@@ -46,8 +46,9 @@ struct Day7: Day {
         }
 
         input
-            .components(separatedBy: "\n")
-            .map { $0.components(separatedBy: .whitespaces) }
+            .lines
+            .map(\.words)
+            .raw
             .map { Requirement(first: $0[1], second: $0[7]) }
             .forEach { (requirement) in
                 step(named: requirement.second)
@@ -57,7 +58,7 @@ struct Day7: Day {
         return stepsByName.values.map { $0 }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var index = 0
         var stepsToRun: [Step] = parse(input: input)
             .filter { $0.dependencies.isEmpty }
@@ -78,7 +79,7 @@ struct Day7: Day {
         return stepsToRun.map { $0.name }.joined()
     }
 
-    func part2Solution(for input: String, workers: Int, baseDuration: Int) -> String {
+    func part2Solution(for input: Input, workers: Int, baseDuration: Int) -> String {
         let steps = parse(input: input)
         steps.forEach { $0.remainingTime += baseDuration }
         
@@ -119,7 +120,7 @@ struct Day7: Day {
         return "\(time)"
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return part2Solution(for: input, workers: 5, baseDuration: 60)
     }
 }

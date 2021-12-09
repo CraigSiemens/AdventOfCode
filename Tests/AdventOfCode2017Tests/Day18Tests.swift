@@ -5,7 +5,7 @@ final class Day18Tests: XCTestCase {
     let day = Day18()
     
     func testPart1() {
-        let input = """
+        let input: Input = """
             set a 1
             add a 2
             mul a a
@@ -23,7 +23,7 @@ final class Day18Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
             snd 1
             snd 2
             snd p

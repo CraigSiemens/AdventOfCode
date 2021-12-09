@@ -1,26 +1,22 @@
 import Foundation
 
 public struct Day2: Day {    
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         input
-            .split(separator: "\n")
+            .lines
             .map { line in
-                let numbers = line
-                    .split(separator: " ")
-                    .compactMap { Int($0) }
+                let numbers = line.words.integers
                 return numbers.max()! - numbers.min()!
             }
             .reduce(0, +)
             .description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         input
-            .split(separator: "\n")
+            .lines
             .map { line in
-                let numbers = line
-                    .split(separator: " ")
-                    .compactMap { Int($0) }
+                let numbers = line.words.integers
                 
                 for (xIndex, xValue) in numbers.enumerated() {
                     for (_, yValue) in numbers.enumerated().dropFirst(xIndex + 1) {

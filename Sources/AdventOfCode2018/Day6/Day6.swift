@@ -34,8 +34,8 @@ struct Day6: Day {
         case tied
     }
     
-    func parse(input: String) -> [Point] {
-        return input
+    func parse(input: Input) -> [Point] {
+        return input.raw
             .replacingOccurrences(of: " ", with: "")
             .components(separatedBy: .newlines)
             .map { $0.components(separatedBy: ",").compactMap({ s in Int(s) }) }
@@ -73,7 +73,7 @@ struct Day6: Day {
         
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let coordinates = parse(input: input)
         let maxCoordinate = coordinates.reduce(into: Point(x: 0, y: 0)) {
             $0.x = max($0.x, $1.x)
@@ -100,7 +100,7 @@ struct Day6: Day {
             ?? "UNKNOWN"
     }
     
-    func part2Solution(for input: String, minDistance: Int) -> String {
+    func part2Solution(for input: Input, minDistance: Int) -> String {
         let coordinates = parse(input: input)
         var averageCoordinate = coordinates.reduce(into: Point(x: 0, y: 0)) {
             $0.x += $1.x
@@ -122,7 +122,7 @@ struct Day6: Day {
     }
 
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return part2Solution(for: input, minDistance: 10000)
     }
 }

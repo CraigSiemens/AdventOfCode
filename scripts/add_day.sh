@@ -22,9 +22,7 @@ sed -i "" "s/{DAY_NAME}/${day_name}/g" "${day_file_path}"
 sed -i "" "s/{DAY_NUMBER}/${day_number}/g" "${day_file_path}"
 
 # Create input file
-input_file_path="${day_folder_path}/${day_name}+Input.swift"
-cp "./scripts/DayInputTemplate.swift" "${input_file_path}"
-sed -i "" "s/{DAY_NAME}/${day_name}/g" "${input_file_path}"
+touch "${day_folder_path}/input.yxy"
 
 # Create tests file
 cp "./scripts/DayTestsTemplate.swift" "${test_file_path}"

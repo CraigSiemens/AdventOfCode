@@ -12,7 +12,7 @@ public struct Day18: Day {
         
         var destProgram: Program!
         
-        init(id: Int, input: String) {
+        init(id: Int, input: Input) {
             self.id = id
             registers["p"] = id
             instructions = Self.parseAssembly(input: input)
@@ -27,11 +27,11 @@ public struct Day18: Day {
             return index != prevIndex
         }
         
-        static func parseAssembly(input: String) -> [(Program) -> Void] {
+        static func parseAssembly(input: Input) -> [(Program) -> Void] {
             return input
-                .components(separatedBy: "\n")
+                .lines
                 .filter { !$0.isEmpty }
-                .map { parseInstruction(line: $0) }
+                .map { parseInstruction(line: $0.raw) }
         }
         
         static func parseInstruction(line: String) -> (Program) -> Void {
@@ -96,7 +96,7 @@ public struct Day18: Day {
 
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let p0 = Program(id: 0, input: input)
         let p1 = Program(id: 1, input: "")
         
@@ -108,7 +108,7 @@ public struct Day18: Day {
         return p1.queue.last!.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let p0 = Program(id: 0, input: input)
         let p1 = Program(id: 1, input: input)
         

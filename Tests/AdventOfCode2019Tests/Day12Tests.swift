@@ -4,7 +4,7 @@ import XCTest
 final class Day12Tests: XCTestCase {
     let day = Day12()
     
-    let input = """
+    let input: Input = """
         <x=-1, y=0, z=2>
         <x=2, y=-10, z=-7>
         <x=4, y=-8, z=8>
@@ -129,7 +129,7 @@ final class Day12Tests: XCTestCase {
     }
     
     func testLongPart2() {
-        let input = """
+        let input: Input = """
             <x=-8, y=-10, z=0>
             <x=5, y=5, z=10>
             <x=2, y=-7, z=3>

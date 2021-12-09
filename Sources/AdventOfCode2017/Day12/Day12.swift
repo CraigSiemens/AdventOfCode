@@ -1,17 +1,15 @@
 import Foundation
 
 public struct Day12: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let lines = input
-            .components(separatedBy: "\n")
+    public func part1Solution(for input: Input) -> String {
+        let lines = input.lines
         
         let nodes = (0..<lines.count).map { _ in GKGraphNode() }
         
         lines
             .map {
-                $0.components(separatedBy: CharacterSet(charactersIn: "<->, "))
-                    .filter { !$0.isEmpty }
-                    .compactMap { s in Int(s) }
+                $0.words(by: .init(charactersIn: "<->, "))
+                    .integers
                     .dropFirst()
                     .map { nodes[$0] }
             }
@@ -29,17 +27,15 @@ public struct Day12: Day {
         return "\(seen.count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let lines = input
-            .components(separatedBy: "\n")
+    public func part2Solution(for input: Input) -> String {
+        let lines = input.lines
         
         let nodes = (0..<lines.count).map { _ in GKGraphNode() }
         
         lines
             .map {
-                $0.components(separatedBy: CharacterSet(charactersIn: "<->, "))
-                    .filter { !$0.isEmpty }
-                    .compactMap { s in Int(s) }
+                $0.words(by: .init(charactersIn: "<->, "))
+                    .integers
                     .dropFirst()
                     .map { nodes[$0] }
             }

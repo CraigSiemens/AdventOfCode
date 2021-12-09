@@ -7,7 +7,12 @@
 
 import Foundation
 
-public protocol StringInput: Comparable {
+public protocol RawConvertible {
+    associatedtype Raw
+    var raw: Raw { get }
+}
+
+public protocol StringInput: Hashable, Comparable, RawConvertible {
     init(_ raw: String)
     var raw: String { get }
     
@@ -30,6 +35,7 @@ extension StringInput {
     public var lines: [Line] {
         return raw
             .components(separatedBy: .newlines)
+            .filter { $0.isEmpty == false }
             .map { Line($0) }
     }
     
@@ -38,7 +44,7 @@ extension StringInput {
     }
     
     public var commaSeparatedWords: [Word] {
-        return words(by: .init(charactersIn: ","))
+        return words(by: ",")
     }
     
     public func words(by split: CharacterSet) -> [Word] {
@@ -48,8 +54,19 @@ extension StringInput {
             .map { Word($0) }
     }
     
+    public func words(by split: String) -> [Word] {
+        return raw
+            .components(separatedBy: split)
+            .filter { $0.isEmpty == false }
+            .map { Word($0) }
+    }
+    
     public var characters: [Character] {
         return Array(raw)
+    }
+    
+    public subscript<T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
+        raw[keyPath: keyPath]
     }
 }
 
@@ -60,20 +77,29 @@ extension StringInput {
     }
 }
 
+@dynamicMemberLookup
 public struct Input: StringInput {
     public let raw: String
     
     public init(_ raw: String) {
-        self.raw = raw//.trimmingCharacters(in: .whitespaces)
+        self.raw = raw.trimmingCharacters(in: .newlines)
     }
 }
 
+extension Input: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(value)
+    }
+}
+
+@dynamicMemberLookup
 public struct Line: StringInput {
     public let raw: String
     
     public init(_ raw: String) { self.raw = raw }
 }
 
+@dynamicMemberLookup
 public struct Word: StringInput {
     public let raw: String
     
@@ -108,5 +134,11 @@ extension Collection where Element == Character {
 extension String {
     public var int: Int? {
         return Int(self)
+    }
+}
+
+extension Array: RawConvertible where Element: RawConvertible {
+    public var raw: [Element.Raw] {
+        map(\.raw)
     }
 }

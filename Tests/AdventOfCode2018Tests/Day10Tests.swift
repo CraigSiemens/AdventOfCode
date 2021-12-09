@@ -4,7 +4,7 @@ import XCTest
 final class Day10Tests: XCTestCase {
     let day = Day10()
     
-    let input = """
+    let input: Input = """
     position=< 9,  1> velocity=< 0,  2>
     position=< 7,  0> velocity=<-1,  0>
     position=< 3, -2> velocity=<-1,  1>

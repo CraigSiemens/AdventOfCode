@@ -5,7 +5,7 @@ final class Day2Tests: XCTestCase {
     let day = Day2()
     
     func testPart1() {
-        let input = """
+        let input: Input = """
         abcdef
         bababc
         abbcde
@@ -18,7 +18,7 @@ final class Day2Tests: XCTestCase {
     }
     
     func testPart2() {
-        let input = """
+        let input: Input = """
         abcde
         fghij
         klmno

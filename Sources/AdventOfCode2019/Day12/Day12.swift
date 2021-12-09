@@ -19,8 +19,8 @@ public struct Day12: Day {
         }
     }
     
-    func parse(input: String) -> [Planet] {
-        Input(input)
+    func parse(input: Input) -> [Planet] {
+        input
             .lines
             .map {
                 let scanner = Scanner(string: $0.raw)
@@ -52,7 +52,7 @@ public struct Day12: Day {
         return planets
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let totalEnergy = runSimulation(planets: parse(input: input), steps: 1000)
             .map { $0.totalEnergy }
             .sum()
@@ -104,7 +104,7 @@ public struct Day12: Day {
         return repeatTime.x.lcm(with: repeatTime.y.lcm(with: repeatTime.z))
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return "\(repeatTime(planets: parse(input: input)))"
     }
 }

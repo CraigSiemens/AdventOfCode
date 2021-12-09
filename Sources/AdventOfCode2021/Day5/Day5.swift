@@ -2,8 +2,8 @@ import Foundation
 import Utilities
 
 public struct Day5: Day {
-    func parse(input: String) -> [GridLine] {
-        Input(input)
+    func parse(input: Input) -> [GridLine] {
+        input
             .lines
             .map { line -> GridLine in
                 let parts = line.raw
@@ -17,7 +17,7 @@ public struct Day5: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let lines = parse(input: input)
             .filter { !$0.isDiagonal }
         
@@ -32,7 +32,7 @@ public struct Day5: Day {
         return ventCount.count { $0.value >= 2 }.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let lines = parse(input: input)
         
         var ventCount = [Point: Int]()

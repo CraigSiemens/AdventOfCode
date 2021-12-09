@@ -12,8 +12,8 @@ public struct Day4: Day {
     
     private static let allKeys = requiredKeys + optionalKeys
     
-    private func parsePassports(for input: String) -> [Passport] {
-        input
+    private func parsePassports(for input: Input) -> [Passport] {
+        input.raw
             .components(separatedBy: "\n\n")
             .compactMap { (fields) -> Passport? in
                 let contents = fields
@@ -27,13 +27,13 @@ public struct Day4: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let passports = parsePassports(for: input)
         
         return "\(passports.count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let passports = parsePassports(for: input)
             .filter { $0.isValid }
         

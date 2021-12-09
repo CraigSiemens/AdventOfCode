@@ -52,23 +52,23 @@ struct Day3: Day {
         }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var fabric = Fabric()
         
         input
-            .components(separatedBy: .newlines)
-            .compactMap { Claim(string: $0) }
+            .lines
+            .compactMap { Claim(string: $0.raw) }
             .forEach { fabric.add(claim: $0) }
         
         return "\(fabric.multiClaimCount)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var fabric = Fabric()
         
         let claims = input
-            .components(separatedBy: .newlines)
-            .compactMap { Claim(string: $0) }
+            .lines
+            .compactMap { Claim(string: $0.raw) }
             
         claims.forEach { fabric.add(claim: $0) }
         

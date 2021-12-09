@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Day25: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         enum Direction: String {
             case left, right
             
@@ -59,8 +59,8 @@ public struct Day25: Day {
             }
         }
 
-        func parseInput(input: String) -> (String, Int, [State]) {
-            let parts = input.components(separatedBy: "\n\n")
+        func parseInput(input: Input) -> (String, Int, [State]) {
+            let parts = input.raw.components(separatedBy: "\n\n")
             
             let scanner = Scanner(string: parts.first!)
             
@@ -94,7 +94,7 @@ public struct Day25: Day {
         return tape.filter { $0 }.count.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return "freebee"
     }
 }

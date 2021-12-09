@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Day23: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         class Program {
             let id: Int
             var registers: [String: Int] = [:]
@@ -13,7 +13,7 @@ public struct Day23: Day {
             
             var destProgram: Program!
             
-            init(id: Int, input: String) {
+            init(id: Int, input: Input) {
                 self.id = id
                 registers["p"] = id
                 instructions = parseAssembly(input: input)
@@ -73,9 +73,10 @@ public struct Day23: Day {
             //    jgz X Y jumps with an offset of the value of Y, but only if the value of X is greater than zero. (An offset of 2 skips the next instruction, an offset of -1 jumps to the previous instruction, and so on.)
         }
 
-        func parseAssembly(input: String) -> [(Program) -> Void] {
+        func parseAssembly(input: Input) -> [(Program) -> Void] {
             return input
-                .components(separatedBy: "\n")
+                .lines
+                .raw
                 .filter { !$0.isEmpty }
                 .map { parseInstruction(line: $0) }
         }
@@ -87,7 +88,7 @@ public struct Day23: Day {
         return p.mulCount.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var notPrimeCount = 0
         for b in stride(from: 108100, to: 125100, by: 17) {
             for i in 2..<b {

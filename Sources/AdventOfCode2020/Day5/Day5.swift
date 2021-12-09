@@ -1,7 +1,6 @@
 import Foundation
 
 public struct Day5: Day {
-
     func seatID(for input: String) -> Int {
         let binary = input
             .map {
@@ -14,21 +13,21 @@ public struct Day5: Day {
         return Int(binary, radix: 2)!
     }
     
-    private func parse(input: String) -> [Int] {
-        Input(input)
+    private func parse(input: Input) -> [Int] {
+        input
             .lines
             .map(\.raw)
             .map(seatID(for:))
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let value = parse(input: input)
             .max()!
                 
         return "\(value)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let seatIds = parse(input: input)
             .sorted()
 

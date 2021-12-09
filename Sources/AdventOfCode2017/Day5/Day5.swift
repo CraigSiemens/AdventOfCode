@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day5: Day {
-    public func part1Solution(for input: String = input) -> String {
-        var offsets = input.split(separator: "\n").compactMap { Int($0) }
+    public func part1Solution(for input: Input) -> String {
+        var offsets = input.lines.integers
         var index = 0
         var jumpCount = 0
         
@@ -17,8 +17,8 @@ public struct Day5: Day {
         return jumpCount.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        var offsets = input.split(separator: "\n").compactMap { Int($0) }
+    public func part2Solution(for input: Input) -> String {
+        var offsets = input.lines.integers
         var index = 0
         var jumpCount = 0
         

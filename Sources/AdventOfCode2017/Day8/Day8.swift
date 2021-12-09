@@ -79,9 +79,8 @@ public struct Day8: Day {
         var registers: [String: Int] = [:]
         var maxIntermediateValue: Int = .min
         
-        mutating func runInstructions(input: String) {
-            input.components(separatedBy: "\n")
-                .map { String($0) }
+        mutating func runInstructions(input: Input) {
+            input.lines.raw
                 .map { Instruction(string: $0) }
                 .forEach { run($0) }
         }
@@ -97,25 +96,25 @@ public struct Day8: Day {
         }
     }
 
-    func maxFinalRegister(input: String) -> Int {
+    func maxFinalRegister(input: Input) -> Int {
         var cpu = CPU()
         cpu.runInstructions(input: input)
         
         return cpu.registers.values.max() ?? -1
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         maxFinalRegister(input: input).description
     }
     
-    func maxIntermediateValue(input: String) -> Int {
+    func maxIntermediateValue(input: Input) -> Int {
         var cpu = CPU()
         cpu.runInstructions(input: input)
         
         return cpu.maxIntermediateValue
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         maxIntermediateValue(input: input).description
     }
 }

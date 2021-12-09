@@ -1,11 +1,10 @@
 import Foundation
 
 public struct Day13: Day {
-    private func parseFirewall(input: String) -> [Int: Int] {
+    private func parseFirewall(input: Input) -> [Int: Int] {
         let keysValues = input
-            .components(separatedBy: "\n")
-            .map { $0.components(separatedBy: ": ") }
-            .map { a in a.compactMap { Int($0) } }
+            .lines
+            .map { $0.words(by: ": ").integers }
             .map { ($0[0], $0[1]) }
         return Dictionary(uniqueKeysWithValues: keysValues)
     }
@@ -15,7 +14,7 @@ public struct Day13: Day {
             .filter { ($0.0 + delay) % ($0.1 * 2 - 2) == 0 }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let firewall = parseFirewall(input: input)
         
         return caughtFirewallLocations(firewall: firewall)
@@ -24,7 +23,7 @@ public struct Day13: Day {
             .description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let firewall = parseFirewall(input: input)
         
         var delay = 0

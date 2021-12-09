@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Day2: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var program = IntcodeProgram(input)
         program[1] = 12
         program[2] = 2
@@ -13,7 +13,7 @@ public struct Day2: Day {
         return "\(computer.memory[0])"
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var program = IntcodeProgram(input)
         
         for i in 0..<100 {

@@ -8,8 +8,8 @@ public struct Day2: Day {
         case up(Int)
     }
     
-    func parseCommands(for input: String) -> [Command] {
-        Input(input)
+    func parseCommands(for input: Input) -> [Command] {
+        input
             .lines
             .map { line -> Command in
                 let parts = line.words
@@ -24,7 +24,7 @@ public struct Day2: Day {
             }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let totalDistance = parseCommands(for: input)            .reduce(into: Point.zero) { point, command in
                 switch command {
                 case let .forward(distance):
@@ -39,7 +39,7 @@ public struct Day2: Day {
         return "\(totalDistance.x * totalDistance.y)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         struct Submarine {
             var aim: Int = 0
             var position: Point = .zero

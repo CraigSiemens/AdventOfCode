@@ -261,8 +261,8 @@ struct Day15: Day {
                                 combatants: combatants)
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let input = Input(input)
+    public func part1Solution(for input: Input) -> String {
+        let input = input
 //        let printer = CombatStatePrinter(input: input)
         
         let startState = combatState(from: input)
@@ -276,8 +276,8 @@ struct Day15: Day {
         return "\(finalState?.outcome ?? -1)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let input = Input(input)
+    public func part2Solution(for input: Input) -> String {
+        let input = input
 //        let printer = CombatStatePrinter(input: input)
         let elfCount = combatState(from: input).combatants
             .filter { $0.race == .elf }.count

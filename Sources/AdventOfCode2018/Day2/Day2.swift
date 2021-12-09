@@ -1,11 +1,6 @@
 import Foundation
 
 struct Day2: Day {
-
-    func parse(input: String) -> [String] {
-        return input.components(separatedBy: .newlines)
-    }
-    
     func exactCounts(input: String) -> (hasTwo: Bool, hasThree: Bool) {
         var counts: [Character: Int] = [:]
         for c in input {
@@ -16,8 +11,8 @@ struct Day2: Day {
         return (uniqueCounts.contains(2), uniqueCounts.contains(3))
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let counts = parse(input: input)
+    public func part1Solution(for input: Input) -> String {
+        let counts = input.lines.raw
             .map(exactCounts(input: ))
             .map { ($0.hasTwo ? 1 : 0, $0.hasThree ? 1 : 0) }
             .reduce(into: (0, 0)) { (result, value) in
@@ -29,8 +24,8 @@ struct Day2: Day {
         return "\(counts.0 * counts.1)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        return Combinations(from: parse(input: input))
+    public func part2Solution(for input: Input) -> String {
+        return Combinations(from: input.lines.raw)
             .lazy
             .compactMap { (combination) -> String? in
                 let filtered = zip(combination.0, combination.1)

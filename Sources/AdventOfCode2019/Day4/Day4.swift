@@ -11,10 +11,10 @@ public struct Day4: Day {
                 || string.countElements().values.contains(2))
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let numbers = input
+    public func part1Solution(for input: Input) -> String {
+        let numbers = input.raw
             .components(separatedBy: "-")
-            .map { Int($0)! }
+            .integers
                 
         let passwords = (numbers[0]...numbers[1])
             .filter { isValidPassword($0, strict: false) }
@@ -22,10 +22,10 @@ public struct Day4: Day {
         return "\(passwords.count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let numbers = input
+    public func part2Solution(for input: Input) -> String {
+        let numbers = input.raw
             .components(separatedBy: "-")
-            .map { Int($0)! }
+            .integers
                 
         let passwords = (numbers[0]...numbers[1])
             .filter { isValidPassword($0, strict: true) }

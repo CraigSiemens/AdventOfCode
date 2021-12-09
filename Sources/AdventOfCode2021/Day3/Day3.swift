@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day3: Day {
-    public func part1Solution(for input: String = input) -> String {
-        let input = Input(input)
+    public func part1Solution(for input: Input) -> String {
+        let input = input
             .lines
             .characters
             .map(\.bits)
@@ -25,8 +25,8 @@ public struct Day3: Day {
         return "\(gammaRate * epsilonRate)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let input = Input(input)
+    public func part2Solution(for input: Input) -> String {
+        let input = input
             .lines
             .characters
             .map(\.bits)

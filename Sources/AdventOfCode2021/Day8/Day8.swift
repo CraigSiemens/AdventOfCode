@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Day8: Day {
-    public func part1Solution(for input: String = input) -> String {
-        Input(input)
+    public func part1Solution(for input: Input) -> String {
+        input
             .lines
             .map { $0.words(by: .init(charactersIn: "|")) }
             .flatMap { $0[1].words }
@@ -48,8 +48,8 @@ public struct Day8: Day {
         return Int(digits: digits)
     }
     
-    public func part2Solution(for input: String = input) -> String {
-        return Input(input)
+    public func part2Solution(for input: Input) -> String {
+        input
             .lines
             .map { $0.words(by: .init(charactersIn: "|")).map(\.words) }
             .map { parts -> Int in

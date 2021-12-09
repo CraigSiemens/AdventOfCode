@@ -50,8 +50,8 @@ public struct Day7: Day {
         }
     }
 
-    func createProgram(line: Substring, programsByName: [String: Program]) -> Program {
-        let scanner = Scanner(string: String(line))
+    func createProgram(line: String, programsByName: [String: Program]) -> Program {
+        let scanner = Scanner(string: line)
         
         var scannedName: NSString?
         scanner.scanCharacters(from: .letters, into: &scannedName)
@@ -76,13 +76,13 @@ public struct Day7: Day {
         return program
     }
 
-    func buildTree(input: String) -> Program {
+    func buildTree(input: Input) -> Program {
         var programsByName: [String: Program] = [:]
         
         input
-            .split(separator: "\n")
+            .lines
             .forEach { (line) in
-                let program = createProgram(line: line, programsByName: programsByName)
+                let program = createProgram(line: line.raw, programsByName: programsByName)
                 programsByName[program.name] = program
                 program.subprograms.forEach { programsByName[$0.name] = $0 }
             }
@@ -90,15 +90,15 @@ public struct Day7: Day {
         return programsByName.values.filter { $0.parent == nil }.first!
     }
 
-    func rootProgramName(input: String) -> String {
+    func rootProgramName(input: Input) -> String {
         return buildTree(input: input).name
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         rootProgramName(input: input).description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let rootProgram = buildTree(input: input)
         rootProgram.recursivePrint()
         return rootProgram.requiredWeightForUnbalancedProgram()!.description

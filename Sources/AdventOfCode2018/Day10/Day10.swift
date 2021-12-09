@@ -2,8 +2,8 @@ import Foundation
 
 struct Day10: Day {
 
-    func solution(for input: String) -> (message: String, seconds: Int) {
-        let integers = Input(input).lines
+    func solution(for input: Input) -> (message: String, seconds: Int) {
+        let integers = input.lines
             .map {
                 $0.raw
                     .components(separatedBy: CharacterSet(charactersIn: "<> ,"))
@@ -37,11 +37,11 @@ struct Day10: Day {
         return (output.map { $0.joined() }.joined(separator: "\n"), seconds)
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         return solution(for: input).message
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return "\(solution(for: input).seconds)"
     }
 }

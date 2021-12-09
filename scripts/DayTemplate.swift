@@ -1,11 +1,11 @@
 import Foundation
 
 public struct {DAY_NAME}: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         return "not solved"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return "not solved"
     }
 }

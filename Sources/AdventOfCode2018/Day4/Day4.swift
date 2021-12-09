@@ -59,11 +59,11 @@ struct Day4: Day {
         }
     }
     
-    func parse(input: String) -> [GuardSleepCount] {
+    func parse(input: Input) -> [GuardSleepCount] {
         return input
-            .components(separatedBy: .newlines)
+            .lines
             .sorted()
-            .compactMap { GuardAction(line: $0) }
+            .compactMap { GuardAction(line: $0.raw) }
             .reduce(into: [GuardSleepTime](), { (result, action) -> Void in
                 switch action {
                 case .begin(let id):
@@ -86,7 +86,7 @@ struct Day4: Day {
             .map { $0.value }
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         guard let sleepCount = parse(input: input).max(by: { $0.totalCount < $1.totalCount }),
             let (index, _) = sleepCount.minuteCount.enumerated().max(by: { $0.element < $1.element }) else {
                 return "unknown"
@@ -95,7 +95,7 @@ struct Day4: Day {
         return "\(sleepCount.id * index)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         guard let sleepCount = parse(input: input).max(by: { $0.max.value < $1.max.value }) else {
                 return "unknown"
         }

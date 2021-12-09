@@ -1,21 +1,20 @@
 import Foundation
 
 struct Day1: Day {
-    func parse(input: String) -> [Int] {
+    func parse(input: Input) -> [Int] {
         return input
-            .components(separatedBy: CharacterSet(charactersIn: ",\n"))
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .compactMap { Int($0) }
+            .words(by: ", ")
+            .integers
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let value = parse(input: input)
             .sum()
         
         return "\(value)"
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var seen = Set<Int>()
         
         let values = sequence(first: parse(input: input), next: { $0 })

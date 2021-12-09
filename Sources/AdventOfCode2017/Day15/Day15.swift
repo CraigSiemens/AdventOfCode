@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Day15: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         class Generator {
             var value: UInt
             let factor: UInt
@@ -16,7 +16,7 @@ public struct Day15: Day {
             }
         }
         
-        let startValues = input.components(separatedBy: ",").compactMap { UInt($0) }
+        let startValues = input.commaSeparatedWords.raw.compactMap(UInt.init)
         
         let genA = Generator(value: startValues[0], factor: 16807)
         let genB = Generator(value: startValues[1], factor: 48271)
@@ -35,7 +35,7 @@ public struct Day15: Day {
         return matchCount.description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         class SkippingGenerator {
             var value: UInt
             let factor: UInt
@@ -54,7 +54,7 @@ public struct Day15: Day {
             }
         }
         
-        let startValues = input.components(separatedBy: ",").compactMap { UInt($0) }
+        let startValues = input.commaSeparatedWords.raw.compactMap(UInt.init)
         
         let genA = SkippingGenerator(value: startValues[0], factor: 16807, multiple: 4)
         let genB = SkippingGenerator(value: startValues[1], factor: 48271, multiple: 8)

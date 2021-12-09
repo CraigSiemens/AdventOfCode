@@ -54,9 +54,10 @@ public struct Day22: Day {
         //    }
     }
     
-    func parse(input: String) -> [[State]] {
+    func parse(input: Input) -> [[State]] {
         return input
-            .components(separatedBy: "\n")
+            .lines
+            .raw
             .filter { !$0.isEmpty }
             .map { l in l.map { $0 == "#" ? State.infected : State.clean } }
     }
@@ -76,7 +77,7 @@ public struct Day22: Day {
         return field
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         
         var field = createInfiniteField(center: parse(input: input))
         var (x, y) = (field.count / 2, field.count / 2)
@@ -98,7 +99,7 @@ public struct Day22: Day {
         return infectCount.description
     }
     
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var field = createInfiniteField(center: parse(input: input))
         var (x, y) = (field.count / 2, field.count / 2)
         var direction = Direction.up

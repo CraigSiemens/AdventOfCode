@@ -26,12 +26,12 @@ struct Day5: Day {
         return output
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        return "\(reduce(polymer: input).count)"
+    public func part1Solution(for input: Input) -> String {
+        return "\(reduce(polymer: input.raw).count)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let prereduced = reduce(polymer: input)
+    public func part2Solution(for input: Input) -> String {
+        let prereduced = reduce(polymer: input.raw)
         
         return Set(prereduced.lowercased())
             .map { prereduced.replacingOccurrences(of: "\($0)", with: "", options: .caseInsensitive) }

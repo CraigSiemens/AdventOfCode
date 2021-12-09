@@ -1,14 +1,14 @@
 import Foundation
 
 public struct Day9: Day {
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         var groupLevel = 0
         var score = 0
         
         var garbage = false
         var ignoreNext = false
         
-        for character in input {
+        for character in input.characters {
             guard !ignoreNext else {
                 ignoreNext = false
                 continue
@@ -33,13 +33,13 @@ public struct Day9: Day {
         return score.description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         var garbageCount = 0
         
         var garbage = false
         var ignoreNext = false
         
-        for character in input {
+        for character in input.characters {
             guard !ignoreNext else {
                 ignoreNext = false
                 continue

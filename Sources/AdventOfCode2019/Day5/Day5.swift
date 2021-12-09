@@ -2,7 +2,7 @@ import Foundation
 
 public struct Day5: Day {
 
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let program = IntcodeProgram(input)
         
         let computer = IntcodeComputer()
@@ -13,7 +13,7 @@ public struct Day5: Day {
         return "\(computer.allOutput.last!)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let program = IntcodeProgram(input)
         
         let computer = IntcodeComputer()

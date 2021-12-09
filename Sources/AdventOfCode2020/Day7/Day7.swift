@@ -4,8 +4,8 @@ public struct Day7: Day {
 
     private typealias BagLimit = (count: Int, color: String)
     
-    private func parseRules(input: String) -> [String: [BagLimit]] {
-        let rules = Input(input)
+    private func parseRules(input: Input) -> [String: [BagLimit]] {
+        let rules = input
             .lines
             .map { (line) -> (String, [BagLimit]) in
                 let parts = line.raw
@@ -36,7 +36,7 @@ public struct Day7: Day {
         return Dictionary(uniqueKeysWithValues: rules)
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         let rules = parseRules(input: input)
         
         var seenBags = Set<String>()
@@ -59,7 +59,7 @@ public struct Day7: Day {
         return "\(seenBags.count - 1)"
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         let rules = parseRules(input: input)
         
 //        var seenBags = Set<String>()

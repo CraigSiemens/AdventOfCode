@@ -1,8 +1,9 @@
 import Foundation
+import Utilities
 
 public struct Day6: Day {
-    func countFish(input: String, afterDays days: Int) -> Int {
-        let fish = input.components(separatedBy: ",").integers
+    func countFish(input: Input, afterDays days: Int) -> Int {
+        let fish = input.commaSeparatedWords.integers
         
         var fishByDay = Array(repeating: 0, count: 9)
         
@@ -18,11 +19,11 @@ public struct Day6: Day {
 
     }
     
-    public func part1Solution(for input: String = input) -> String {
+    public func part1Solution(for input: Input) -> String {
         return countFish(input: input, afterDays: 80).description
     }
 
-    public func part2Solution(for input: String = input) -> String {
+    public func part2Solution(for input: Input) -> String {
         return countFish(input: input, afterDays: 256).description
     }
 }

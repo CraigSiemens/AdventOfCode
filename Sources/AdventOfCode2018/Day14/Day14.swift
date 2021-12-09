@@ -24,8 +24,8 @@ struct Day14: Day {
         return recipes
     }
     
-    public func part1Solution(for input: String = input) -> String {
-        let number = Input(input).integer!
+    public func part1Solution(for input: Input) -> String {
+        let number = input.integer!
         
         let recipes = createRecipes { (recipes) -> Bool in
             return recipes.count >= number + 10
@@ -36,8 +36,8 @@ struct Day14: Day {
             .joined()
     }
 
-    public func part2Solution(for input: String = input) -> String {
-        let match = Input(input).characters.integers
+    public func part2Solution(for input: Input) -> String {
+        let match = input.characters.integers
         
         let recipes = createRecipes { (recipes) -> Bool in
             return recipes.dropLast().suffix(match.count).elementsEqual(match)
