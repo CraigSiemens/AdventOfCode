@@ -153,11 +153,11 @@ struct Day15: Day {
                     let graph = nextState.graph
                     
                     let optionalDestination = targets
-                        .flatMap { $0.position.neighbours }
+                        .flatMap { $0.position.cardinalNeighbours }
                         .compactMap { graph.node(atGridPosition: $0.int2) }
                         .flatMap { end -> [[GKGraphNode]] in
                             current.position
-                                .neighbours
+                                .cardinalNeighbours
                                 .compactMap { graph.node(atGridPosition: $0.int2) }
                                 .map { graph.findPath(from: $0, to: end) }
                         }
@@ -188,7 +188,7 @@ struct Day15: Day {
                 @discardableResult
                 func attack() -> Bool {
                     guard let target = targets
-                        .filter({ current.position.neighbours.contains($0.position) })
+                        .filter({ current.position.cardinalNeighbours.contains($0.position) })
                         .sorted(by: { $0.position < $1.position })
                         .min(by: { $0.health < $1.health }) else {
                             return false

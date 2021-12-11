@@ -60,7 +60,7 @@ struct Day6: Day {
             case .empty:
                 field[coordinate] = .closestTo(source)
                 source.incrementArea()
-                actionQueue += coordinate.neighbours.map { ($0, source) }
+                actionQueue += coordinate.cardinalNeighbours.map { ($0, source) }
             case .closestTo(let other):
                 if other != source,
                     coordinate.manhattanDistance(to: source.coordinate) == coordinate.manhattanDistance(to: other.coordinate) {

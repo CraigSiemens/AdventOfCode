@@ -14,7 +14,7 @@ final class PointTests: XCTestCase {
     }
     
     func testNeighnours() {
-        let neighbours = Point(x: 7, y: -2).neighbours
+        let neighbours = Point(x: 7, y: -2).cardinalNeighbours
         
         XCTAssertTrue(neighbours.contains(Point(x: 6, y: -2)))
         XCTAssertTrue(neighbours.contains(Point(x: 8, y: -2)))

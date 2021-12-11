@@ -17,8 +17,21 @@ public struct Point: Hashable {
         }
     }
     
-    public var neighbours: [Point] {
+    public var cardinalNeighbours: [Point] {
         return Heading.allCases.map { moved($0) }
+    }
+    
+    public var diagonalNeighbours: [Point] {
+        return [
+            .init(x: x-1, y: y-1),
+            .init(x: x-1, y: y+1),
+            .init(x: x+1, y: y-1),
+            .init(x: x+1, y: y+1)
+        ]
+    }
+
+    public var allNeighbours: [Point] {
+        return cardinalNeighbours + diagonalNeighbours
     }
     
     public func manhattanDistance(to other: Point) -> Int {

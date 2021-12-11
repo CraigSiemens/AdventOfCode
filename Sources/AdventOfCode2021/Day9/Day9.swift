@@ -9,7 +9,7 @@ public struct Day9: Day {
         
         for (point, value) in heightMap {
             let isLowPoint = point
-                .neighbours
+                .cardinalNeighbours
                 .compactMap { heightMap[$0] }
                 .allSatisfy { $0 > value }
                 
@@ -27,7 +27,7 @@ public struct Day9: Day {
         var lowPoints = Array<Point>()
         for (point, value) in heightMap {
             let isLowPoint = point
-                .neighbours
+                .cardinalNeighbours
                 .compactMap { heightMap[$0] }
                 .allSatisfy { $0 > value }
                 
@@ -47,7 +47,7 @@ public struct Day9: Day {
                       visitedPoints.insert(point).inserted
                 else { continue }
                 
-                pointsToVisit.append(contentsOf: point.neighbours)
+                pointsToVisit.append(contentsOf: point.cardinalNeighbours)
             }
             
             basinSizes.append(visitedPoints.count)
