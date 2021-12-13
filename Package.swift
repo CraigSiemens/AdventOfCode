@@ -74,7 +74,8 @@ let package = Package(
         
         .target(
             name: "Utilities",
-            dependencies: []),
+            dependencies: [.product(name: "Algorithms", package: "swift-algorithms")]
+        ),
 
         .testTarget(
             name: "AdventOfCode2017Tests",

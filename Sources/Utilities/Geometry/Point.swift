@@ -1,3 +1,4 @@
+import Algorithms
 import Foundation
 
 public struct Point: Hashable {
@@ -131,5 +132,26 @@ extension Collection where Element == Point {
         }
         
         return (min, max)
+    }
+}
+
+extension Set where Element == Point {
+    public func gridString(point: String = "#", space: String = " ") -> String {
+        let maxPoint = extremes().max
+        
+        var output = ""
+        for y in 0...maxPoint.y {
+            var line = ""
+            for x in 0...maxPoint.x {
+                line += contains(.init(x: x, y: y)) ? "#" : " "
+            }
+            
+            line.trimSuffix(while: \.isWhitespace)
+            
+            output += line
+            output += "\n"
+        }
+        
+        return output.trimmingCharacters(in: .newlines)
     }
 }
