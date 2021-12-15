@@ -109,6 +109,16 @@ extension Point {
         lhs.x -= rhs.x
         lhs.y -= rhs.y
     }
+    
+    public static func * (lhs: Point, rhs: Int) -> Point {
+        return Point(x: lhs.x * rhs,
+                     y: lhs.y * rhs)
+    }
+    
+    public static func *= (lhs: inout Point, rhs: Int) {
+        lhs.x *= rhs
+        lhs.y *= rhs
+    }
 }
 
 // MARK: Comparable
