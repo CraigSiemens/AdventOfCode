@@ -28,10 +28,10 @@ public extension Dictionary where Key == Point {
         self = grid
     }
     
-    func gridString(valueString: (Value?) -> String) -> String {
+    func gridString(positiveYDown: Bool = true, valueString: (Value?) -> String) -> String {
         let (min, max) = keys.extremes()
         
-        var output = ""
+        var lines = Array<String>()
         for y in min.y...max.y {
             var line = ""
             for x in min.x...max.x {
@@ -39,10 +39,14 @@ public extension Dictionary where Key == Point {
             }
             line.trimSuffix(while: \.isWhitespace)
             
-            output += line
-            output += "\n"
+            lines.append(line)
         }
-        return output.trimmingCharacters(in: .newlines)
+        
+        if !positiveYDown {
+            lines = lines.reversed()
+        }
+        
+        return lines.joined(separator: "\n")
     }
 }
 
