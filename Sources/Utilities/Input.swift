@@ -129,6 +129,11 @@ extension Collection where Element == Character {
     public var bits: [Bool] {
         return map { $0 == "1" }
     }
+    
+    public var hexBits: [Bool] {
+        return compactMap { Int("\($0)", radix: 16) }
+            .flatMap { $0.bits(minLength: 4) }
+    }
 }
 
 extension String {
