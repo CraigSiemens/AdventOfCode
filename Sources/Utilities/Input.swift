@@ -5,6 +5,7 @@
 //  Created by Craig Siemens on 2018-12-09.
 //
 
+import protocol Combine.TopLevelDecoder
 import Foundation
 
 public protocol RawConvertible {
@@ -67,6 +68,13 @@ extension StringInput {
     
     public subscript<T>(dynamicMember keyPath: KeyPath<String, T>) -> T {
         raw[keyPath: keyPath]
+    }
+    
+    public func decode<Item>(type: Item.Type) throws -> Item
+    where Item: Decodable {
+        let decoder = JSONDecoder()
+        
+        return try decoder.decode(type, from: Data(raw.utf8))
     }
 }
 
