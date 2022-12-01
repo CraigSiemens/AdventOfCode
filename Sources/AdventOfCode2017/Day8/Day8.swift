@@ -34,12 +34,10 @@ public struct Day8: Day {
             let value: Int
             
             init(scanner: Scanner) {
-                var r: NSString?
-                scanner.scanCharacters(from: .letters, into: &r)
+                let r = scanner.scanCharacters(from: .letters)
                 self.register = r! as String
                 
-                var op: NSString?
-                scanner.scanCharacters(from: CharacterSet(charactersIn: "<>=!"), into: &op)
+                let op = scanner.scanCharacters(from: CharacterSet(charactersIn: "<>=!"))
                 self.operation = ConditionOperation(rawValue: op! as String)!
                 
                 var v: Int = -1
@@ -57,19 +55,17 @@ public struct Day8: Day {
         init(string: String) {
             let scanner = Scanner(string: string)
             
-            var r: NSString?
-            scanner.scanCharacters(from: .letters, into: &r)
+            let r = scanner.scanCharacters(from: .letters)
             self.register = r! as String
             
-            var op: NSString?
-            scanner.scanCharacters(from: .letters, into: &op)
+            let op = scanner.scanCharacters(from: .letters)
             self.operation = Operation(rawValue: op! as String)!
             
             var a: Int = -1
             scanner.scanInt(&a)
             self.amount = a
             
-            scanner.scanString("if", into: nil)
+            _ = scanner.scanString("if")
             
             condition = Condition(scanner: scanner)
         }

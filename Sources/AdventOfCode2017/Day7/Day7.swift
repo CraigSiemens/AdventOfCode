@@ -53,21 +53,17 @@ public struct Day7: Day {
     func createProgram(line: String, programsByName: [String: Program]) -> Program {
         let scanner = Scanner(string: line)
         
-        var scannedName: NSString?
-        scanner.scanCharacters(from: .letters, into: &scannedName)
-        guard let name = scannedName as String? else { fatalError() }
+        guard let name = scanner.scanCharacters(from: .letters) else { fatalError() }
         
         let program = programsByName[name] ?? Program(name: name)
         
-        guard scanner.scanUpToCharacters(from: .decimalDigits, into: nil),
+        guard scanner.scanUpToCharacters(from: .decimalDigits) != nil,
             scanner.scanInt(&program.weight) else {
                 return program
         }
         
-        var subprogramName: NSString?
-        while scanner.scanUpToCharacters(from: .letters, into: nil),
-            scanner.scanCharacters(from: .letters, into: &subprogramName),
-            let subprogramName = subprogramName as String? {
+        while scanner.scanUpToCharacters(from: .letters) != nil,
+              let subprogramName = scanner.scanCharacters(from: .letters) {
                 let subprogram = programsByName[subprogramName] ?? Program(name: subprogramName)
                 program.subprograms.append(subprogram)
                 subprogram.parent = program

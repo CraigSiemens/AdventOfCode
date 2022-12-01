@@ -26,10 +26,9 @@ public struct Day25: Day {
             init(string: String) {
                 let scanner = Scanner(string: string)
                 scanner.charactersToBeSkipped = CharacterSet.alphanumerics.inverted
-                scanner.scanString("In state", into: nil)
+                _ = scanner.scanString("In state")
                 
-                var name: NSString?
-                scanner.scanCharacters(from: .letters, into: &name)
+                let name = scanner.scanCharacters(from: .letters)
                 self.name = name! as String
                 
                 var actions: [Bool: Action] = [:]
@@ -43,12 +42,10 @@ public struct Day25: Day {
                     scanner.scanInt(&nextValue)
                     
                     scanner.scanPast("Move one slot to the")
-                    var directionString: NSString?
-                    scanner.scanCharacters(from: .letters, into: &directionString)
+                    let directionString = scanner.scanCharacters(from: .letters)
                     
                     scanner.scanPast("Continue with state")
-                    var state: NSString?
-                    scanner.scanCharacters(from: .letters, into: &state)
+                    let state = scanner.scanCharacters(from: .letters)
 
                     actions[value == 1] = Action(value: nextValue == 1,
                                                  direction: Direction(rawValue: directionString! as String)!,
@@ -65,12 +62,10 @@ public struct Day25: Day {
             let scanner = Scanner(string: parts.first!)
             
             scanner.scanPast("Begin in state")
-            var name: NSString?
-            scanner.scanCharacters(from: .letters, into: &name)
+            let name = scanner.scanCharacters(from: .letters)
 
             scanner.scanPast("Perform a diagnostic checksum after")
-            var steps = 0
-            scanner.scanInt(&steps)
+            let steps = scanner.scanInt() ?? 0
                 
             let states = parts.dropFirst().map { State(string: $0) }
             
@@ -101,8 +96,8 @@ public struct Day25: Day {
 
 private extension Scanner {
     @discardableResult func scanPast(_ string: String) -> Bool {
-        let upTo = scanUpTo(string, into: nil)
-        let past = scanString(string, into: nil)
-        return upTo || past
+        let upTo = scanUpToString(string)
+        let past = scanString(string)
+        return upTo != nil || past != nil
     }
 }

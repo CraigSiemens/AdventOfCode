@@ -11,15 +11,15 @@ struct Day4: Day {
             let scanner = Scanner(string: line)
             
             if line.hasSuffix("begins shift"),
-                scanner.scanUpTo("#", into: nil),
+                scanner.scanUpToString("#") != nil,
                 let id = scanner.nextInt() {
                 self = .begin(id: id)
             } else if line.hasSuffix("falls asleep"),
-                scanner.scanUpTo(":", into: nil),
+                scanner.scanUpToString(":") != nil,
                 let time = scanner.nextInt() {
                 self = .sleep(time: time)
             } else if line.hasSuffix("wakes up"),
-                scanner.scanUpTo(":", into: nil),
+                scanner.scanUpToString(":") != nil,
                 let time = scanner.nextInt() {
                 self = .wake(time: time)
             } else {
