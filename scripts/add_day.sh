@@ -3,7 +3,7 @@
 day_number=$1
 day_name="Day${day_number}"
 
-year_number="2021"
+year_number="2022"
 
 day_folder_path="Sources/AdventOfCode${year_number}/${day_name}"
 test_file_path="Tests/AdventOfCode${year_number}Tests/${day_name}Tests.swift"

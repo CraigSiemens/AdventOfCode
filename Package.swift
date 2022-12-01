@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import Foundation
 
 let package = Package(
     name: "Advent of Code",
-    platforms: [.macOS(.v10_14)],
+    platforms: [.macOS(.v13)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .executable(name: "advent", targets: ["advent"]),
@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "AdventOfCode2019", targets: ["AdventOfCode2019"]),
         .library(name: "AdventOfCode2020", targets: ["AdventOfCode2020"]),
         .library(name: "AdventOfCode2021", targets: ["AdventOfCode2021"]),
+        .library(name: "AdventOfCode2022", targets: ["AdventOfCode2022"]),
         .library(name: "Utilities", targets: ["Utilities"]),
     ],
     dependencies: [
@@ -36,6 +37,7 @@ let package = Package(
                 "AdventOfCode2018",
                 "AdventOfCode2019",
                 "AdventOfCode2020",
+                "AdventOfCode2022",
                 "AdventOfCode2021"
             ]
         ),
@@ -70,6 +72,14 @@ let package = Package(
                 .product(name: "Algorithms", package: "swift-algorithms")
             ],
             exclude: inputFiles(for: 2021)
+        ),
+        .target(
+            name: "AdventOfCode2022",
+            dependencies: [
+                "Utilities",
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ],
+            exclude: inputFiles(for: 2022)
         ),
         
         .target(
