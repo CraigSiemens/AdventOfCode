@@ -13,7 +13,7 @@ public protocol RawConvertible {
     var raw: Raw { get }
 }
 
-public protocol StringInput: Hashable, Comparable, RawConvertible {
+public protocol StringInput: Hashable, Comparable, RawConvertible, ExpressibleByStringLiteral {
     init(_ raw: String)
     var raw: String { get }
     
@@ -36,7 +36,6 @@ extension StringInput {
     public var lines: [Line] {
         return raw
             .components(separatedBy: .newlines)
-            .filter { $0.isEmpty == false }
             .map { Line($0) }
     }
     
@@ -85,18 +84,19 @@ extension StringInput {
     }
 }
 
+// ExpressibleByStringLiteral
+extension StringInput {
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+}
+
 @dynamicMemberLookup
 public struct Input: StringInput {
     public let raw: String
     
     public init(_ raw: String) {
         self.raw = raw.trimmingCharacters(in: .newlines)
-    }
-}
-
-extension Input: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        self.init(value)
     }
 }
 

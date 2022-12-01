@@ -108,6 +108,10 @@ let package = Package(
             dependencies: ["AdventOfCode2021"]),
         
         .testTarget(
+            name: "AdventOfCode2022Tests",
+            dependencies: ["AdventOfCode2022"]),
+        
+        .testTarget(
             name: "UtilitiesTests",
             dependencies: ["Utilities"]),
     ]
