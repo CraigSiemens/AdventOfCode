@@ -8,4 +8,3 @@ final class CollectionChunkTests: XCTestCase {
         XCTAssertEqual(a.chunked(into: 3), [[1, 2, 3], [4, 5, 6]])
     }
 }
-
