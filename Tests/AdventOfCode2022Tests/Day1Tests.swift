@@ -23,12 +23,12 @@ final class Day1Tests: XCTestCase {
     """
     
     func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), "24000")
-        XCTAssertEqual(day.part1Solution(), "71023")
+        XCTAssertEqual(day.part1Solution(for: input), 24000)
+        XCTAssertEqual(day.part1Solution(), 71023)
     }
     
     func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), "45000")
-        XCTAssertEqual(day.part2Solution(), "206289")
+        XCTAssertEqual(day.part2Solution(for: input), 45000)
+        XCTAssertEqual(day.part2Solution(), 206289)
     }
 }

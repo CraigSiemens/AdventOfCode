@@ -1,10 +1,10 @@
 import Foundation
 import AdventOfCode
 
-func printSolution(for day: Day) {
+func printSolution(for day: any Day) {
     let formatter = MeasurementFormatter()
     
-    func time(solution: @autoclosure () -> String) {
+    func time(solution: @autoclosure () -> CustomStringConvertible) {
         let start = Date()
         let answer = solution()
         let duration = Measurement(value: -start.timeIntervalSinceNow, unit: UnitDuration.seconds)
@@ -38,8 +38,8 @@ func yearFromInput() -> Year {
     return AdventOfCode.years.last!
 }
 
-func dayFromInput(for year: Year) -> Day {
-    func day(for day: Int?) -> Day? {
+func dayFromInput(for year: Year) -> any Day {
+    func day(for day: Int?) -> (any Day)? {
         year.days.first { $0.number == day }
     }
     

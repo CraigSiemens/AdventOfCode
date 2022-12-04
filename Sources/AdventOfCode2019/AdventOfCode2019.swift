@@ -1,7 +1,7 @@
 @_exported import Utilities
 
 public struct AdventOfCode2019: Year {
-    public let days: [Day] = [
+    public let days: [any Day] = [
         Day1(),
         Day2(),
         Day3(),

@@ -59,8 +59,8 @@ public struct Day2: Day {
         }
     }
     
-    public func part1Solution(for input: Input) -> String {
-        let value = input.lines
+    public func part1Solution(for input: Input) -> Int {
+        input.lines
             .map(\.words)
             .map {
                 let opponentMove = Move(string: $0[0].raw)
@@ -68,12 +68,10 @@ public struct Day2: Day {
                 return myMove.score(vs: opponentMove)
             }
             .sum()
-        
-        return "\(value)"
     }
 
-    public func part2Solution(for input: Input) -> String {
-        let value = input.lines
+    public func part2Solution(for input: Input) -> Int {
+        input.lines
             .map(\.words)
             .map {
                 let opponentMove = Move(string: $0[0].raw)
@@ -82,7 +80,5 @@ public struct Day2: Day {
                 return myMove.score(vs: opponentMove)
             }
             .sum()
-
-        return "\(value)"
     }
 }

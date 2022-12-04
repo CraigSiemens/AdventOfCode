@@ -1,8 +1,11 @@
 import Foundation
 
 public protocol Day {
-    func part1Solution(for input: Input) -> String
-    func part2Solution(for input: Input) -> String
+    associatedtype Part1Solution: CustomStringConvertible = String
+    associatedtype Part2Solution: CustomStringConvertible = String
+    
+    func part1Solution(for input: Input) -> Part1Solution
+    func part2Solution(for input: Input) -> Part2Solution
 }
 
 public extension Day {
@@ -32,11 +35,11 @@ public extension Day {
             .int!
     }
     
-    func part1Solution() -> String {
+    func part1Solution() -> Part1Solution {
         return part1Solution(for: Self.input)
     }
     
-    func part2Solution() -> String {
+    func part2Solution() -> Part2Solution {
         return part2Solution(for: Self.input)
     }
 }

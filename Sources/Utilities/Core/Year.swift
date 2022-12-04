@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol Year {
-    var days: [Day] { get }
+    var days: [any Day] { get }
 }
 
 public extension Year {

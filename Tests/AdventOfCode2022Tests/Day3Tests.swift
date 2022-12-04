@@ -15,12 +15,12 @@ final class Day3Tests: XCTestCase {
     """
     
     func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), "157")
-        XCTAssertEqual(day.part1Solution(), "7811")
+        XCTAssertEqual(day.part1Solution(for: input), 157)
+        XCTAssertEqual(day.part1Solution(), 7811)
     }
     
     func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), "70")
-        XCTAssertEqual(day.part2Solution(), "2639")
+        XCTAssertEqual(day.part2Solution(for: input), 70)
+        XCTAssertEqual(day.part2Solution(), 2639)
     }
 }

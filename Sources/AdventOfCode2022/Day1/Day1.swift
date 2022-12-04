@@ -11,14 +11,11 @@ public struct Day1: Day {
             }
     }
     
-    public func part1Solution(for input: Input) -> String {
-        let value = parse(input: input).max()!
-        
-        return "\(value)"
+    public func part1Solution(for input: Input) -> Int {
+        parse(input: input).max()!
     }
 
-    public func part2Solution(for input: Input) -> String {
-        let value = parse(input: input).max(count: 3).sum()
-        return "\(value)"
+    public func part2Solution(for input: Input) -> Int {
+        parse(input: input).max(count: 3).sum()
     }
 }

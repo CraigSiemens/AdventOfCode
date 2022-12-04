@@ -11,8 +11,8 @@ public struct Day3: Day {
         }
     }
     
-    public func part1Solution(for input: Input) -> String {
-        let value = input
+    public func part1Solution(for input: Input) -> Int {
+        input
             .lines
             .map { sack in
                 let items = sack.characters
@@ -24,12 +24,10 @@ public struct Day3: Day {
                 return self.value(for: priority)
             }
             .sum()
-        
-        return "\(value)"
     }
 
-    public func part2Solution(for input: Input) -> String {
-        let value = input
+    public func part2Solution(for input: Input) -> Int {
+        input
             .lines
             .chunks(ofCount: 3)
             .map { sacks in
@@ -41,7 +39,5 @@ public struct Day3: Day {
                 return self.value(for: priority)
             }
             .sum()
-        
-        return "\(value)"
     }
 }
