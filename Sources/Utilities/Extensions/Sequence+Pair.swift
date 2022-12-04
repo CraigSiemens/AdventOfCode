@@ -23,3 +23,21 @@ extension Pair {
 
 extension Pair: Equatable where T: Equatable {}
 extension Pair: Hashable where T: Hashable {}
+
+// MARK: - Value Methods
+public extension Pair {
+    /// Generate a new value from the content of the `Pair`.
+    /// - Parameter closure: A closure that will be passed the first and second values.
+    /// - Returns: The value from the closure.
+    func value<R>(_ closure: (_ first: T, _ second: T) -> R) -> R {
+        closure(first, second)
+    }
+
+    /// Generate a new value from the content of the Pair.
+    /// - Parameter closure: A closure that will be passed the first value, then the second value.
+    /// Allows passing in instance methods on `T`. ie. Could be passed `Int.isMultiple.`
+    /// - Returns: The value from the closure.
+    func value<R>(_ closure: (T) -> (T) -> R) -> R {
+        closure(first)(second)
+    }
+}

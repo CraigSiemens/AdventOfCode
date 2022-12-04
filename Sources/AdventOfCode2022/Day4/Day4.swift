@@ -20,15 +20,18 @@ public struct Day4: Day {
     public func part1Solution(for input: Input) -> Int {
         parse(input: input)
             .count { pair in
-                pair.first.contains(pair.second)
-                || pair.second.contains(pair.first)
+                pair.value { first, second in
+                    first.contains(second) || second.contains(first)
+                }
             }
     }
     
     public func part2Solution(for input: Input) -> Int {
         parse(input: input)
             .count { pair in
-                pair.first.overlaps(pair.second)
+                pair.value { first, second in
+                    first.overlaps(second)
+                }
             }
     }
 }
