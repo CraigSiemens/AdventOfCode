@@ -1,5 +1,6 @@
 import Algorithms
 import Foundation
+import Utilities
 
 public struct Day3: Day {
     private func value(for priority: Character) -> Int {

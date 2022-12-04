@@ -1,16 +1,17 @@
 #!/bin/bash
 
+set -e 
+
 day_number=$1
 day_name="Day${day_number}"
 
-year_number="2022"
+year_number=$2
+if [[ -z $year_number ]]; then
+  year_number=$(ls -d Sources/AdventOfCode* | sort | tail -n 1 | grep -o "\d*")
+fi
 
 day_folder_path="Sources/AdventOfCode${year_number}/${day_name}"
 test_file_path="Tests/AdventOfCode${year_number}Tests/${day_name}Tests.swift"
-
-sed -i "" "/{DAYS}/i\\
-        ${day_name}(),\\
-" "Sources/AdventOfCode${year_number}/AdventOfCode${year_number}.swift"
 
 # Create folder for day
 mkdir "${day_folder_path}"
@@ -28,3 +29,8 @@ touch "${day_folder_path}/input.txt"
 cp "./scripts/DayTestsTemplate.swift" "${test_file_path}"
 sed -i "" "s/{DAY_NAME}/${day_name}/g" "${test_file_path}"
 sed -i "" "s/{YEAR_NUMBER}/${year_number}/g" "${test_file_path}"
+
+# Add day to year
+sed -i "" "/{DAYS}/i\\
+        ${day_name}(),\\
+" "Sources/AdventOfCode${year_number}/AdventOfCode${year_number}.swift"

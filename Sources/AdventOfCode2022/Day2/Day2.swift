@@ -1,5 +1,6 @@
-import Foundation
 import Algorithms
+import Foundation
+import Utilities
 
 public struct Day2: Day {
     enum Move: Int, CaseIterable {
