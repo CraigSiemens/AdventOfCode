@@ -54,6 +54,10 @@ extension StringInput {
             .map { Word($0) }
     }
     
+    public func words(byCharactersIn split: String) -> [Word] {
+        return words(by: CharacterSet(charactersIn: split))
+    }
+    
     public func words(by split: String) -> [Word] {
         return raw
             .components(separatedBy: split)
