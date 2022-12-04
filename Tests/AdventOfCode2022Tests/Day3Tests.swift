@@ -21,6 +21,10 @@ final class Day3Tests: XCTestCase {
     
     func testPart2() {
         XCTAssertEqual(day.part2Solution(for: input), 70)
-        XCTAssertEqual(day.part2Solution(), 2639)
+        
+        if #available(macOS 13, *) {
+            // https://davedelong.com/blog/2022/12/03/adventures-in-advent-of-code/
+            XCTAssertEqual(day.part2Solution(), 2639)
+        }
     }
 }
