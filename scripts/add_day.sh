@@ -34,3 +34,10 @@ sed -i "" "s/{YEAR_NUMBER}/${year_number}/g" "${test_file_path}"
 sed -i "" "/{DAYS}/i\\
         ${day_name}(),\\
 " "Sources/AdventOfCode${year_number}/AdventOfCode${year_number}.swift"
+
+echo "Created Day $day_number!"
+
+printf "\nAdd the input to your clipboard then press any key.\n"
+read -r -n1 key
+
+pbpaste > "${day_folder_path}/input.txt"
