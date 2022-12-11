@@ -34,9 +34,10 @@ public struct Day11: Day {
         let row = Array(repeating: " ", count: max.x - min.x + 1)
         var output = Array(repeating: row, count: max.y - min.y + 1)
         
-        map.forEach { output[$0.y - min.y][$0.x - min.x] = $1 == .black ? " " : "█" }
+        map.forEach { output[$0.y - min.y][$0.x - min.x] = $1 == .black ? " " : "#" }
         
-        return output.map { $0.joined() }.joined(separator: "\n")
+        let string = output.map { $0.joined() }.joined(separator: "\n")
+        return string.matchingLetters() ?? string
     }
 }
 

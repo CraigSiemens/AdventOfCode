@@ -42,13 +42,6 @@ final class Day13Tests: XCTestCase {
         #####
         """)
         
-        XCTAssertEqual(day.part2Solution(), """
-         ##  ###    ## ###  #### ###  #  # #
-        #  # #  #    # #  # #    #  # #  # #
-        #    #  #    # ###  ###  #  # #  # #
-        #    ###     # #  # #    ###  #  # #
-        #  # #    #  # #  # #    # #  #  # #
-         ##  #     ##  ###  #### #  #  ##  ####
-        """)
+        XCTAssertEqual(day.part2Solution(), "CPJBERUL")
     }
 }

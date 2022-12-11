@@ -9,14 +9,6 @@ final class Day11Tests: XCTestCase {
     }
     
     func testPart2() {
-        let expected =
-        " ████  ██   ██  ███  █  █ █  █ █    ███    \n" +
-        "    █ █  █ █  █ █  █ █  █ █ █  █    █  █   \n" +
-        "   █  █    █    █  █ ████ ██   █    ███    \n" +
-        "  █   █    █ ██ ███  █  █ █ █  █    █  █   \n" +
-        " █    █  █ █  █ █ █  █  █ █ █  █    █  █   \n" +
-        " ████  ██   ███ █  █ █  █ █  █ ████ ███    "
-        
-        XCTAssertEqual(day.part2Solution(), expected)
+        XCTAssertEqual(day.part2Solution(), "ZCGRHKLB")
     }
 }

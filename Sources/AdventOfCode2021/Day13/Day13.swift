@@ -73,6 +73,7 @@ public struct Day13: Day {
             foldPaper(paper: &paper, fold: fold)
         }
         
-        return paper.gridString()
+        let string = paper.gridString()
+        return string.matchingLetters() ?? string
     }
 }
