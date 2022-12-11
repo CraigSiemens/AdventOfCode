@@ -10,6 +10,7 @@ public struct AdventOfCode2022: Year {
         Day6(),
         Day7(),
         Day8(),
+        Day9(),
         // {DAYS}
     ]
     

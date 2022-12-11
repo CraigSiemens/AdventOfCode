@@ -35,6 +35,7 @@ public struct Point: Hashable {
         return cardinalNeighbours + diagonalNeighbours
     }
     
+    /// The total number of horizontal and vertical steps between the two points.
     public func manhattanDistance(to other: Point) -> Int {
         return abs(x - other.x) + abs(y - other.y)
     }
@@ -42,10 +43,30 @@ public struct Point: Hashable {
     public func area(with other: Point) -> Int {
         return abs(x - other.x) * abs(y - other.y)
     }
+    
+    func isCardinalNeighbour(with other: Point) -> Bool {
+        manhattanDistance(to: other) == 1
+    }
+    
+    func isDiagonalNeighbour(with other: Point) -> Bool {
+        let diff = self - other
+        return abs(diff.x) == 1 && abs(diff.y) == 1
+    }
+    
+    public func isNeighbour(with other: Point) -> Bool {
+        isCardinalNeighbour(with: other)
+        || isDiagonalNeighbour(with: other)
+    }
 }
 
 // MARK: - Angle
 extension Point {
+    /// A point containing the sign of the x and y values.
+    public var signum: Point {
+        Point(x: x.signum(), y: y.signum())
+    }
+    
+    // The shortest representation of the point that can be represented with while numbers
     public var normalized: Point {
         let divisor = abs(x.gcd(with: y))
         guard divisor != 0 else { return .zero }

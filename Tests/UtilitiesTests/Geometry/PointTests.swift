@@ -13,13 +13,22 @@ final class PointTests: XCTestCase {
                        Point(x: -1, y: 0))
     }
     
-    func testNeighnours() {
+    func testCardinalNeighbours() {
         let neighbours = Point(x: 7, y: -2).cardinalNeighbours
         
         XCTAssertTrue(neighbours.contains(Point(x: 6, y: -2)))
         XCTAssertTrue(neighbours.contains(Point(x: 8, y: -2)))
         XCTAssertTrue(neighbours.contains(Point(x: 7, y: -1)))
         XCTAssertTrue(neighbours.contains(Point(x: 7, y: -3)))
+    }
+    
+    func testDiagonalNeighbours() {
+        let neighbours = Point(x: 7, y: -2).diagonalNeighbours
+        
+        XCTAssertTrue(neighbours.contains(Point(x: 6, y: -3)))
+        XCTAssertTrue(neighbours.contains(Point(x: 6, y: -1)))
+        XCTAssertTrue(neighbours.contains(Point(x: 8, y: -3)))
+        XCTAssertTrue(neighbours.contains(Point(x: 8, y: -1)))
     }
     
     func testManhattanDistance() {
@@ -32,6 +41,38 @@ final class PointTests: XCTestCase {
         let area = Point(x: 5, y: 2)
             .area(with: Point(x: -3, y: 7))
         XCTAssertEqual(area, 40)
+    }
+    
+    func testIsCardinalNeighbour() {
+        XCTAssertTrue(Point(x: 5, y: 2).isCardinalNeighbour(with: Point(x: 5, y: 1)))
+        XCTAssertTrue(Point(x: 5, y: 2).isCardinalNeighbour(with: Point(x: 4, y: 2)))
+        
+        XCTAssertFalse(Point(x: 5, y: 2).isCardinalNeighbour(with: Point(x: 5, y: 0)))
+        XCTAssertFalse(Point(x: 5, y: 2).isCardinalNeighbour(with: Point(x: 4, y: 1)))
+    }
+    
+    func testIsDiagonalNeighbour() {
+        XCTAssertTrue(Point(x: 5, y: 2).isDiagonalNeighbour(with: Point(x: 4, y: 1)))
+        XCTAssertTrue(Point(x: 5, y: 2).isDiagonalNeighbour(with: Point(x: 6, y: 3)))
+        
+        XCTAssertFalse(Point(x: 5, y: 2).isDiagonalNeighbour(with: Point(x: 5, y: 1)))
+        XCTAssertFalse(Point(x: 5, y: 2).isDiagonalNeighbour(with: Point(x: 3, y: 0)))
+    }
+    
+    func testIsNeighbour() {
+        XCTAssertTrue(Point(x: 5, y: 2).isNeighbour(with: Point(x: 5, y: 1)))
+        XCTAssertTrue(Point(x: 5, y: 2).isNeighbour(with: Point(x: 4, y: 2)))
+        XCTAssertTrue(Point(x: 5, y: 2).isNeighbour(with: Point(x: 4, y: 1)))
+        XCTAssertTrue(Point(x: 5, y: 2).isNeighbour(with: Point(x: 6, y: 3)))
+        
+        XCTAssertFalse(Point(x: 5, y: 2).isNeighbour(with: Point(x: 5, y: 0)))
+        XCTAssertFalse(Point(x: 5, y: 2).isNeighbour(with: Point(x: 3, y: 0)))
+    }
+    
+    func testSignum() {
+        XCTAssertEqual(Point(x: 4, y: 2).signum, Point(x: 1, y: 1))
+        XCTAssertEqual(Point(x: 9, y: 0).signum, Point(x: 1, y: 0))
+        XCTAssertEqual(Point(x: -9, y: 4).signum, Point(x: -1, y: 1))
     }
     
     func testNormalized() {
