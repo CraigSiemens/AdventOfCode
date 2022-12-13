@@ -8,25 +8,20 @@ public struct Day13: Day {
         case value(Int)
         
         init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
             do {
-                let container = try decoder.singleValueContainer()
                 self = .value(try container.decode(Int.self))
             } catch {
-                var container = try decoder.unkeyedContainer()
-                var list: [Self] = []
-                while !container.isAtEnd {
-                    list.append(try container.decode(Self.self))
-                }
-                self = .list(list)
+                self = .list(try container.decode([Self].self))
             }
         }
         
         static func <(lhs: Self, rhs: Self) -> Bool {
             switch (lhs, rhs) {
-            case let (.value(l), .value(r)):
-                return l < r
-            case let (.list(l), .list(r)):
-                return l.lexicographicallyPrecedes(r)
+            case let (.value(lhs), .value(rhs)):
+                return lhs < rhs
+            case let (.list(lhs), .list(rhs)):
+                return lhs.lexicographicallyPrecedes(rhs)
             case (.value, .list):
                 return .list([lhs]) < rhs
             case (.list, .value):
@@ -36,8 +31,9 @@ public struct Day13: Day {
     }
     
     public func part1Solution(for input: Input) -> Int {
-        input.words(by: "\n\n")
-            .map { $0.lines.map { try! $0.decode(type: Packet.self) } }
+        input.lines
+            .split(on: \.isEmpty)
+            .map { $0.map { try! $0.decode(type: Packet.self) } }
             .enumerated()
             .filter { _, pair in
                 pair[0] < pair[1]

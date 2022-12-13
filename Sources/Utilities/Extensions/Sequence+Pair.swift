@@ -1,6 +1,7 @@
 import Foundation
 
 extension Sequence {
+    /// <#Description#>
     public var pairs: [Pair<Element>] {
         zip(self, self.dropFirst()).map { Pair(tuple: $0) }
     }
