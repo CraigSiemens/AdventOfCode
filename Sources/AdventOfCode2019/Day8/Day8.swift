@@ -7,7 +7,7 @@ public struct Day8: Day {
     
     func part1Solution(for input: Input, width: Int, height: Int) -> String {
         let layer = input.raw
-            .chunked(into: width * height)
+            .chunks(ofCount: width * height)
             .map { $0.countElements() }
             .max { $0["0", default: 0] > $1["0", default: 0] }!
         
@@ -19,17 +19,17 @@ public struct Day8: Day {
     }
     
     func part2Solution(for input: Input, width: Int, height: Int) -> String {
-        let layers = input.raw
-            .chunked(into: width * height)
+        let layers = input.characters
+            .chunks(ofCount: width * height)
         
-        let flattenedLayer = layers[0].indices
+        let flattenedLayer = layers.first!.indices
             .compactMap { (index) in
                 layers
                     .map { $0[index] }
                     .first { $0 != "2" }
             }
             .map { $0 == "0" ? " " : "█" }
-            .chunked(into: width)
+            .chunks(ofCount: width)
             .map { String($0) }
             .joined(separator: "\n")
         

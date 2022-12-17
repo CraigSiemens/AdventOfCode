@@ -81,7 +81,7 @@ extension PixelGrid {
 
     init(pixels: [Bool]) {
         let size = Int(sqrt(Double(pixels.count)))
-        self.pixels = pixels.chunked(into: size)
+        self.pixels = pixels.chunks(ofCount: size).map { Array($0) }
     }
     
     init(joining grids: [PixelGrid]) {
@@ -89,7 +89,7 @@ extension PixelGrid {
         let gridSize = grids[0].pixels.count
         
         let temp = grids
-            .chunked(into: size)
+            .chunks(ofCount: size)
             .map { (chunk) in
                 (0..<gridSize).map { (i) in
                     chunk.flatMap { $0.pixels[i] }

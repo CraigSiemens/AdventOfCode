@@ -111,6 +111,19 @@ extension Point {
         }
     }
     
+    public static func all(from: Point, to: Point) -> some Sequence<Point> {
+        let step = from.angle(to: to)
+        var isAtEnd = false
+        
+        return sequence(first: from) { point in
+            guard !isAtEnd else { return nil }
+            
+            let nextPoint = point + step
+            isAtEnd = nextPoint == to
+            return nextPoint
+        }
+    }
+    
     public static func + (lhs: Point, rhs: Point) -> Point {
         return Point(x: lhs.x + rhs.x,
                      y: lhs.y + rhs.y)

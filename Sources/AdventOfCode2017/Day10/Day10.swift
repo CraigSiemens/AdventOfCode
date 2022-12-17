@@ -42,6 +42,6 @@ func knotHash(input: Input) -> [Int] {
     lengths = Array(Array(repeating: lengths, count: 64).joined())
     
     return knotHash(numbers: Array(0..<256), lengths: lengths)
-        .chunked(into: 16)
+        .chunks(ofCount: 16)
         .map { $0.reduce(0, ^) }
 }
