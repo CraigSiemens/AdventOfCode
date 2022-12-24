@@ -168,7 +168,23 @@ extension Collection where Element == Point {
         var min = Point(x: .max, y: .max)
         var max = Point(x: .min, y: .min)
         
-        forEach { (p) in
+        for p in self {
+            min.x = Swift.min(min.x, p.x)
+            min.y = Swift.min(min.y, p.y)
+            max.x = Swift.max(max.x, p.x)
+            max.y = Swift.max(max.y, p.y)
+        }
+        
+        return (min, max)
+    }
+}
+
+extension Collection {
+    public func extremes(of transform: (Element) -> Point) -> (min: Point, max: Point) {
+        var min = Point(x: .max, y: .max)
+        var max = Point(x: .min, y: .min)
+        
+        for p in self.map(transform) {
             min.x = Swift.min(min.x, p.x)
             min.y = Swift.min(min.y, p.y)
             max.x = Swift.max(max.x, p.x)
