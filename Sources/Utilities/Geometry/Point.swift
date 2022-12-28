@@ -197,12 +197,12 @@ extension Collection {
 
 extension Set where Element == Point {
     public func gridString(point: String = "#", space: String = " ") -> String {
-        let maxPoint = extremes().max
+        let (min, max) = extremes()
         
         var output = ""
-        for y in 0...maxPoint.y {
+        for y in min.y...max.y {
             var line = ""
-            for x in 0...maxPoint.x {
+            for x in min.x...max.x {
                 line += contains(.init(x: x, y: y)) ? "#" : " "
             }
             
