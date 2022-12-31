@@ -14,7 +14,21 @@ public enum Tree {
         
         public func addChild(_ child: Node<Value>) {
             child.parent = self
-            self.children.append(child)
+            children.append(child)
+        }
+        
+        public func insertChild(_ child: Node<Value>, at index: Int) {
+            child.parent = self
+            children.insert(child, at: index)
+        }
+        
+        public func removeChild(_ child: Node<Value>) {
+            let i = children.firstIndex { $0 === child }
+            
+            guard let i else { fatalError() }
+            
+            child.parent = nil
+            children.remove(at: i)
         }
     }
 }
