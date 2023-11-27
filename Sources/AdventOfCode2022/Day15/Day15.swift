@@ -55,7 +55,7 @@ public struct Day15: Day {
         let maxY = y * 2
         
         for y in 0...maxY {
-            var ranges = RangeSet<Int>()
+            var ranges = IndexRangeSet()
             
             for (sensor, distance) in sensorDistances {
                 let currentYDistance = abs(sensor.y - y)
@@ -77,41 +77,5 @@ public struct Day15: Day {
         }
         
         return -1
-    }
-}
-
-struct RangeSet<Bounds: Comparable> {
-    private var ranges: [Element] = []
-    
-    mutating func insert(_ range: ClosedRange<Bounds>) {
-        var range = range
-        
-        for i in ranges.indices.reversed()
-        where ranges[i].overlaps(range) {
-            let lowerBound = Swift.min(range.lowerBound, ranges[i].lowerBound)
-            let upperBound = Swift.max(range.upperBound, ranges[i].upperBound)
-            range = lowerBound...upperBound
-            
-            ranges.remove(at: i)
-        }
-        
-        ranges.append(range)
-    }
-}
-
-extension RangeSet: Collection {
-    typealias Index = Int
-    typealias Element = ClosedRange<Bounds>
-    
-    
-    var startIndex: Index { ranges.startIndex }
-    var endIndex: Index { ranges.endIndex }
-    
-    subscript(position: Index) -> Element {
-        ranges[position]
-    }
-    
-    func index(after i: Index) -> Index {
-        ranges.index(after: i)
     }
 }

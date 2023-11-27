@@ -46,6 +46,19 @@ public enum Heading: CaseIterable {
         case .right:    return right
         }
     }
+    
+    public var arrow: Character {
+        switch self {
+        case .north:
+            return "^"
+        case .west:
+            return "<"
+        case .east:
+            return ">"
+        case .south:
+            return "v"
+        }
+    }
 }
 
 public enum Direction {

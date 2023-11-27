@@ -5,6 +5,7 @@ import Utilities
 // Uses an expression tree
 // Rotates it to solve of a variable on one side.
 // https://en.wikipedia.org/wiki/Binary_expression_tree
+// Probably could have iterated up from the node to solve
 
 public struct Day21: Day {
     enum Monkey {
