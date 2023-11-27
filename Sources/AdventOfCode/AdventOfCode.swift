@@ -15,5 +15,6 @@ public let years: [Year] = [
     AdventOfCode2020(),
     AdventOfCode2021(),
     AdventOfCode2022(),
+    AdventOfCode2023(),
     // {YEARS}
 ]
