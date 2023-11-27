@@ -47,6 +47,16 @@ public enum Heading: CaseIterable {
         }
     }
     
+    public func direction(to heading: Heading) -> Direction {
+        for direction in Direction.allCases {
+            if turn(direction) == heading {
+                return direction
+            }
+        }
+        
+        fatalError("Impossible case detected")
+    }
+    
     public var arrow: Character {
         switch self {
         case .north:
@@ -61,6 +71,6 @@ public enum Heading: CaseIterable {
     }
 }
 
-public enum Direction {
+public enum Direction: CaseIterable {
     case forward, backward, left, right
 }
