@@ -73,6 +73,15 @@ extension StringInput {
         raw[keyPath: keyPath]
     }
     
+    public subscript(i: String.Index) -> Character {
+        raw[i]
+    }
+    
+    public subscript<R>(r: R) -> String.SubSequence
+    where R : RangeExpression, String.Index == R.Bound {
+        raw[r]
+    }
+    
     public func decode<Item>(type: Item.Type) throws -> Item
     where Item: Decodable {
         let decoder = JSONDecoder()
@@ -135,7 +144,7 @@ extension Collection where Element: StringProtocol {
 
 extension Collection where Element == Character {
     public var integers: [Int] {
-        return compactMap { Int("\($0)") }
+        return compactMap(\.wholeNumberValue)
     }
     
     public var bits: [Bool] {

@@ -20,6 +20,10 @@ cp "./scripts/YearTemplate.swift" "${year_file_path}"
 sed -i "" "s/{YEAR_NUMBER}/${year_number}/g" "${year_file_path}"
 
 # Add year
+sed -i "" "/{YEARS IMPORT}/i\\
+    import ${year_name}\\
+" "Sources/AdventOfCode/AdventOfCode.swift"
+
 sed -i "" "/{YEARS}/i\\
     ${year_name}(),\\
 " "Sources/AdventOfCode/AdventOfCode.swift"

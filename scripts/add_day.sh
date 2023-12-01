@@ -11,10 +11,11 @@ if [[ -z $year_number ]]; then
 fi
 
 day_folder_path="Sources/AdventOfCode${year_number}/${day_name}"
-test_file_path="Tests/AdventOfCode${year_number}Tests/${day_name}Tests.swift"
+test_folder_path="Tests/AdventOfCode${year_number}Tests"
 
 # Create folder for day
-mkdir "${day_folder_path}"
+mkdir -p "${day_folder_path}"
+mkdir -p "${test_folder_path}"
 
 # Create day file
 day_file_path="${day_folder_path}/${day_name}.swift"
@@ -26,6 +27,7 @@ sed -i "" "s/{DAY_NUMBER}/${day_number}/g" "${day_file_path}"
 touch "${day_folder_path}/input.txt"
 
 # Create tests file
+test_file_path="${test_folder_path}/${day_name}Tests.swift"
 cp "./scripts/DayTestsTemplate.swift" "${test_file_path}"
 sed -i "" "s/{DAY_NAME}/${day_name}/g" "${test_file_path}"
 sed -i "" "s/{YEAR_NUMBER}/${year_number}/g" "${test_file_path}"
