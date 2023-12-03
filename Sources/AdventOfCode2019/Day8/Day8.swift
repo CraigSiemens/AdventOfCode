@@ -19,14 +19,17 @@ public struct Day8: Day {
     }
     
     func part2Solution(for input: Input, width: Int, height: Int) -> String {
-        let layers = input.characters
-            .chunks(ofCount: width * height)
+        let pixels = input.characters
+        let layerPixelCount = width * height
         
-        let flattenedLayer = layers.first!.indices
-            .compactMap { (index) in
-                layers
-                    .map { $0[index] }
-                    .first { $0 != "2" }
+        let flattenedLayer = (0..<layerPixelCount)
+            .compactMap { index in
+                for i in stride(from: index, to: pixels.count, by: layerPixelCount) {
+                    if pixels[i] != "2" {
+                        return pixels[i]
+                    }
+                }
+                return nil
             }
             .map { $0 == "0" ? " " : "█" }
             .chunks(ofCount: width)
