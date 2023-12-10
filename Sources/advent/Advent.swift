@@ -32,6 +32,11 @@ struct Advent: ParsableCommand {
             throw ValidationError("Invalid year or day")
         }
         
+        // Preload the input so the
+        measure(name: "Loading Input") {
+            type(of: selectedDay).input
+        }
+        
         if part == .part1 || part == .allParts {
             run(part: selectedDay.part1Solution, named: "Part 1")
         }
@@ -42,19 +47,26 @@ struct Advent: ParsableCommand {
     }
     
     private func run(part: () -> CustomStringConvertible, named name: String) {
+        print(measure(name: name, work: part))
+    }
+    
+    @discardableResult
+    private func measure<T>(name: String, work: () -> T) -> T {
         print("\(name): ", terminator: "")
         
-        var answer: CustomStringConvertible?
+        var result: T?
         let duration = ContinuousClock().measure {
-            answer = part()
+            result = work()
         }
         
         let style = Duration.UnitsFormatStyle(
-            allowedUnits: [.seconds, .milliseconds],
-            width: .narrow
+            allowedUnits: [.seconds, .milliseconds, .microseconds, .nanoseconds],
+            width: .narrow,
+            maximumUnitCount: 1,
+            fractionalPart: .init(lengthLimits: 0..<3)
         )
         print("(\(duration.formatted(style)))")
-        print(answer!)
+        return result!
     }
 }
 
