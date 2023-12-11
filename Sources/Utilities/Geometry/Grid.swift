@@ -15,7 +15,7 @@ public extension Dictionary where Key == Point {
         self = grid
     }
     
-    init<Input>(_ array: [[Input]], mappingValues: (Point, Input) -> Value) {
+    init<Input>(_ array: [[Input]], mappingValues: (Point, Input) -> Value?) {
         var grid = Grid<Value>()
         
         for y in array.indices {
