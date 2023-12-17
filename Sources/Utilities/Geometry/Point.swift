@@ -213,6 +213,19 @@ extension Collection {
     }
 }
 
+// MARK: - Ranges
+extension Collection where Element == Point {
+    public func pointRange() -> (x: ClosedRange<Int>, y: ClosedRange<Int>) {
+        let extremes = extremes()
+        
+        return (
+            extremes.min.x...extremes.max.x,
+            extremes.min.y...extremes.max.y
+        )
+    }
+}
+
+// MARK: - Grid String
 extension Set where Element == Point {
     public func gridString(point: String = "#", space: String = " ") -> String {
         let (min, max) = extremes()

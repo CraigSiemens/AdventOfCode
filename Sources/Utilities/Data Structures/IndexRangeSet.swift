@@ -5,7 +5,17 @@ public struct IndexRangeSet {
     
     public init() {}
     
-    public mutating func insert(_ range: ClosedRange<Int>) {
+    public init(ranges: [Element]) {
+        for range in ranges {
+            insert(range)
+        }
+    }
+    
+    public mutating func insert(_ value: Element.Bound) {
+        insert(value...value)
+    }
+    
+    public mutating func insert(_ range: Element) {
         var range = range
         
         for i in ranges.indices.reversed()
@@ -18,6 +28,31 @@ public struct IndexRangeSet {
         }
         
         ranges.append(range)
+    }
+    
+    public mutating func remove(_ value: Element.Bound) {
+        remove(value...value)
+    }
+    
+    public mutating func remove(_ range: Element) {
+        var newRanges: [Element] = []
+        
+        for i in ranges.indices.reversed() {
+            guard let (_, lower, upper) = ranges[i].split(by: range)
+            else { continue}
+            
+            if let lower {
+                newRanges.append(lower)
+            }
+            
+            if let upper {
+                newRanges.append(upper)
+            }
+            
+            ranges.remove(at: i)
+        }
+        
+        ranges.append(contentsOf: newRanges)
     }
 }
 

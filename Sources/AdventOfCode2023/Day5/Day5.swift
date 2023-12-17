@@ -88,27 +88,3 @@ public struct Day5: Day {
         return minValue(for: seedRanges, almanac: almanac)
     }
 }
-
-private extension ClosedRange where Bound == Int {
-    func offset(_ amount: Bound) -> Self {
-        (lowerBound + amount)...(upperBound + amount)
-    }
-    
-    func split(by other: Self) -> (overlap: Self, lowerRemainder: Self?, upperRemainder: Self?)? {
-        guard overlaps(other) else { return nil }
-        
-        let lowerRemainder = lowerBound < other.lowerBound
-        ? lowerBound...other.lowerBound - 1
-        : nil
-        
-        let upperRemainder = upperBound > other.upperBound
-        ? other.upperBound + 1...upperBound
-        : nil
-        
-        return (
-            clamped(to: other),
-            lowerRemainder,
-            upperRemainder
-        )
-    }
-}
