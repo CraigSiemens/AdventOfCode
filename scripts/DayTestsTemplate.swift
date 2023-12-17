@@ -10,14 +10,14 @@ final class {DAY_NAME}Tests: XCTestCase {
 //    """
     
     func testPart1() {
-//        XCTAssertEqual(day.part1Solution(for: input), "<#output#>")
-//        XCTAssertEqual(day.part1Solution(for: "<#input#>"), "<#output#>")
-        XCTAssertEqual(day.part1Solution(), "")
+//        XCTAssertEqual(day.part1Solution(for: input), <#{RETURN_VALUE}#>)
+//        XCTAssertEqual(day.part1Solution(for: "<#input#>"), <#{RETURN_VALUE}#>)
+        XCTAssertEqual(day.part1Solution(), {RETURN_VALUE})
     }
     
     func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), "<#output#>")
-//        XCTAssertEqual(day.part2Solution(for: "<#input#>"), "<#output#>")
-        XCTAssertEqual(day.part2Solution(), "")
+//        XCTAssertEqual(day.part2Solution(for: input), <#{RETURN_VALUE}#>)
+//        XCTAssertEqual(day.part2Solution(for: "<#input#>"), <#{RETURN_VALUE}#>)
+        XCTAssertEqual(day.part2Solution(), {RETURN_VALUE})
     }
 }
