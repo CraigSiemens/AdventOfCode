@@ -15,10 +15,10 @@ public struct Day21: Day {
     private func update(grid: PixelGrid, rules: [EnhancementRule], iterations: Int) -> PixelGrid {
         var grid = grid
         
-        print("Start")
+//        print("Start")
     //    print(grid)
         
-        for i in 0..<iterations {
+        for _ in 0..<iterations {
             
             let subgrids = grid.split().map { (subgrid) -> PixelGrid in
                 for rule in rules {
@@ -30,7 +30,7 @@ public struct Day21: Day {
             
             grid = PixelGrid(joining: subgrids)
             
-            print("Iterations:", i+1)
+//            print("Iterations:", i+1)
     //        print(grid)
         }
         

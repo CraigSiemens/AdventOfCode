@@ -100,7 +100,7 @@ public struct Day12: Day {
             updateRepeatTime(for: \.z)
         }
         
-        print(repeatTime)
+//        print(repeatTime)
         return repeatTime.x.lcm(with: repeatTime.y.lcm(with: repeatTime.z))
     }
     

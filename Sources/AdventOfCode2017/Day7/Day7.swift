@@ -96,7 +96,7 @@ public struct Day7: Day {
 
     public func part2Solution(for input: Input) -> String {
         let rootProgram = buildTree(input: input)
-        rootProgram.recursivePrint()
+//        rootProgram.recursivePrint()
         return rootProgram.requiredWeightForUnbalancedProgram()!.description
     }
 }

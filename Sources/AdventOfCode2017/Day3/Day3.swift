@@ -78,9 +78,9 @@ public struct Day3: Day {
             }
         }
         
-        for line in spiralMemory {
-            print(line)
-        }
+//        for line in spiralMemory {
+//            print(line)
+//        }
         
         return spiralMemory[index].description
     }

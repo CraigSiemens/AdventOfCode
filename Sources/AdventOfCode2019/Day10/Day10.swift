@@ -39,7 +39,7 @@ public struct Day10: Day {
     public func part2Solution(for input: Input) -> String {
         var (asteroids, best, _) = part1Solution(input: input)
         asteroids.remove(at: asteroids.firstIndex(of: best)!)
-        print(best)
+//        print(best)
         var groupedAsteroids = Dictionary(grouping: asteroids) { (point) -> Double in
             let angleFromUp = best.angle(to: point).angle + (.pi / 2)
             return angleFromUp >= 0 ? angleFromUp : angleFromUp + (.pi * 2)
@@ -59,7 +59,7 @@ public struct Day10: Day {
             if groupedAsteroids[angle]?.first != nil {
                 removeCount += 1
                 lastRemoved = groupedAsteroids[angle]!.removeFirst()
-                print(lastRemoved)
+//                print(lastRemoved)
             }
         }
         
