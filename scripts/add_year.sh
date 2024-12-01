@@ -3,6 +3,10 @@
 set -e
 
 year_number=$1
+if [ -z "$year_number" ]; then
+    echo "Missing year number"
+    exit 1
+fi
 
 year_name="AdventOfCode${year_number}"
 year_folder_path="Sources/$year_name"

@@ -4,7 +4,7 @@
 import PackageDescription
 import Foundation
 
-let years = 2017...2023
+let years = 2017...2024
 
 var package = Package(
     name: "Advent of Code",

@@ -21,6 +21,11 @@ done
 shift $((OPTIND-1))
 
 day_number=$1
+if [ -z "$day_number" ]; then
+    echo "Missing d number"
+    exit 1
+fi
+
 day_name="Day${day_number}"
 
 year_number=$2
