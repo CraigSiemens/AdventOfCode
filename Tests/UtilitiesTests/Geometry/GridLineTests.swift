@@ -46,7 +46,7 @@ final class GridLineTests: XCTestCase {
                at: Point(x: 3, y: -3))
     }
     
-    private func assert(gridLine: GridLine, intersects other: GridLine, at point: Point, file: StaticString = #file, line: UInt = #line) {
+    private func assert(gridLine: GridLine, intersects other: GridLine, at point: Point, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertEqual(gridLine.intersection(other), point, file: file, line: line)
         XCTAssertEqual(other.intersection(gridLine), point, file: file, line: line)
     }

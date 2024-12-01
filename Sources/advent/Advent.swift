@@ -14,10 +14,11 @@ struct Advent: ParsableCommand {
     var part: Part = .allParts
     
     private var selectedYear: Year? {
+        let years = AdventOfCode().years
         if let year {
-            return AdventOfCode.years.first { $0.number == year }
+            return years.first { $0.number == year }
         }
-        return AdventOfCode.years.last
+        return years.last
     }
     
     private var selectedDay: (any Day)? {

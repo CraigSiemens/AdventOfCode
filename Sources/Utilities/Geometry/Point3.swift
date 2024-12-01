@@ -1,4 +1,4 @@
-public struct Point3: Hashable {
+public struct Point3: Hashable, Sendable {
     public var x, y, z: Int
     
     public init(x: Int, y: Int, z: Int) {
@@ -19,12 +19,12 @@ public struct Point3: Hashable {
 
 // MARK: - Axis
 public extension Point3 {
-    static var xPos = Point3(x: 1, y: 0, z: 0)
-    static var xNeg = Point3(x: -1, y: 0, z: 0)
-    static var yPos = Point3(x: 0, y: 1, z: 0)
-    static var yNeg = Point3(x: 0, y: -1, z: 0)
-    static var zPos = Point3(x: 0, y: 0, z: 1)
-    static var zNeg = Point3(x: 0, y: 0, z: -1)
+    static let xPos = Point3(x: 1, y: 0, z: 0)
+    static let xNeg = Point3(x: -1, y: 0, z: 0)
+    static let yPos = Point3(x: 0, y: 1, z: 0)
+    static let yNeg = Point3(x: 0, y: -1, z: 0)
+    static let zPos = Point3(x: 0, y: 0, z: 1)
+    static let zNeg = Point3(x: 0, y: 0, z: -1)
 }
 
 // MARK: - Neighbours

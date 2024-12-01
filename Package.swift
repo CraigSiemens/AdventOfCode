@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -8,7 +8,7 @@ let years = 2017...2023
 
 var package = Package(
     name: "Advent of Code",
-    platforms: [.macOS(.v13)],
+    platforms: [.macOS(.v15)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .executable(name: "advent", targets: ["advent"]),

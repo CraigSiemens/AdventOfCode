@@ -22,7 +22,7 @@ public extension Day {
             .appendingPathComponent("input.txt")
         
         do {
-            let content = try String(contentsOf: file)
+            let content = try String(contentsOf: file, encoding: .utf8)
             return Input(content)
         } catch {
             fatalError(error.localizedDescription)

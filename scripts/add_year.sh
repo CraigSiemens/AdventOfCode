@@ -25,5 +25,5 @@ sed -i "" "/{YEARS IMPORT}/i\\
 " "Sources/AdventOfCode/AdventOfCode.swift"
 
 sed -i "" "/{YEARS}/i\\
-    ${year_name}(),\\
+        ${year_name}(),\\
 " "Sources/AdventOfCode/AdventOfCode.swift"

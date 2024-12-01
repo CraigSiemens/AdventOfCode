@@ -10,13 +10,17 @@ import AdventOfCode2023
 
 @_exported import Utilities
 
-public let years: [Year] = [
-    AdventOfCode2017(),
-    AdventOfCode2018(),
-    AdventOfCode2019(),
-    AdventOfCode2020(),
-    AdventOfCode2021(),
-    AdventOfCode2022(),
-    AdventOfCode2023(),
-    // {YEARS}
-]
+public struct AdventOfCode {
+    public let years: [Year] = [
+        AdventOfCode2017(),
+        AdventOfCode2018(),
+        AdventOfCode2019(),
+        AdventOfCode2020(),
+        AdventOfCode2021(),
+        AdventOfCode2022(),
+        AdventOfCode2023(),
+        // {YEARS}
+    ]
+    
+    public init() {}
+}
