@@ -1,7 +1,7 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2019
 
-final class Day12Tests: XCTestCase {
+struct Day12Tests {
     let day = Day12()
     
     let input: Input = """
@@ -11,7 +11,7 @@ final class Day12Tests: XCTestCase {
         <x=3, y=5, z=-1>
         """
     
-    func testRunSimulation() {
+    @Test func runSimulation() {
         let steps = [
             [
                 Day12.Planet(position: .init(x:-1, y:  0, z: 2), velocity: .init(x: 0, y: 0, z: 0)),
@@ -87,48 +87,48 @@ final class Day12Tests: XCTestCase {
         ]
         
         var planets = day.parse(input: input)
-        XCTAssertEqual(planets, steps[0])
+        #expect(planets == steps[0])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[1])
+        #expect(planets == steps[1])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[2])
+        #expect(planets == steps[2])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[3])
+        #expect(planets == steps[3])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[4])
+        #expect(planets == steps[4])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[5])
+        #expect(planets == steps[5])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[6])
+        #expect(planets == steps[6])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[7])
+        #expect(planets == steps[7])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[8])
+        #expect(planets == steps[8])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[9])
+        #expect(planets == steps[9])
         
         planets = day.runSimulation(planets: planets, steps: 1)
-        XCTAssertEqual(planets, steps[10])
+        #expect(planets == steps[10])
     }
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(), "7988")
+    @Test func part1() {
+        #expect(day.part1Solution() == "7988")
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), "2772")
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == "2772")
     }
     
-    func testLongPart2() {
+    @Test func longPart2() {
         let input: Input = """
             <x=-8, y=-10, z=0>
             <x=5, y=5, z=10>
@@ -136,6 +136,6 @@ final class Day12Tests: XCTestCase {
             <x=9, y=-8, z=-3>
             """
         
-        XCTAssertEqual(day.part2Solution(for: input), "4686774924")
+        #expect(day.part2Solution(for: input) == "4686774924")
     }
 }

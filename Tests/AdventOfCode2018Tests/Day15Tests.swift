@@ -1,11 +1,10 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2018
 
-@available(OSX 10.11, *)
-final class Day15Tests: XCTestCase {
+struct Day15Tests {
     let day = Day15()
     
-    func testPart1Example0() {
+    @Test func part1Example0() {
         let input: Input = """
         #######
         #.G...#
@@ -15,10 +14,10 @@ final class Day15Tests: XCTestCase {
         #.....#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "27730")
+        #expect(day.part1Solution(for: input) == "27730")
     }
     
-    func testPart1Example1() {
+    @Test func part1Example1() {
         let input: Input = """
         #######
         #G..#E#
@@ -28,10 +27,10 @@ final class Day15Tests: XCTestCase {
         #...E.#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "36334")
+        #expect(day.part1Solution(for: input) == "36334")
     }
     
-    func testPart1Example2() {
+    @Test func part1Example2() {
         let input: Input = """
         #######
         #E..EG#
@@ -41,10 +40,10 @@ final class Day15Tests: XCTestCase {
         #..E#.#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "39514")
+        #expect(day.part1Solution(for: input) == "39514")
     }
     
-    func testPart1Example3() {
+    @Test func part1Example3() {
         let input: Input = """
         #######
         #E.G#.#
@@ -54,10 +53,10 @@ final class Day15Tests: XCTestCase {
         #...E.#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "27755")
+        #expect(day.part1Solution(for: input) == "27755")
     }
     
-    func testPart1Example4() {
+    @Test func part1Example4() {
         let input: Input = """
         #######
         #.E...#
@@ -67,10 +66,10 @@ final class Day15Tests: XCTestCase {
         #...#G#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "28944")
+        #expect(day.part1Solution(for: input) == "28944")
     }
     
-    func testPart1Example5() {
+    @Test func part1Example5() {
         let input: Input = """
         #########
         #G......#
@@ -82,10 +81,10 @@ final class Day15Tests: XCTestCase {
         #.....G.#
         #########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "18740")
+        #expect(day.part1Solution(for: input) == "18740")
     }
     
-    func testPart1MoveRight() {
+    @Test func part1MoveRight() {
         let input: Input = """
         #######
         #.E..G#
@@ -93,10 +92,10 @@ final class Day15Tests: XCTestCase {
         #G#####
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10234")
+        #expect(day.part1Solution(for: input) == "10234")
     }
     
-    func testPart1MoveLeft() {
+    @Test func part1MoveLeft() {
         let input: Input = """
         #####
         ###G#
@@ -105,10 +104,10 @@ final class Day15Tests: XCTestCase {
         #G###
         #####
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10030")
+        #expect(day.part1Solution(for: input) == "10030")
     }
     
-    func testPart1Movement() {
+    @Test func part1Movement() {
         let input: Input = """
         #########
         #G..G..G#
@@ -120,20 +119,20 @@ final class Day15Tests: XCTestCase {
         #G..G..G#
         #########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "27828")
+        #expect(day.part1Solution(for: input) == "27828")
     }
     
-    func testPart1Reddit1() {
+    @Test func part1Reddit1() {
         let input: Input = """
         ####
         ##E#
         #GG#
         ####
         """
-        XCTAssertEqual(day.part1Solution(for: input), "13400")
+        #expect(day.part1Solution(for: input) == "13400")
     }
     
-    func testPart1Reddit2() {
+    @Test func part1Reddit2() {
         let input: Input = """
         #####
         #GG##
@@ -143,10 +142,10 @@ final class Day15Tests: XCTestCase {
         #.E##
         #####
         """
-        XCTAssertEqual(day.part1Solution(for: input), "13987")
+        #expect(day.part1Solution(for: input) == "13987")
     }
     
-    func testPart1Reddit3() {
+    @Test func part1Reddit3() {
         let input: Input = """
         ##########
         #.E....G.#
@@ -154,10 +153,10 @@ final class Day15Tests: XCTestCase {
         #.G......#
         ##########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10325")
+        #expect(day.part1Solution(for: input) == "10325")
     }
     
-    func testPart1Reddit4() {
+    @Test func part1Reddit4() {
         let input: Input = """
         ##########
         #........#
@@ -167,10 +166,10 @@ final class Day15Tests: XCTestCase {
         #........#
         ##########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10804")
+        #expect(day.part1Solution(for: input) == "10804")
     }
 
-    func testPart1Reddit5() {
+    @Test func part1Reddit5() {
         let input: Input = """
         #######
         #..E#G#
@@ -178,20 +177,20 @@ final class Day15Tests: XCTestCase {
         #G#...#
         #######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10620")
+        #expect(day.part1Solution(for: input) == "10620")
     }
     
-    func testPart1Reddit6() {
+    @Test func part1Reddit6() {
         let input: Input = """
         #########
         #......G#
         #G.G...E#
         #########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "16932")
+        #expect(day.part1Solution(for: input) == "16932")
     }
     
-    func testPart1Reddit7() {
+    @Test func part1Reddit7() {
         let input: Input = """
         ######
         #.G..#
@@ -199,10 +198,10 @@ final class Day15Tests: XCTestCase {
         #E...#
         ######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10234")
+        #expect(day.part1Solution(for: input) == "10234")
     }
     
-    func testPart1Reddit8() {
+    @Test func part1Reddit8() {
         let input: Input = """
         ######
         #.G..#
@@ -211,10 +210,10 @@ final class Day15Tests: XCTestCase {
         #E...#
         ######
         """
-        XCTAssertEqual(day.part1Solution(for: input), "10430")
+        #expect(day.part1Solution(for: input) == "10430")
     }
     
-    func testPart1Reddit9() {
+    @Test func part1Reddit9() {
         let input: Input = """
         ########
         #.E....#
@@ -224,10 +223,10 @@ final class Day15Tests: XCTestCase {
         #G.....#
         ########
         """
-        XCTAssertEqual(day.part1Solution(for: input), "12744")
+        #expect(day.part1Solution(for: input) == "12744")
     }
     
-    func testPart1Reddit10() {
+    @Test func part1Reddit10() {
         let input: Input = """
         #################
         ##..............#
@@ -240,10 +239,10 @@ final class Day15Tests: XCTestCase {
         #####.###...#####
         #################
         """
-        XCTAssertEqual(day.part1Solution(for: input), "14740")
+        #expect(day.part1Solution(for: input) == "14740")
     }
     
-    func testPart2Example1() {
+    @Test func part2Example1() {
         let input: Input = """
         #######
         #.G...#
@@ -253,10 +252,10 @@ final class Day15Tests: XCTestCase {
         #.....#
         #######
         """
-        XCTAssertEqual(day.part2Solution(for: input), "4988")
+        #expect(day.part2Solution(for: input) == "4988")
     }
     
-    func testPart2Example2() {
+    @Test func part2Example2() {
         let input: Input = """
         #######
         #E..EG#
@@ -266,10 +265,10 @@ final class Day15Tests: XCTestCase {
         #..E#.#
         #######
         """
-        XCTAssertEqual(day.part2Solution(for: input), "31284")
+        #expect(day.part2Solution(for: input) == "31284")
     }
     
-    func testPart2Example3() {
+    @Test func part2Example3() {
         let input: Input = """
         #######
         #E.G#.#
@@ -279,10 +278,10 @@ final class Day15Tests: XCTestCase {
         #...E.#
         #######
         """
-        XCTAssertEqual(day.part2Solution(for: input), "3478")
+        #expect(day.part2Solution(for: input) == "3478")
     }
     
-    func testPart2Example4() {
+    @Test func part2Example4() {
         let input: Input = """
         #######
         #.E...#
@@ -292,10 +291,10 @@ final class Day15Tests: XCTestCase {
         #...#G#
         #######
         """
-        XCTAssertEqual(day.part2Solution(for: input), "6474")
+        #expect(day.part2Solution(for: input) == "6474")
     }
     
-    func testPart2Example5() {
+    @Test func part2Example5() {
         let input: Input = """
         #########
         #G......#
@@ -307,6 +306,6 @@ final class Day15Tests: XCTestCase {
         #.....G.#
         #########
         """
-        XCTAssertEqual(day.part2Solution(for: input), "1140")
+        #expect(day.part2Solution(for: input) == "1140")
     }
 }

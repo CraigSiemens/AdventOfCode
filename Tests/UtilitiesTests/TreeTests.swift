@@ -1,8 +1,8 @@
-import XCTest
+import Testing
 @testable import Utilities
 
-final class TreeTests: XCTestCase {
-    func testAllParents() {
+struct TreeTests {
+    @Test func allParents() {
         let root = Tree.Node(value: 0)
         let a = Tree.Node(value: 1)
         let b = Tree.Node(value: 2)
@@ -10,12 +10,12 @@ final class TreeTests: XCTestCase {
         root.addChild(a)
         a.addChild(b)
         
-        XCTAssertEqual(root.allParents, [])
-        XCTAssertEqual(a.allParents, [root])
-        XCTAssertEqual(b.allParents, [a, root])
+        #expect(root.allParents == [])
+        #expect(a.allParents == [root])
+        #expect(b.allParents == [a, root])
     }
     
-    func testSequenceDepthFirstPre() {
+    @Test func sequenceDepthFirstPre() {
         let root = Tree.Node(value: 0, children: [
             .init(value: 1, children: [
                 .init(value: 2),
@@ -32,10 +32,10 @@ final class TreeTests: XCTestCase {
         
         let values = root.sequence(order: .depthFirst(.pre)).map(\.value)
         
-        XCTAssertEqual(values, [0, 1, 2, 3, 4, 5, 6, 7, 8])
+        #expect(values == [0, 1, 2, 3, 4, 5, 6, 7, 8])
     }
     
-    func testSequenceDepthFirstPost() {
+    @Test func sequenceDepthFirstPost() {
         let root = Tree.Node(value: 8, children: [
             .init(value: 2, children: [
                 .init(value: 0),
@@ -52,10 +52,10 @@ final class TreeTests: XCTestCase {
         
         let values = root.sequence(order: .depthFirst(.post)).map(\.value)
         
-        XCTAssertEqual(values, [0, 1, 2, 3, 4, 5, 6, 7, 8])
+        #expect(values == [0, 1, 2, 3, 4, 5, 6, 7, 8])
     }
     
-    func testSequenceBreadthFirst() {
+    @Test func sequenceBreadthFirst() {
         let root = Tree.Node(value: 0, children: [
             .init(value: 1, children: [
                 .init(value: 4),
@@ -72,6 +72,6 @@ final class TreeTests: XCTestCase {
         
         let values = root.sequence(order: .breadthFirst).map(\.value)
         
-        XCTAssertEqual(values, [0, 1, 2, 3, 4, 5, 6, 7, 8])
+        #expect(values == [0, 1, 2, 3, 4, 5, 6, 7, 8])
     }
 }

@@ -1,17 +1,17 @@
-import XCTest
+import Testing
 @testable import Utilities
 
-final class LetterMatcherTests: XCTestCase {
-    func testMatchingLettersSingle() throws {
+struct LetterMatcherTests {
+    @Test func matchingLettersSingle() throws {
         for letter in Letter.all {
             let matcher = LetterMatcher(string: letter.patternString)
             
-            let match = try XCTUnwrap(matcher.matchingLetters())
-            XCTAssertEqual(match, "\(letter.character)")
+            let match = try #require(matcher.matchingLetters())
+            #expect(match == "\(letter.character)")
         }
     }
     
-    func testMatchingLettersMultiple() throws {
+    @Test func matchingLettersMultiple() throws {
         let string = """
         #  # #### #    #     ##
         #  # #    #    #    #  #
@@ -23,11 +23,11 @@ final class LetterMatcherTests: XCTestCase {
         
         let matcher = LetterMatcher(string: string)
         
-        let match = try XCTUnwrap(matcher.matchingLetters())
-        XCTAssertEqual(match, "HELLO")
+        let match = try #require(matcher.matchingLetters())
+        #expect(match == "HELLO")
     }
     
-    func testMatchingLettersMultipleWhitespace() throws {
+    @Test func matchingLettersMultipleWhitespace() throws {
         let string = """
          #  #   #### #       #      ##
          #  #   #    #       #     #  #
@@ -39,7 +39,7 @@ final class LetterMatcherTests: XCTestCase {
         
         let matcher = LetterMatcher(string: string)
         
-        let match = try XCTUnwrap(matcher.matchingLetters())
-        XCTAssertEqual(match, "HELLO")
+        let match = try #require(matcher.matchingLetters())
+        #expect(match == "HELLO")
     }
 }

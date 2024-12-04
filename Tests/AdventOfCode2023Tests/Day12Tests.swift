@@ -1,8 +1,8 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2023
 
-final class Day12Tests: XCTestCase {
+struct Day12Tests {
     let day = Day12()
     
     let input: Input = """
@@ -14,13 +14,13 @@ final class Day12Tests: XCTestCase {
     ?###???????? 3,2,1
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), 21)
-        XCTAssertEqual(day.part1Solution(), 7857)
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == 21)
+        #expect(day.part1Solution() == 7857)
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), 525152)
-        XCTAssertEqual(day.part2Solution(), 28606137449920)
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == 525152)
+        #expect(day.part2Solution() == 28606137449920)
     }
 }

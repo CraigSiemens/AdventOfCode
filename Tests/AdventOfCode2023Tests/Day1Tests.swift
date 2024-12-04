@@ -1,11 +1,11 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2023
 
-final class Day1Tests: XCTestCase {
+struct Day1Tests {
     let day = Day1()
     
-    func testPart1() {
+    @Test func part1() {
         let input: Input = """
         1abc2
         pqr3stu8vwx
@@ -13,11 +13,11 @@ final class Day1Tests: XCTestCase {
         treb7uchet
         """
         
-        XCTAssertEqual(day.part1Solution(for: input), 142)
-        XCTAssertEqual(day.part1Solution(), 53386)
+        #expect(day.part1Solution(for: input) == 142)
+        #expect(day.part1Solution() == 53386)
     }
     
-    func testPart2() {
+    @Test func part2() {
         let input: Input = """
         two1nine
         eightwothree
@@ -28,7 +28,7 @@ final class Day1Tests: XCTestCase {
         7pqrstsixteen
         """
         
-        XCTAssertEqual(day.part2Solution(for: input), 281)
-        XCTAssertEqual(day.part2Solution(), 53312)
+        #expect(day.part2Solution(for: input) == 281)
+        #expect(day.part2Solution() == 53312)
     }
 }

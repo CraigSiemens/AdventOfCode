@@ -1,14 +1,14 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2019
 
-final class Day6Tests: XCTestCase {
+struct Day6Tests {
     let day = Day6()
     
 //    let input: Input = """
 //    <#input#>
 //    """
     
-    func testPart1() {
+    @Test func part1() {
         let input: Input = """
             COM)B
             B)C
@@ -22,10 +22,10 @@ final class Day6Tests: XCTestCase {
             J)K
             K)L
             """
-        XCTAssertEqual(day.part1Solution(for: input), "42")
+        #expect(day.part1Solution(for: input) == "42")
     }
     
-    func testPart2() {
+    @Test func part2() {
         let input: Input = """
             COM)B
             B)C
@@ -41,6 +41,6 @@ final class Day6Tests: XCTestCase {
             K)YOU
             I)SAN
             """
-        XCTAssertEqual(day.part2Solution(for: input), "4")
+        #expect(day.part2Solution(for: input) == "4")
     }
 }

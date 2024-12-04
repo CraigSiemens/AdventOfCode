@@ -1,20 +1,20 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2021
 
-final class Day17Tests: XCTestCase {
+struct Day17Tests {
     let day = Day17()
     
     let input: Input = """
     target area: x=20..30, y=-10..-5
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), "45")
-        XCTAssertEqual(day.part1Solution(), "9730")
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == "45")
+        #expect(day.part1Solution() == "9730")
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), "112")
-        XCTAssertEqual(day.part2Solution(), "4110")
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == "112")
+        #expect(day.part2Solution() == "4110")
     }
 }

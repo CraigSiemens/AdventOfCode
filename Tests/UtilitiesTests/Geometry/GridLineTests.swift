@@ -1,38 +1,38 @@
-import XCTest
+import Testing
 @testable import Utilities
 
-final class GridLineTests: XCTestCase {
-    func testIsVertical() {
-        XCTAssertTrue(GridLine(point: Point(x: 3, y: 7), heading: .north, amount: 2).isVertical)
-        XCTAssertTrue(GridLine(point: Point(x: 2, y: 1), heading: .south, amount: 2).isVertical)
+struct GridLineTests {
+    @Test func isVertical() {
+        #expect(GridLine(point: Point(x: 3, y: 7), heading: .north, amount: 2).isVertical == true)
+        #expect(GridLine(point: Point(x: 2, y: 1), heading: .south, amount: 2).isVertical == true)
         
-        XCTAssertFalse(GridLine(point: Point(x: 3, y: 7), heading: .west, amount: 2).isVertical)
-        XCTAssertFalse(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isVertical)
+        #expect(GridLine(point: Point(x: 3, y: 7), heading: .west, amount: 2).isVertical == false)
+        #expect(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isVertical == false)
     }
     
-    func testIsHorizontal() {
-        XCTAssertTrue(GridLine(point: Point(x: 3, y: 7), heading: .west, amount: 2).isHorizontal)
-        XCTAssertTrue(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isHorizontal)
+    @Test func isHorizontal() {
+        #expect(GridLine(point: Point(x: 3, y: 7), heading: .west, amount: 2).isHorizontal == true)
+        #expect(GridLine(point: Point(x: 2, y: 1), heading: .east, amount: 2).isHorizontal == true)
         
-        XCTAssertFalse(GridLine(point: Point(x: 3, y: 7), heading: .north, amount: 2).isHorizontal)
-        XCTAssertFalse(GridLine(point: Point(x: 2, y: 1), heading: .south, amount: 2).isHorizontal)
+        #expect(GridLine(point: Point(x: 3, y: 7), heading: .north, amount: 2).isHorizontal == false)
+        #expect(GridLine(point: Point(x: 2, y: 1), heading: .south, amount: 2).isHorizontal == false)
     }
     
-    func testIsDiagonal() {
-        XCTAssertTrue(GridLine(start: Point(x: 3, y: 7), end: Point(x: 7, y: 3)).isDiagonal)
-        XCTAssertTrue(GridLine(start: Point(x: 1, y: 1), end: Point(x: 3, y: 3)).isDiagonal)
+    @Test func isDiagonal() {
+        #expect(GridLine(start: Point(x: 3, y: 7), end: Point(x: 7, y: 3)).isDiagonal == true)
+        #expect(GridLine(start: Point(x: 1, y: 1), end: Point(x: 3, y: 3)).isDiagonal == true)
         
-        XCTAssertFalse(GridLine(start: Point(x: 0, y: 0), end: Point(x: 0, y: 1)).isDiagonal)
-        XCTAssertFalse(GridLine(start: Point(x: 1, y: 2), end: Point(x: 0, y: 10)).isDiagonal)
+        #expect(GridLine(start: Point(x: 0, y: 0), end: Point(x: 0, y: 1)).isDiagonal == false)
+        #expect(GridLine(start: Point(x: 1, y: 2), end: Point(x: 0, y: 10)).isDiagonal == false)
     }
     
-    func testLength() {
+    @Test func length() {
         let length = 15
         let line = GridLine(point: Point(x: 3, y: 7), heading: .north, amount: length)
-        XCTAssertEqual(line.length, Int(length))
+        #expect(line.length == Int(length))
     }
     
-    func testIntersection() {
+    @Test func intersection() {
         assert(gridLine: GridLine(point: Point(x: 0, y: 0), heading: .north, amount: 2),
                intersects: GridLine(point: Point(x: 1, y: -1), heading: .west, amount: 2),
                at: Point(x: 0, y: -1))
@@ -46,15 +46,26 @@ final class GridLineTests: XCTestCase {
                at: Point(x: 3, y: -3))
     }
     
-    private func assert(gridLine: GridLine, intersects other: GridLine, at point: Point, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertEqual(gridLine.intersection(other), point, file: file, line: line)
-        XCTAssertEqual(other.intersection(gridLine), point, file: file, line: line)
+    private func assert(
+        gridLine: GridLine,
+        intersects other: GridLine,
+        at point: Point,
+        sourceLocation: Testing.SourceLocation = #_sourceLocation
+    ) {
+        #expect(
+            gridLine.intersection(other) == point,
+            sourceLocation: sourceLocation
+        )
+        #expect(
+            other.intersection(gridLine) == point,
+            sourceLocation: sourceLocation
+        )
     }
     
-    func testPoints() {
+    @Test func points() {
         let line = GridLine(start: .init(x: 6, y: 0),
                             end: .init(x: 2, y: 4))
-        XCTAssertEqual(line.points, [
+        #expect(line.points == [
             .init(x: 6, y: 0),
             .init(x: 5, y: 1),
             .init(x: 4, y: 2),

@@ -1,8 +1,8 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2022
 
-final class Day16Tests: XCTestCase {
+struct Day16Tests {
     let day = Day16()
     
     let input: Input = """
@@ -18,13 +18,13 @@ final class Day16Tests: XCTestCase {
     Valve JJ has flow rate=21; tunnel leads to valve II
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), 1651)
-        XCTAssertEqual(day.part1Solution(), 2124)
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == 1651)
+        #expect(day.part1Solution() == 2124)
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), 1707)
-//        XCTAssertEqual(day.part2Solution(), 2775)
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == 1707)
+//        #expect(day.part2Solution() == 2775)
     }
 }

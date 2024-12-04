@@ -1,7 +1,7 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2021
 
-final class Day8Tests: XCTestCase {
+struct Day8Tests {
     let day = Day8()
     
     let input: Input = """
@@ -17,13 +17,13 @@ final class Day8Tests: XCTestCase {
     gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), "26")
-        XCTAssertEqual(day.part1Solution(), "310")
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == "26")
+        #expect(day.part1Solution() == "310")
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), "61229")
-        XCTAssertEqual(day.part2Solution(), "915941")
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == "61229")
+        #expect(day.part2Solution() == "915941")
     }
 }

@@ -1,7 +1,7 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2018
 
-final class Day7Tests: XCTestCase {
+struct Day7Tests {
     let day = Day7()
     
     let input: Input = """
@@ -14,11 +14,11 @@ final class Day7Tests: XCTestCase {
     Step F must be finished before step E can begin.
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), "CABDFE")
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == "CABDFE")
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input, workers: 2, baseDuration: 0), "15")
+    @Test func part2() {
+        #expect(day.part2Solution(for: input, workers: 2, baseDuration: 0) == "15")
     }
 }

@@ -1,8 +1,8 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2022
 
-final class Day19Tests: XCTestCase {
+struct Day19Tests {
     let day = Day19()
     
     let input: Input = """
@@ -10,13 +10,13 @@ final class Day19Tests: XCTestCase {
     Blueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.
     """
     
-    func testPart1() {
-//        XCTAssertEqual(day.part1Solution(for: input), 33)
-//        XCTAssertEqual(day.part1Solution(), 1653)
+    @Test func part1() {
+//        #expect(day.part1Solution(for: input) == 33)
+//        #expect(day.part1Solution() == 1653)
     }
     
-    func testPart2() {
-//        XCTAssertEqual(day.part2Solution(for: input), 62)
-//        XCTAssertEqual(day.part2Solution(), 4212)
+    @Test func part2() {
+//        #expect(day.part2Solution(for: input) == 62)
+//        #expect(day.part2Solution() == 4212)
     }
 }

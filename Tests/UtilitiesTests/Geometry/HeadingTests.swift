@@ -1,8 +1,8 @@
-import XCTest
+import Testing
 @testable import Utilities
 
-final class HeadingTests: XCTestCase {
-    func testSomething() {
+struct HeadingTests {
+    @Test func something() {
         
     }
 }

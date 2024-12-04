@@ -1,10 +1,10 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2019
 
-final class Day10Tests: XCTestCase {
+struct Day10Tests {
     let day = Day10()
     
-    func testPart1() {
+    @Test func part1() {
         let input1: Input = """
         .#..#
         .....
@@ -12,7 +12,7 @@ final class Day10Tests: XCTestCase {
         ....#
         ...##
         """
-        XCTAssertEqual(day.part1Solution(for: input1), "8")
+        #expect(day.part1Solution(for: input1) == "8")
         
         let input2: Input = """
         ......#.#.
@@ -26,7 +26,7 @@ final class Day10Tests: XCTestCase {
         ##...#..#.
         .#....####
         """
-        XCTAssertEqual(day.part1Solution(for: input2), "33")
+        #expect(day.part1Solution(for: input2) == "33")
         
         let input3: Input = """
         #.#...#.#.
@@ -40,7 +40,7 @@ final class Day10Tests: XCTestCase {
         ......#...
         .####.###.
         """
-        XCTAssertEqual(day.part1Solution(for: input3), "35")
+        #expect(day.part1Solution(for: input3) == "35")
         
         let input4: Input = """
         .#..#..###
@@ -54,7 +54,7 @@ final class Day10Tests: XCTestCase {
         .##...##.#
         .....#.#..
         """
-        XCTAssertEqual(day.part1Solution(for: input4), "41")
+        #expect(day.part1Solution(for: input4) == "41")
         
         let input5: Input = """
         .#..##.###...#######
@@ -78,12 +78,12 @@ final class Day10Tests: XCTestCase {
         #.#.#.#####.####.###
         ###.##.####.##.#..##
         """
-        XCTAssertEqual(day.part1Solution(for: input5), "210")
+        #expect(day.part1Solution(for: input5) == "210")
         
-        XCTAssertEqual(day.part1Solution(), "288")
+        #expect(day.part1Solution() == "288")
     }
     
-    func testPart2() {
+    @Test func part2() {
         let input: Input = """
         .#..##.###...#######
         ##.############..##.
@@ -106,6 +106,6 @@ final class Day10Tests: XCTestCase {
         #.#.#.#####.####.###
         ###.##.####.##.#..##
         """
-        XCTAssertEqual(day.part2Solution(for: input), "802")
+        #expect(day.part2Solution(for: input) == "802")
     }
 }

@@ -1,11 +1,11 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2023
 
-final class Day10Tests: XCTestCase {
+struct Day10Tests {
     let day = Day10()
     
-    func testPart1() {
+    @Test func part1() {
         let input1: Input = """
         -L|F7
         7S-7|
@@ -13,7 +13,7 @@ final class Day10Tests: XCTestCase {
         -L-J|
         L|-JF
         """
-        XCTAssertEqual(day.part1Solution(for: input1), 4)
+        #expect(day.part1Solution(for: input1) == 4)
         
         let input2: Input = """
         7-F7-
@@ -22,12 +22,12 @@ final class Day10Tests: XCTestCase {
         |F--J
         LJ.LJ
         """
-        XCTAssertEqual(day.part1Solution(for: input2), 8)
+        #expect(day.part1Solution(for: input2) == 8)
         
-        XCTAssertEqual(day.part1Solution(), 6923)
+        #expect(day.part1Solution() == 6923)
     }
     
-    func testPart2() {
+    @Test func part2() {
         let input1: Input = """
         .F----7F7F7F7F-7....
         .|F--7||||||||FJ....
@@ -40,7 +40,7 @@ final class Day10Tests: XCTestCase {
         ....FJL-7.||.||||...
         ....L---J.LJ.LJLJ...
         """
-        XCTAssertEqual(day.part2Solution(for: input1), 8)
+        #expect(day.part2Solution(for: input1) == 8)
         
         let input2: Input = """
         FF7FSF7F7F7F7F7F---7
@@ -54,14 +54,14 @@ final class Day10Tests: XCTestCase {
         L.L7LFJ|||||FJL7||LJ
         L7JLJL-JLJLJL--JLJ.L
         """
-        XCTAssertEqual(day.part2Solution(for: input2), 10)
+        #expect(day.part2Solution(for: input2) == 10)
         
-        XCTAssertEqual(day.part2BSolution(for: input1), 8)
-        XCTAssertEqual(day.part2BSolution(for: input2), 10)
-        XCTAssertEqual(day.part2BSolution(for: type(of: day).input), 529)
+        #expect(day.part2BSolution(for: input1) == 8)
+        #expect(day.part2BSolution(for: input2) == 10)
+        #expect(day.part2BSolution(for: type(of: day).input) == 529)
     }
     
-    func testPart2B() {
+    @Test func part2B() {
         let input1: Input = """
         .F----7F7F7F7F-7....
         .|F--7||||||||FJ....
@@ -74,7 +74,7 @@ final class Day10Tests: XCTestCase {
         ....FJL-7.||.||||...
         ....L---J.LJ.LJLJ...
         """
-        XCTAssertEqual(day.part2BSolution(for: input1), 8)
+        #expect(day.part2BSolution(for: input1) == 8)
         
         let input2: Input = """
         FF7FSF7F7F7F7F7F---7
@@ -88,8 +88,8 @@ final class Day10Tests: XCTestCase {
         L.L7LFJ|||||FJL7||LJ
         L7JLJL-JLJLJL--JLJ.L
         """
-        XCTAssertEqual(day.part2BSolution(for: input2), 10)
+        #expect(day.part2BSolution(for: input2) == 10)
         
-        XCTAssertEqual(day.part2BSolution(for: type(of: day).input), 529)
+        #expect(day.part2BSolution(for: type(of: day).input) == 529)
     }
 }

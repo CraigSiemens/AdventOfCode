@@ -1,22 +1,22 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2019
 
-final class Day4Tests: XCTestCase {
+struct Day4Tests {
     let day = Day4()
     
-    func testPart1() {
-        XCTAssertTrue(day.isValidPassword(111111, strict: false))
-        XCTAssertFalse(day.isValidPassword(223450, strict: false))
-        XCTAssertFalse(day.isValidPassword(123789, strict: false))
+    @Test func part1() {
+        #expect(day.isValidPassword(111111, strict: false) == true)
+        #expect(day.isValidPassword(223450, strict: false) == false)
+        #expect(day.isValidPassword(123789, strict: false) == false)
         
-        XCTAssertEqual(day.part1Solution(for: "111110-111120"), "9")
+        #expect(day.part1Solution(for: "111110-111120") == "9")
     }
     
-    func testPart2() {
-        XCTAssertTrue(day.isValidPassword(112233, strict: true))
-        XCTAssertFalse(day.isValidPassword(123444, strict: true))
-        XCTAssertTrue(day.isValidPassword(111122, strict: true))
+    @Test func part2() {
+        #expect(day.isValidPassword(112233, strict: true) == true)
+        #expect(day.isValidPassword(123444, strict: true) == false)
+        #expect(day.isValidPassword(111122, strict: true) == true)
 
-        XCTAssertEqual(day.part2Solution(for: "111110-111125"), "1")
+        #expect(day.part2Solution(for: "111110-111125") == "1")
     }
 }

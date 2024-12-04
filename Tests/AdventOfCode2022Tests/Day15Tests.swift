@@ -1,8 +1,8 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2022
 
-final class Day15Tests: XCTestCase {
+struct Day15Tests {
     let day = Day15()
     
     let input: Input = """
@@ -23,13 +23,13 @@ final class Day15Tests: XCTestCase {
     Sensor at x=20, y=1: closest beacon is at x=15, y=3
     """
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: input), 26)
-        //XCTAssertEqual(day.part1Solution(), 4886370)
+    @Test func part1() {
+        #expect(day.part1Solution(for: input) == 26)
+        //#expect(day.part1Solution() == 4886370)
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: input), 56000011)
-        //XCTAssertEqual(day.part2Solution(), 11374534948438)
+    @Test func part2() {
+        #expect(day.part2Solution(for: input) == 56000011)
+        //#expect(day.part2Solution() == 11374534948438)
     }
 }

@@ -1,6 +1,5 @@
 import Foundation
 
-@available(OSX 10.11, *)
 struct Day15: Day {
 
     enum Race: String {

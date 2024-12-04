@@ -1,27 +1,27 @@
+import Testing
 import Utilities
-import XCTest
 @testable import AdventOfCode2022
 
-final class Day6Tests: XCTestCase {
+struct Day6Tests {
     let day = Day6()
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: "mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7)
-        XCTAssertEqual(day.part1Solution(for: "bvwbjplbgvbhsrlpgdmjqwftvncz"), 5)
-        XCTAssertEqual(day.part1Solution(for: "nppdvjthqldpwncqszvftbrmjlhg"), 6)
-        XCTAssertEqual(day.part1Solution(for: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10)
-        XCTAssertEqual(day.part1Solution(for: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11)
+    @Test func part1() {
+        #expect(day.part1Solution(for: "mjqjpqmgbljsphdztnvjfqwrcgsmlb") == 7)
+        #expect(day.part1Solution(for: "bvwbjplbgvbhsrlpgdmjqwftvncz") == 5)
+        #expect(day.part1Solution(for: "nppdvjthqldpwncqszvftbrmjlhg") == 6)
+        #expect(day.part1Solution(for: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg") == 10)
+        #expect(day.part1Solution(for: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw") == 11)
         
-        XCTAssertEqual(day.part1Solution(), 1238)
+        #expect(day.part1Solution() == 1238)
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: "mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19)
-        XCTAssertEqual(day.part2Solution(for: "bvwbjplbgvbhsrlpgdmjqwftvncz"), 23)
-        XCTAssertEqual(day.part2Solution(for: "nppdvjthqldpwncqszvftbrmjlhg"), 23)
-        XCTAssertEqual(day.part2Solution(for: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29)
-        XCTAssertEqual(day.part2Solution(for: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26)
+    @Test func part2() {
+        #expect(day.part2Solution(for: "mjqjpqmgbljsphdztnvjfqwrcgsmlb") == 19)
+        #expect(day.part2Solution(for: "bvwbjplbgvbhsrlpgdmjqwftvncz") == 23)
+        #expect(day.part2Solution(for: "nppdvjthqldpwncqszvftbrmjlhg") == 23)
+        #expect(day.part2Solution(for: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg") == 29)
+        #expect(day.part2Solution(for: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw") == 26)
         
-        XCTAssertEqual(day.part2Solution(), 3037)
+        #expect(day.part2Solution() == 3037)
     }
 }

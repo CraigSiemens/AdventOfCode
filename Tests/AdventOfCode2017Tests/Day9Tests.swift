@@ -1,31 +1,31 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2017
 
-final class Day9Tests: XCTestCase {
+struct Day9Tests {
     let day = Day9()
     
-    func testPart1() {
-        XCTAssertEqual(day.part1Solution(for: "{}"), "1")
-        XCTAssertEqual(day.part1Solution(for: "{{{}}}"), "6")
-        XCTAssertEqual(day.part1Solution(for: "{{},{}}"), "5")
-        XCTAssertEqual(day.part1Solution(for: "{{{},{},{{}}}}"), "16")
-        XCTAssertEqual(day.part1Solution(for: "{<a>,<a>,<a>,<a>}"), "1")
-        XCTAssertEqual(day.part1Solution(for: "{{<ab>},{<ab>},{<ab>},{<ab>}}"), "9")
-        XCTAssertEqual(day.part1Solution(for: "{{<!!>},{<!!>},{<!!>},{<!!>}}"), "9")
-        XCTAssertEqual(day.part1Solution(for: "{{<a!>},{<a!>},{<a!>},{<ab>}}"), "3")
+    @Test func part1() {
+        #expect(day.part1Solution(for: "{}") == "1")
+        #expect(day.part1Solution(for: "{{{}}}") == "6")
+        #expect(day.part1Solution(for: "{{},{}}") == "5")
+        #expect(day.part1Solution(for: "{{{},{},{{}}}}") == "16")
+        #expect(day.part1Solution(for: "{<a>,<a>,<a>,<a>}") == "1")
+        #expect(day.part1Solution(for: "{{<ab>},{<ab>},{<ab>},{<ab>}}") == "9")
+        #expect(day.part1Solution(for: "{{<!!>},{<!!>},{<!!>},{<!!>}}") == "9")
+        #expect(day.part1Solution(for: "{{<a!>},{<a!>},{<a!>},{<ab>}}") == "3")
 
-        XCTAssertEqual(day.part1Solution(), "23588")
+        #expect(day.part1Solution() == "23588")
     }
     
-    func testPart2() {
-        XCTAssertEqual(day.part2Solution(for: "{<>}"), "0")
-        XCTAssertEqual(day.part2Solution(for: "{<random characters>}"), "17")
-        XCTAssertEqual(day.part2Solution(for: "{<<<<>}"), "3")
-        XCTAssertEqual(day.part2Solution(for: "{<{!>}>}"), "2")
-        XCTAssertEqual(day.part2Solution(for: "{<!!>}"), "0")
-        XCTAssertEqual(day.part2Solution(for: "{<!!!>>}"), "0")
-        XCTAssertEqual(day.part2Solution(for: "{<{o\"i!a,<{i<a>}"), "10")
+    @Test func part2() {
+        #expect(day.part2Solution(for: "{<>}") == "0")
+        #expect(day.part2Solution(for: "{<random characters>}") == "17")
+        #expect(day.part2Solution(for: "{<<<<>}") == "3")
+        #expect(day.part2Solution(for: "{<{!>}>}") == "2")
+        #expect(day.part2Solution(for: "{<!!>}") == "0")
+        #expect(day.part2Solution(for: "{<!!!>>}") == "0")
+        #expect(day.part2Solution(for: "{<{o\"i!a,<{i<a>}") == "10")
 
-        XCTAssertEqual(day.part2Solution(), "10045")
+        #expect(day.part2Solution() == "10045")
     }
 }

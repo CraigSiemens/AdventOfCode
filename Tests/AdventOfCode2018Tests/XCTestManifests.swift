@@ -1,4 +1,4 @@
-import XCTest
+import Testing
 
 #if !os(macOS)
 public func allTests() -> [XCTestCaseEntry] {
