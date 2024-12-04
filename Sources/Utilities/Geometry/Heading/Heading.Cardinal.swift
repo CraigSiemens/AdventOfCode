@@ -1,17 +1,26 @@
-//
-//  Heading.swift
-//  AdventOfCode2018
-//
-//  Created by Craig Siemens on 2018-12-14.
-//
-
 import Foundation
 
-public enum Heading: CaseIterable {
-    // Reading Order
-    case north, west, east, south
+extension Heading {
+    public enum Cardinal: CaseIterable {
+        // Clockwise Order
+        case north
+        case east
+        case south
+        case west
+    }
+}
+ 
+extension Heading.Cardinal {
+    public var point: Point {
+        switch self {
+        case .north: return .init(x: 0, y: -1)
+        case .east:  return .init(x: 1, y: 0)
+        case .south: return .init(x: 0, y: 1)
+        case .west:  return .init(x: -1, y: 0)
+        }
+    }
     
-    public var opposite: Heading {
+    public var opposite: Heading.Cardinal {
         switch self {
         case .north: return .south
         case .east:  return .west
@@ -20,7 +29,7 @@ public enum Heading: CaseIterable {
         }
     }
     
-    public var left: Heading {
+    public var left: Heading.Cardinal {
         switch self {
         case .north: return .west
         case .east:  return .north
@@ -29,7 +38,7 @@ public enum Heading: CaseIterable {
         }
     }
     
-    public var right: Heading {
+    public var right: Heading.Cardinal {
         switch self {
         case .north: return .east
         case .east:  return .south
@@ -38,7 +47,7 @@ public enum Heading: CaseIterable {
         }
     }
     
-    public func turn(_ direction: Direction) -> Heading {
+    public func turn(_ direction: Direction) -> Heading.Cardinal {
         switch direction {
         case .forward:  return self
         case .backward: return opposite
@@ -47,7 +56,7 @@ public enum Heading: CaseIterable {
         }
     }
     
-    public func direction(to heading: Heading) -> Direction {
+    public func direction(to heading: Heading.Cardinal) -> Direction {
         for direction in Direction.allCases {
             if turn(direction) == heading {
                 return direction
@@ -60,17 +69,13 @@ public enum Heading: CaseIterable {
     public var arrow: Character {
         switch self {
         case .north:
-            return "^"
+            return "↑"
         case .west:
-            return "<"
+            return "←"
         case .east:
-            return ">"
+            return "→"
         case .south:
-            return "v"
+            return "↓"
         }
     }
-}
-
-public enum Direction: CaseIterable {
-    case forward, backward, left, right
 }

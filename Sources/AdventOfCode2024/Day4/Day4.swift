@@ -7,17 +7,8 @@ public struct Day4: Day {
         let grid = Grid(input.lines.map(\.characters))
         let match = "XMAS"
         
-        let headings: [Point] = [
-            .init(x: 1, y: 0),
-            .init(x: -1, y: 0),
-            .init(x: 0, y: 1),
-            .init(x: 0, y: -1),
-            
-            .init(x: 1, y: 1),
-            .init(x: 1, y: -1),
-            .init(x: -1, y: 1),
-            .init(x: -1, y: -1),
-        ]
+        let headings: [Point] = Heading.Cardinal.allCases.map(\.point)
+        + Heading.Diagonal.allCases.map(\.point)
         
         var count = 0
         
@@ -46,8 +37,7 @@ public struct Day4: Day {
         
         var count = 0
         
-        for point in grid.keys
-        where grid[point] == "A" {
+        for case (let point, "A") in grid {
             let diagonalNeighbours = point.diagonalNeighbours.compactMap { grid[$0] }
             
             guard diagonalNeighbours.count == 4,

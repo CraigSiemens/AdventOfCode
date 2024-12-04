@@ -4,10 +4,10 @@ struct Day13: Day {
 
     struct Cart: Hashable {
         var position: Point
-        var heading: Heading
+        var heading: Heading.Cardinal
         private var intersectionCount = 0
         
-        init(position: Point, heading: Heading) {
+        init(position: Point, heading: Heading.Cardinal) {
             self.position = position
             self.heading = heading
         }
@@ -29,7 +29,7 @@ struct Day13: Day {
     }
     
     enum TrackPiece {
-        case corner(Heading, Heading)
+        case corner(Heading.Cardinal, Heading.Cardinal)
         case intersection
     }
     

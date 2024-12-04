@@ -4,7 +4,7 @@ import Utilities
 
 public struct Day10: Day {
     public func part1Solution(for input: Input) -> Int {
-        let pipes: [Character: Set<Heading>] = [
+        let pipes: [Character: Set<Heading.Cardinal>] = [
             "|": [.north, .south],
             "-": [.east, .west],
             "L": [.north, .east],
@@ -21,7 +21,7 @@ public struct Day10: Day {
             return pipes[input]
         }
         
-        var heading = Heading.allCases
+        var heading = Heading.Cardinal.allCases
             .first { heading in
                 let point = startPoint.moved(heading)
                 return (grid[point]?.contains(heading.opposite)) ?? false
@@ -45,7 +45,7 @@ public struct Day10: Day {
     /// - based on turns, we know either left or right are inside the path
     /// - flood fill from those points to find all inside points
     public func part2Solution(for input: Input) -> Int {
-        let pipes: [Character: Set<Heading>] = [
+        let pipes: [Character: Set<Heading.Cardinal>] = [
             "|": [.north, .south],
             "-": [.east, .west],
             "L": [.north, .east],
@@ -62,7 +62,7 @@ public struct Day10: Day {
             return pipes[input]
         }
         
-        var heading = Heading.allCases
+        var heading = Heading.Cardinal.allCases
             .first { heading in
                 let point = startPoint.moved(heading)
                 return (grid[point]?.contains(heading.opposite)) ?? false
@@ -114,7 +114,7 @@ public struct Day10: Day {
     ///     - if the next turn contains the other perpendicular direction, toggle isInside
     ///     - if the next turn contain the same perpendicular direction, don't toggle isInside
     public func part2BSolution(for input: Input) -> Int {
-        let pipes: [Character: Set<Heading>] = [
+        let pipes: [Character: Set<Heading.Cardinal>] = [
             "|": [.north, .south],
             "-": [.east, .west],
             "L": [.north, .east],
@@ -131,7 +131,7 @@ public struct Day10: Day {
             return pipes[input]
         }
         
-        let startHeadings = Heading.allCases
+        let startHeadings = Heading.Cardinal.allCases
             .filter { heading in
                 let point = startPoint.moved(heading)
                 return (grid[point]?.contains(heading.opposite)) ?? false
@@ -152,7 +152,7 @@ public struct Day10: Day {
         var count = 0
         for x in bounds.min.x...bounds.max.x {
             var isInside = false
-            var partial: Heading?
+            var partial: Heading.Cardinal?
             
             for y in bounds.min.y...bounds.max.y {
                 let point = Point(x: x, y: y)

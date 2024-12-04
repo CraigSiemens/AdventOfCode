@@ -2,7 +2,7 @@ import Foundation
 
 public struct Day3: Day {
 
-    let headings: [String: Heading] = [
+    let headings: [String: Heading.Cardinal] = [
         "D": .north,
         "U": .south,
         "R": .east,
@@ -14,7 +14,7 @@ public struct Day3: Day {
             .map { (line) -> [GridLine] in
                 line.raw
                     .components(separatedBy: ",")
-                    .map { (move) -> (Heading, Int) in
+                    .map { (move) -> (Heading.Cardinal, Int) in
                         let heading = headings[String(move.prefix(1))]!
                         let amount = Int(move.dropFirst())!
                         return (heading, amount)

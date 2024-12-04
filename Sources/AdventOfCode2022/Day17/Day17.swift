@@ -64,7 +64,7 @@ public struct Day17: Day {
         ])
     }
     
-    func parse(input: Input) -> [Heading] {
+    func parse(input: Input) -> [Heading.Cardinal] {
         input
             .characters
             .trimming { $0 == "\n" }
@@ -80,7 +80,7 @@ public struct Day17: Day {
         }
     }
     
-    func movePiece(_ piece: Piece, heading: Heading, in grid: Set<Point>) -> (piece: Piece, moved: Bool) {
+    func movePiece(_ piece: Piece, heading: Heading.Cardinal, in grid: Set<Point>) -> (piece: Piece, moved: Bool) {
         let pieceBeforeMoving = piece
         
         var piece = piece
@@ -94,7 +94,7 @@ public struct Day17: Day {
     }
     
     func gridHeight(
-        jets: [Heading],
+        jets: [Heading.Cardinal],
         pieceCount: Int
     ) -> Int {
         var grid: Set<Point> = []

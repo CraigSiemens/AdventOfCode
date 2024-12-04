@@ -59,7 +59,8 @@ func targets(forYear year: Int) -> [Target] {
     let name = "AdventOfCode\(year)"
     
     let sourceDirectory = URL(fileURLWithPath: #file)
-        .deletingLastPathComponent()
+        .deletingLastPathComponent() // Package.swift
+        .deletingLastPathComponent() // main
         .appendingPathComponent("Sources")
         .appendingPathComponent(name)
     

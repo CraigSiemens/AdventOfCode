@@ -7,7 +7,7 @@ public struct Day11: Day {
         computer.run()
         
         var position = Point.zero
-        var heading = Heading.north
+        var heading = Heading.Cardinal.north
         while computer.state != .finished {
             computer.input = map[position, default: .black]
             

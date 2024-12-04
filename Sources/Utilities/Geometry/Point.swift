@@ -9,28 +9,22 @@ public struct Point: Hashable, Sendable {
         self.y = y
     }
     
-    public func moved(_ heading: Heading, amount: Int = 1) -> Point {
-        switch heading {
-        case .north: return Point(x: x, y: y-amount)
-        case .south: return Point(x: x, y: y+amount)
-        case .west: return Point(x: x-amount, y: y)
-        case .east: return Point(x: x+amount, y: y)
-        }
+    public func moved(_ heading: Heading.Cardinal, amount: Int = 1) -> Point {
+        self + heading.point * amount
+    }
+    
+    public func moved(_ heading: Heading.Diagonal, amount: Int = 1) -> Point {
+        self + heading.point * amount
     }
     
     public var cardinalNeighbours: [Point] {
-        return Heading.allCases.map { moved($0) }
+        return Heading.Cardinal.allCases.map { moved($0) }
     }
     
     public var diagonalNeighbours: [Point] {
-        return [
-            .init(x: x-1, y: y-1),
-            .init(x: x-1, y: y+1),
-            .init(x: x+1, y: y+1),
-            .init(x: x+1, y: y-1)
-        ]
+        return Heading.Diagonal.allCases.map { moved($0) }
     }
-
+    
     public var allNeighbours: [Point] {
         return cardinalNeighbours + diagonalNeighbours
     }

@@ -18,7 +18,7 @@ public struct Day8: Day {
         
         var visiblePoints: Set<Point> = []
         
-        func update(for points: [Point], heading: Heading) {
+        func update(for points: [Point], heading: Heading.Cardinal) {
             for point in points {
                 var point = point
                 var maxHeight = -1
@@ -60,7 +60,7 @@ public struct Day8: Day {
         let heights = input.lines.map(\.integers)
         let heightGrid = Grid(heights)
 
-        func count(from point: Point, heading: Heading) -> Int {
+        func count(from point: Point, heading: Heading.Cardinal) -> Int {
             let maxHeight = heightGrid[point, default: 0]
             
             var point = point.moved(heading)
@@ -81,7 +81,7 @@ public struct Day8: Day {
         
         var bestScore = 0
         for point in heightGrid.keys {
-            let score = Heading.allCases.map { count(from: point, heading: $0) }.product()
+            let score = Heading.Cardinal.allCases.map { count(from: point, heading: $0) }.product()
             bestScore = max(bestScore, score)
         }
         

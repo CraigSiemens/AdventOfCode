@@ -29,7 +29,7 @@ public struct Day15: Day {
         
         let (min, max) = sensorDistances
             .flatMap { sensor, distance in
-                Heading.allCases.map { sensor.moved($0, amount: distance) }
+                Heading.Cardinal.allCases.map { sensor.moved($0, amount: distance) }
             }
             .extremes()
         

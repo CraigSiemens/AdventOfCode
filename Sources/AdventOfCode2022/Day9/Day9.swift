@@ -8,7 +8,7 @@ public struct Day9: Day {
         var visitedPoints: Set<Point> = [.zero]
         
         for line in input.lines.map(\.words) {
-            let heading = Heading(string: line[0].raw)
+            let heading = Heading.Cardinal(string: line[0].raw)
             
             for _ in 0..<line[1].int! {
                 knots[0] = knots[0].moved(heading)
@@ -36,7 +36,7 @@ public struct Day9: Day {
     }
 }
 
-private extension Heading {
+private extension Heading.Cardinal {
     init(string: String) {
         switch string {
         case "U": self = .north

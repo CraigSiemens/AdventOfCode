@@ -30,7 +30,7 @@ public struct GridLine {
         self.end = end
     }
     
-    public init(point: Point, heading: Heading, amount: Int) {
+    public init(point: Point, heading: Heading.Cardinal, amount: Int) {
         self.start = point
         self.end = point.moved(heading, amount: amount)
     }

@@ -26,7 +26,7 @@ public struct Day22: Day {
         let scanner = Scanner(string: parts[1].last!.raw)
         
         var position = Point(x: yRanges[0]![0].lowerBound, y: 0)
-        var heading = Heading.east
+        var heading = Heading.Cardinal.east
         
         while !scanner.isAtEnd {
             guard let steps = scanner.scanInt() else { break }
@@ -50,7 +50,7 @@ public struct Day22: Day {
             heading = heading.turn(turn == "L" ? .left : .right)
         }
         
-        let headings: [Heading] = [.east, .south, .west, .north]
+        let headings: [Heading.Cardinal] = [.east, .south, .west, .north]
         
         return (position.y + 1) * 1000
         + (position.x + 1) * 4
@@ -81,7 +81,7 @@ public struct Day22: Day {
         let scanner = Scanner(string: parts[1].last!.raw)
         
         var position = Point(x: yRanges[0]![0].lowerBound, y: 0)
-        var heading = Heading.east
+        var heading = Heading.Cardinal.east
         
         while !scanner.isAtEnd {
             guard let steps = scanner.scanInt() else { break }
@@ -97,7 +97,7 @@ public struct Day22: Day {
             heading = heading.turn(turn == "L" ? .left : .right)
         }
         
-        let headings: [Heading] = [.east, .south, .west, .north]
+        let headings: [Heading.Cardinal] = [.east, .south, .west, .north]
         
         return (position.y + 1) * 1000
         + (position.x + 1) * 4
@@ -112,7 +112,7 @@ private struct Cube {
     }
     
     struct Edge {
-        typealias ConnectedFace = (point: Point, heading: Heading)
+        typealias ConnectedFace = (point: Point, heading: Heading.Cardinal)
         
         let from: ConnectedFace
         let to: ConnectedFace
@@ -120,7 +120,7 @@ private struct Cube {
     
     private let faceSize: Int
     private var faces: Grid<Face> = [:]
-    private var edges: [Point: [Heading: Edge]] = [:]
+    private var edges: [Point: [Heading.Cardinal: Edge]] = [:]
     
     init(
         xRanges: [Int: IndexRangeSet],
@@ -159,7 +159,7 @@ private struct Cube {
         
         // Make edges for connected faces in input
         for point in faces.keys {
-            for heading in Heading.allCases {
+            for heading in Heading.Cardinal.allCases {
                 let neighbour = point.moved(heading)
                 guard faces[neighbour] != nil else { continue }
                 
@@ -181,7 +181,7 @@ private struct Cube {
         var facesMissingEdges = Set(faces.keys)
         while !facesMissingEdges.isEmpty {
             for face in facesMissingEdges {
-                for heading in Heading.allCases {
+                for heading in Heading.Cardinal.allCases {
                     guard edges[face]![heading] == nil else { continue }
                     
                     if let existing = edges[face]![heading.left]?.to,
@@ -201,14 +201,14 @@ private struct Cube {
                     }
                 }
                 
-                if edges[face]!.count == Heading.allCases.count {
+                if edges[face]!.count == Heading.Cardinal.allCases.count {
                     facesMissingEdges.remove(face)
                 }
             }
         }
     }
     
-    func move(point: Point, heading: Heading) -> (point: Point, heading: Heading) {
+    func move(point: Point, heading: Heading.Cardinal) -> (point: Point, heading: Heading.Cardinal) {
         // Move point along heading
         var newPoint = point.moved(heading)
         
