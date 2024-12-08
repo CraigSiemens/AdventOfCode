@@ -97,6 +97,13 @@ extension SIMD2 where Scalar: BinaryInteger {
     }
 }
 
+// MARK: CustomStringConvertible
+extension Point: CustomStringConvertible {
+    public var description: String {
+        "(\(x), \(y))"
+    }
+}
+
 // MARK: Arithmetic
 extension Point {
     public static func all(in xRange: ClosedRange<Int>, _ yRange: ClosedRange<Int>) -> [Point] {
