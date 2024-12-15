@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Neo on 2021-12-08.
-//
-
 import Foundation
 
 public extension Int {
@@ -18,5 +11,16 @@ public extension Int {
         }
         
         self = value
+    }
+}
+
+public extension Int {
+    var digitCount: Int {
+        var magnitude = 10
+        for i in 1... {
+            guard self >= magnitude else { return i }
+            magnitude *= 10
+        }
+        return .max
     }
 }
