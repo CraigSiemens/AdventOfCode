@@ -1,10 +1,10 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 import Foundation
 
-let years = 2017...2024
+let years = 2017...2025
 
 var package = Package(
     name: "Advent of Code",

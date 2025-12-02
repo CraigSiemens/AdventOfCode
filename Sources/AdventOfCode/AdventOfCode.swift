@@ -7,6 +7,7 @@ import AdventOfCode2021
 import AdventOfCode2022
 import AdventOfCode2023
     import AdventOfCode2024
+    import AdventOfCode2025
 // {YEARS IMPORT}
 
 @_exported import Utilities
@@ -21,6 +22,7 @@ public struct AdventOfCode {
         AdventOfCode2022(),
         AdventOfCode2023(),
         AdventOfCode2024(),
+        AdventOfCode2025(),
         // {YEARS}
     ]
     
