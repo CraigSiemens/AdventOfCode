@@ -54,6 +54,10 @@ public struct IndexRangeSet {
         
         ranges.append(contentsOf: newRanges)
     }
+    
+    public func contains(_ value: Int) -> Bool {
+        contains { $0.contains(value) }
+    }
 }
 
 extension IndexRangeSet: Collection {
