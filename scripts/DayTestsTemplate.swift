@@ -10,14 +10,14 @@ struct {DAY_NAME}Tests {
 //    """
     
     @Test func part1() {
-//        #expect(day.part1Solution(for: input) == <#{RETURN_VALUE}#>)
-//        #expect(day.part1Solution(for: "<#input#>") == <#{RETURN_VALUE}#>)
-        #expect(day.part1Solution() == {RETURN_VALUE})
+//        #expect(day.part1Solution(for: input) == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
+//        #expect(day.part1Solution(for: "<#input#>") == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
+        #expect(day.part1Solution() == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
     }
     
     @Test func part2() {
-//        #expect(day.part2Solution(for: input) == <#{RETURN_VALUE}#>)
-//        #expect(day.part2Solution(for: "<#input#>") == <#{RETURN_VALUE}#>)
-        #expect(day.part2Solution() == {RETURN_VALUE})
+//        #expect(day.part2Solution(for: input) == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
+//        #expect(day.part2Solution(for: "<#input#>") == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
+        #expect(day.part2Solution() == /*@START_MENU_TOKEN@*//*@PLACEHOLDER=solution@*/{RETURN_VALUE}/*@END_MENU_TOKEN@*/)
     }
 }
