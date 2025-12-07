@@ -143,6 +143,7 @@ extension Collection where Element: StringProtocol {
 }
 
 extension Collection where Element == Character {
+    /// Integer value for each character
     public var integers: [Int] {
         return compactMap(\.wholeNumberValue)
     }
