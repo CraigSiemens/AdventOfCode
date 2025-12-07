@@ -28,4 +28,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
       - name: Run Tests
-        run: swift test --parallel
+        run: swift test --parallel --configuration release
