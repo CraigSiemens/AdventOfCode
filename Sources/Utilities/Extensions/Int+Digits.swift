@@ -1,7 +1,7 @@
 import Foundation
 
 public extension Int {
-    init(digits: [Int]) {
+    init(digits: some Sequence<Int>) {
         var value = 0
         
         for digit in digits {
@@ -22,5 +22,16 @@ public extension Int {
             magnitude *= 10
         }
         return .max
+    }
+    
+    var digits: [Int] {
+        var value = self
+        var digits: [Int] = []
+        while value > 0 {
+            let result = value.quotientAndRemainder(dividingBy: 10)
+            digits.insert(result.remainder, at: 0)
+            value = result.quotient
+        }
+        return digits
     }
 }
