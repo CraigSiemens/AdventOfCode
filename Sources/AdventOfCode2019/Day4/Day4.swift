@@ -3,10 +3,10 @@ import Foundation
 public struct Day4: Day {
     func isValidPassword(_ password: Int, strict: Bool) -> Bool {
         let string = String(password)
-        let pairs = String(password).pairs
+        let pairs = String(password).adjacentPairs()
         
-        return pairs.allSatisfy { $0.first <= $0.second }
-            && pairs.contains { $0.first == $0.second }
+        return pairs.allSatisfy { $0.0 <= $0.1 }
+        && pairs.contains { $0.0 == $0.1 }
             && (!strict
                 || string.countElements().values.contains(2))
     }

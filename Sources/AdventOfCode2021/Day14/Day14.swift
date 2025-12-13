@@ -4,7 +4,9 @@ public struct Day14: Day {
     func run(for input: Input, steps: Int) -> Int {
         let parts = input.words(by: "\n\n")
         
-        var countedPairs = Dictionary(counting: parts[0].characters.pairs)
+        var countedPairs = Dictionary(
+            counting: parts[0].characters.adjacentPairs().map(Pair.init)
+        )
         
         let substitutions = Dictionary(
             uniqueKeysWithValues: Input(parts[1].raw)
