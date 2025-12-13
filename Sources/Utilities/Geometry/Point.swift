@@ -34,8 +34,22 @@ public struct Point: Hashable, Sendable {
         return abs(x - other.x) + abs(y - other.y)
     }
     
+    /// For when a point represents a point in space.
+    ///
+    /// ```
+    /// point.area(with: point) == 0
+    /// ```
     public func area(with other: Point) -> Int {
         return abs(x - other.x) * abs(y - other.y)
+    }
+    
+    /// For when a point represents an area of 1 in a grid.
+    ///
+    /// ```
+    /// point.gridArea(with: point) == 1
+    /// ```
+    public func gridArea(with other: Point) -> Int {
+        return (1 + abs(x - other.x)) * (1 + abs(y - other.y))
     }
     
     func isCardinalNeighbour(with other: Point) -> Bool {

@@ -1,7 +1,7 @@
 import Testing
 @testable import Utilities
 
-struct CloseRangeContinuousTests {
+struct ClosedRangeContinuousTests {
     @Test func contains() {
         let range = 1...5
         
